@@ -155,6 +155,9 @@ backend:
       - working: true
         agent: "main"
         comment: "CRUD operations for business profiles, lead management, professional search functionality"
+      - working: true
+        agent: "testing"
+        comment: "All professional APIs tested successfully: POST /api/professionals/profile (create business profile), GET /api/professionals/profile (get current profile), PUT /api/professionals/profile (update profile), GET /api/professionals/leads (get assigned leads), PUT /api/professionals/leads/{lead_id}/status (update lead status), GET /api/professionals/ (public search), GET /api/professionals/{professional_id} (get specific profile). Lead status updates working correctly with proper timestamps."
 
   - task: "Customer Request System API"
     implemented: true
