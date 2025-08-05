@@ -170,6 +170,9 @@ backend:
       - working: true
         agent: "main"
         comment: "Customer service request creation, quick request for non-authenticated users, request management"
+      - working: true
+        agent: "testing"
+        comment: "All customer request APIs working correctly: POST /api/customers/requests/quick (no auth needed for landing page), POST /api/customers/requests (authenticated requests), GET /api/customers/requests (get customer's requests), GET /api/customers/requests/{request_id} (get specific request), PUT /api/customers/requests/{request_id} (update request), DELETE /api/customers/requests/{request_id} (delete request). Quick request functionality tested successfully for guest users."
 
   - task: "Admin Management API"
     implemented: true
