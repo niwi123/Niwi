@@ -185,6 +185,9 @@ backend:
       - working: true
         agent: "main"
         comment: "User management, professional verification, lead assignment, platform statistics"
+      - working: true
+        agent: "testing"
+        comment: "All admin APIs tested successfully: GET /api/admin/users (get all users with filtering), PUT /api/admin/users/{user_id}/status (update user status), GET /api/admin/profiles (get all business profiles), PUT /api/admin/profiles/{profile_id}/verify (verify business profile), GET /api/admin/customer-requests (get all customer requests), POST /api/admin/leads (manually assign lead to professional), GET /api/admin/leads (get all leads with filtering), DELETE /api/admin/leads/{lead_id} (delete lead assignment), GET /api/admin/stats (get platform statistics). Lead assignment workflow working correctly."
 
   - task: "Database Configuration"
     implemented: true
