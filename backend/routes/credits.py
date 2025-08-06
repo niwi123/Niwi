@@ -26,7 +26,7 @@ def get_database() -> AsyncIOMotorDatabase:
 # Define credit packages with new pricing structure
 CREDIT_PACKAGES = {
     CreditPackage.STARTER_10: {
-        "credits": 10,
+        "credits": 3,
         "price": 150.00,
         "name": "Tester Pack",
         "description": "Perfect for testing the platform"
@@ -50,16 +50,16 @@ CREDIT_PACKAGES = {
         "description": "30 quality leads for active professionals"
     },
     CreditPackage.BUSINESS_250: {
-        "credits": 50,
+        "credits": 100,
         "price": 6000.00,
         "name": "Premium Deluxe",
         "description": "For established businesses"
     },
     CreditPackage.ENTERPRISE_500: {
-        "credits": 100,
+        "credits": 200,
         "price": 13250.00,
         "name": "Enterprise Deluxe",
-        "description": "100 quality leads for large operations"
+        "description": "200 quality leads for large operations"
     }
 }
 
