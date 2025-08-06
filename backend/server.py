@@ -39,6 +39,8 @@ app.include_router(auth_router, prefix="/api")
 app.include_router(professionals_router, prefix="/api")
 app.include_router(customers_router, prefix="/api")
 app.include_router(admin_router, prefix="/api")
+app.include_router(credits_router, prefix="/api")
+app.include_router(webhooks_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
