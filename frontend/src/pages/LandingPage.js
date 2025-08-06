@@ -585,13 +585,14 @@ const LandingPage = () => {
               <>
                 <Link
                   to="/professional/signup"
-                  className="bg-white text-emerald-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition"
+                  className="bg-white text-emerald-600 px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-gray-100 transition text-center"
                 >
-                  Create Free Profile
+                  <span className="hidden sm:inline">Create Free Profile</span>
+                  <span className="sm:hidden">Join as Professional</span>
                 </Link>
                 <Link
                   to="/pricing"
-                  className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-emerald-600 transition"
+                  className="border-2 border-white text-white px-6 py-3 sm:px-8 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-white hover:text-emerald-600 transition text-center"
                 >
                   View Pricing
                 </Link>
