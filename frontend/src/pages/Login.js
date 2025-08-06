@@ -7,6 +7,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
   
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -14,6 +15,10 @@ const Login = () => {
 
   // Get redirect path from location state or default to home
   const from = location.state?.from?.pathname || '/';
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
