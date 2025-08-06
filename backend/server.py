@@ -11,6 +11,8 @@ from routes.auth import router as auth_router
 from routes.professionals import router as professionals_router
 from routes.customers import router as customers_router
 from routes.admin import router as admin_router
+from routes.credits import router as credits_router
+from routes.webhooks import router as webhooks_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
