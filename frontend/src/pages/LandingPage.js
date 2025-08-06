@@ -363,9 +363,9 @@ const LandingPage = () => {
                 }}
               >
                 <div className="flex items-center mb-4">
-                  <span className="text-3xl mr-4 transform group-hover:scale-110 transition-transform duration-300">
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-16 h-16 rounded-2xl flex items-center justify-center mr-4 shadow-lg border border-gray-200 transform group-hover:scale-110 transition-all duration-300 group-hover:shadow-xl">
                     {category.icon}
-                  </span>
+                  </div>
                   <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors duration-300">
                     {category.name}
                   </h3>
