@@ -213,7 +213,7 @@ const LandingPage = () => {
                   Join as Professional
                 </Link>
                 <Link
-                  to="/credits"
+                  to="/pricing"
                   className="border-2 border-emerald-600 text-emerald-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all duration-300"
                 >
                   View Pricing
