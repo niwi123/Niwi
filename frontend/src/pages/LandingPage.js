@@ -428,11 +428,16 @@ const LandingPage = () => {
                   step: 3,
                   title: "Connect & Close Deals",
                   description: "Contact customers directly with their phone and email. Start growing your business.",
-                  color: "green"
+                  color: "red"
                 }
               ].map((item, index) => (
                 <div key={index} className="text-center">
-                  <div className={`bg-${item.color}-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg`}>
+                  <div className={`${
+                    item.color === 'emerald' ? 'bg-emerald-600' :
+                    item.color === 'blue' ? 'bg-blue-600' :
+                    item.color === 'red' ? 'bg-red-600' :
+                    'bg-gray-600'
+                  } text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg`}>
                     {item.step}
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 mb-4">
