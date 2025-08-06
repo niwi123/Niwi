@@ -30,6 +30,81 @@ const LandingPage = () => {
     return () => observer.disconnect();
   }, []);
 
+  const features = [
+    {
+      title: "Verified-Only Leads",
+      description: "Every lead is phone/email validated, customer-submitted, and verified for real intent—no recycled junk or scraped lists.",
+      benefits: ["No more wasted time on unqualified prospects", "Focus your efforts where they matter most", "Higher conversion rates on every lead"],
+      icon: (
+        <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+        </svg>
+      ),
+      stat: "96%",
+      statLabel: "Lead Verification Rate"
+    },
+    {
+      title: "Instant Lead Notifications",
+      description: "Real-time SMS and email alerts the moment new leads arrive in your account—never miss an opportunity again.",
+      benefits: ["Real-time notifications via SMS & email", "Connect with customers within minutes", "First responder advantage"],
+      icon: (
+        <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+        </svg>
+      ),
+      stat: "3x",
+      statLabel: "Higher Close Rate"
+    },
+    {
+      title: "Quality Guarantee",
+      description: "Every lead is verified and ready to connect. Not a good fit? We'll replace it at no cost with our transparent replacement policy.",
+      benefits: ["100% satisfaction guarantee", "Easy replacement process", "Transparent and fair policy"],
+      icon: (
+        <svg className="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+      ),
+      stat: "5hrs",
+      statLabel: "Time Saved Weekly"
+    },
+    {
+      title: "Custom Location Targeting",
+      description: "Target by city, postal code, or draw your own service areas to receive hyperlocal inquiries from customers in your area.",
+      benefits: ["Precise geographic targeting", "Custom service area mapping", "Local market domination"],
+      icon: (
+        <svg className="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+        </svg>
+      ),
+      stat: "38%",
+      statLabel: "Response Rate Boost"
+    },
+    {
+      title: "Integrated CRM Suite",
+      description: "Track deals, notes, tasks, follow-ups, and sync your calendar—all in one dashboard. Never lose track of a lead again.",
+      benefits: ["Complete lead management", "Integrated calendar sync", "Automated follow-up sequences"],
+      icon: (
+        <svg className="w-8 h-8 text-indigo-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm2 2v2h2v-2H5zm4 0v2h2v-2H9zm4 0v2h2v-2h-2z" clipRule="evenodd" />
+        </svg>
+      ),
+      stat: "85%",
+      statLabel: "Lead Conversion Rate"
+    },
+    {
+      title: "Multi-Channel Lead Sourcing",
+      description: "Leads come from 250+ verified sources—never purchased, always fresh, always inbound from real customers seeking services.",
+      benefits: ["250+ lead generation sources", "Always fresh, never recycled", "Real customer inquiries only"],
+      icon: (
+        <svg className="w-8 h-8 text-pink-600" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+        </svg>
+      ),
+      stat: "250+",
+      statLabel: "Lead Sources"
+    }
+  ];
+
   const serviceCategories = [
     {
       name: 'Contractors',
@@ -96,7 +171,7 @@ const LandingPage = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-100">
+      <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
@@ -108,7 +183,7 @@ const LandingPage = () => {
               </Link>
               <Link 
                 to="/professional/signup" 
-                className="bg-emerald-600 text-white px-2 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-emerald-700 transition text-xs sm:text-sm font-medium"
+                className="bg-emerald-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-emerald-700 transition text-xs sm:text-sm font-medium"
               >
                 <span className="hidden sm:inline">Join as Professional</span>
                 <span className="sm:hidden">Join</span>
@@ -118,8 +193,8 @@ const LandingPage = () => {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-50 to-blue-50 py-20 overflow-hidden">
+      {/* Hero Section - Inkris Style */}
+      <section className="bg-gradient-to-br from-emerald-50 to-blue-50 py-16 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center" data-animate id="hero" style={{
             opacity: isVisible.hero ? 1 : 0,
@@ -130,139 +205,32 @@ const LandingPage = () => {
               100% FREE • NO CREDIT CARD REQUIRED
             </div>
             
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Connect. Serve. <span className="text-emerald-600 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Grow.</span>
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+              Realtime Demand + <br />
+              <span className="text-emerald-600 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Platform to Close Deals</span>
             </h1>
             
-            <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
-              The platform where quality professionals meet customers in need. 
-              Get verified leads or find trusted experts — all in one place.
+            <p className="text-lg sm:text-xl text-gray-600 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Niwi is the revenue platform that delivers realtime qualified demand, automates conversion, and tracks revenue performance — all in one. Connect with verified customers actively seeking your services.
             </p>
 
-            {/* Enhanced Dual CTA Tabs with animations */}
-            <div className="bg-white rounded-2xl p-3 sm:p-8 shadow-xl max-w-2xl mx-auto transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
-              <div className="flex bg-gray-100 rounded-xl p-1 mb-4 sm:mb-6 relative overflow-hidden">
-                <div 
-                  className="absolute top-1 bottom-1 bg-emerald-600 rounded-lg transition-all duration-300 ease-out"
-                  style={{
-                    left: activeTab === 'professionals' ? '4px' : '50%',
-                    width: 'calc(50% - 4px)',
-                  }}
-                />
-                <button
-                  onClick={() => setActiveTab('professionals')}
-                  className={`flex-1 py-2 sm:py-3 px-1 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-xs sm:text-base ${
-                    activeTab === 'professionals'
-                      ? 'text-white shadow-lg'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
-                  }`}
-                >
-                  <span className="hidden sm:inline">I'm a Professional</span>
-                  <span className="sm:hidden">Professional</span>
-                </button>
-                <button
-                  onClick={() => setActiveTab('customers')}
-                  className={`flex-1 py-2 sm:py-3 px-1 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-xs sm:text-base ${
-                    activeTab === 'customers'
-                      ? 'text-white shadow-lg'
-                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
-                  }`}
-                >
-                  <span className="hidden sm:inline">I Need a Service</span>
-                  <span className="sm:hidden">Customer</span>
-                </button>
-              </div>
-
-              {/* Enhanced Tab Content with slide animations */}
-              <div className="relative overflow-hidden" style={{ minHeight: '320px' }}>
-                <div 
-                  className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
-                    activeTab === 'professionals' 
-                      ? 'translate-x-0 opacity-100' 
-                      : '-translate-x-full opacity-0'
-                  }`}
-                >
-                  <div className="text-center px-2 sm:px-4">
-                    <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-                      Get Quality Leads. Grow Your Business.
-                    </h3>
-                    <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-                      Connect with verified customers actively seeking your services in your area — in real time.
-                    </p>
-                    <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                      {[
-                        'No payment required',
-                        'Takes 2 minutes', 
-                        'Start getting local leads'
-                      ].map((text, i) => (
-                        <div 
-                          key={i}
-                          className="flex items-center justify-center text-xs sm:text-sm text-gray-600 transform transition-all duration-300 hover:scale-105"
-                          style={{
-                            transitionDelay: `${i * 100}ms`
-                          }}
-                        >
-                          <span className="text-green-500 mr-2 animate-bounce" style={{ animationDelay: `${i * 200}ms` }}>✓</span>
-                          {text}
-                        </div>
-                      ))}
-                    </div>
-                    <Link
-                      to="/professional/signup"
-                      className="bg-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto min-w-0"
-                    >
-                      <span className="hidden sm:inline">Create Free Profile</span>
-                      <span className="sm:hidden">Get Started Free</span>
-                    </Link>
-                  </div>
-                </div>
-
-                <div 
-                  className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
-                    activeTab === 'customers' 
-                      ? 'translate-x-0 opacity-100' 
-                      : 'translate-x-full opacity-0'
-                  }`}
-                >
-                  <div className="text-center px-2 sm:px-4">
-                    <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
-                      Find Trusted Professionals. Get Things Done.
-                    </h3>
-                    <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
-                      Get connected with verified, local professionals for your home and business needs.
-                    </p>
-                    <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
-                      {[
-                        'Verified professionals',
-                        'Quick response times',
-                        'Quality guaranteed'
-                      ].map((text, i) => (
-                        <div 
-                          key={i}
-                          className="flex items-center justify-center text-xs sm:text-sm text-gray-600 transform transition-all duration-300 hover:scale-105"
-                          style={{
-                            transitionDelay: `${i * 100}ms`
-                          }}
-                        >
-                          <span className="text-green-500 mr-2 animate-bounce" style={{ animationDelay: `${i * 200}ms` }}>✓</span>
-                          {text}
-                        </div>
-                      ))}
-                    </div>
-                    <Link
-                      to="/customer/request"
-                      className="bg-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold hover:bg-orange-600 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto min-w-0"
-                    >
-                      <span className="hidden sm:inline">Get Service Quotes</span>
-                      <span className="sm:hidden">Find Services</span>
-                    </Link>
-                  </div>
-                </div>
-              </div>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+              <Link
+                to="/professional/signup"
+                className="bg-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
+              >
+                Join as Professional
+              </Link>
+              <Link
+                to="/credits"
+                className="border-2 border-emerald-600 text-emerald-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all duration-300"
+              >
+                View Pricing
+              </Link>
             </div>
 
-            {/* Enhanced trust indicators with staggered animations */}
-            <div className="mt-12 flex items-center justify-center space-x-8 text-gray-500">
+            {/* Trust Indicators */}
+            <div className="grid grid-cols-3 gap-8 mt-12 max-w-2xl mx-auto">
               {[
                 { number: '2,500+', label: 'Active Professionals' },
                 { number: '4.8/5', label: 'Average Rating' },
@@ -270,19 +238,17 @@ const LandingPage = () => {
               ].map((item, i) => (
                 <div 
                   key={i}
-                  className="text-center transform transition-all duration-500 hover:scale-110 cursor-pointer"
+                  className="text-center transform transition-all duration-500 hover:scale-110"
                   style={{
                     opacity: isVisible.hero ? 1 : 0,
-                    transform: isVisible.hero 
-                      ? 'translateY(0)' 
-                      : 'translateY(20px)',
+                    transform: isVisible.hero ? 'translateY(0)' : 'translateY(20px)',
                     transitionDelay: `${1000 + i * 200}ms`
                   }}
                 >
-                  <div className="text-2xl font-bold text-gray-900 hover:text-emerald-600 transition-colors duration-300">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 hover:text-emerald-600 transition-colors duration-300">
                     {item.number}
                   </div>
-                  <div className="text-sm">{item.label}</div>
+                  <div className="text-sm text-gray-600">{item.label}</div>
                 </div>
               ))}
             </div>
@@ -290,69 +256,230 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Why Choose Niwi with Interactive Cards */}
+      {/* Everything You Need Section - Inkris Style Feature Grid */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 relative z-10">
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Why Choose Niwi?</h2>
+          <div className="text-center mb-16" data-animate id="features-header" style={{
+            opacity: isVisible['features-header'] ? 1 : 0,
+            transform: isVisible['features-header'] ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          }}>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Everything You Need to Win More Business</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              The easiest way to connect, build trust, and grow your business
+              Niwi combines verified lead generation with powerful tools designed to help you close more deals.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 relative z-10">
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100">
-              <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg border border-emerald-200 group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-8.293l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13a1 1 0 102 0V9.414l1.293 1.293a1 1 0 001.414-1.414z" clipRule="evenodd" />
-                </svg>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-animate id="features-grid">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 group"
+                style={{
+                  opacity: isVisible['features-grid'] ? 1 : 0,
+                  transform: isVisible['features-grid'] ? 'translateY(0)' : 'translateY(30px)',
+                  transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
+                <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg border border-gray-200 group-hover:scale-110 transition-all duration-300">
+                  {feature.icon}
+                </div>
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  {feature.description}
+                </p>
+
+                <div className="space-y-2 mb-6">
+                  {feature.benefits.map((benefit, i) => (
+                    <div key={i} className="flex items-center text-sm text-gray-700">
+                      <span className="text-green-500 mr-2">✓</span>
+                      {benefit}
+                    </div>
+                  ))}
+                </div>
+
+                {feature.stat && (
+                  <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-4 border border-emerald-200">
+                    <div className="text-2xl font-bold text-emerald-600">{feature.stat}</div>
+                    <div className="text-sm text-emerald-700">{feature.statLabel}</div>
+                  </div>
+                )}
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-emerald-600 transition-colors duration-300">Target the Right Customers</h3>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                Connect with verified customers who are actively seeking your specific services in your area.
-              </p>
-              <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-emerald-600 font-medium text-sm">Learn more →</span>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works Section - Bark Style */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16" data-animate id="how-it-works-header">
+            <div className="inline-block text-emerald-600 font-semibold text-sm uppercase tracking-wide mb-4">
+              How it works
+            </div>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4">Niwi for Professionals</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Niwi is the Amazon of services. Thousands of Canadians use us daily to find what they need.
+            </p>
+          </div>
+
+          <div className="space-y-20">
+            {/* Step 1 - Customers Come to Us */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center" data-animate id="step-1">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-emerald-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                    1
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Customers come to us with their needs</h3>
+                </div>
+                <div className="space-y-4 text-gray-600 leading-relaxed">
+                  <p>We support every imaginable service, for both individuals and small businesses. We collect detailed information about exactly what the customer is looking for.</p>
+                  <p>Smart customers Niwi it, not Google it. They know that we'll provide relevant, professional companies that can meet their needs.</p>
+                </div>
+              </div>
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <div className="w-full h-64 bg-gradient-to-br from-emerald-100 to-blue-100 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <svg className="w-24 h-24 text-emerald-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-gray-700 font-medium">Customer submits service request</p>
+                  </div>
+                </div>
               </div>
             </div>
 
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100">
-              <div className="bg-gradient-to-br from-blue-50 to-blue-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg border border-blue-200 group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
-                </svg>
+            {/* Step 2 - Customers Find You */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center" data-animate id="step-2">
+              <div className="order-2 lg:order-1 bg-white rounded-2xl p-8 shadow-lg">
+                <div className="w-full h-64 bg-gradient-to-br from-blue-100 to-purple-100 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <svg className="w-24 h-24 text-blue-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                    </svg>
+                    <p className="text-gray-700 font-medium">You receive qualified leads</p>
+                  </div>
+                </div>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-blue-600 transition-colors duration-300">Instant Lead Notifications</h3>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                Get real-time alerts when customers in your area need your services. Never miss an opportunity.
-              </p>
-              <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-blue-600 font-medium text-sm">Learn more →</span>
+              <div className="order-1 lg:order-2 space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                    2
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Customers find you on Niwi</h3>
+                </div>
+                <div className="space-y-4 text-gray-600 leading-relaxed">
+                  <p>Customers then find you on Niwi and can reach out to you. We'll also send you all leads matching what you do.</p>
+                  <p>We charge a small fee for each introduction and we give you the phone number and email address of each potential customer so you can reach out.</p>
+                </div>
               </div>
             </div>
 
-            <div className="text-center p-8 bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100">
-              <div className="bg-gradient-to-br from-orange-50 to-orange-100 w-16 h-16 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg border border-orange-200 group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <svg className="w-8 h-8 text-orange-600" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                </svg>
+            {/* Step 3 - Grow Your Business */}
+            <div className="grid lg:grid-cols-2 gap-12 items-center" data-animate id="step-3">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                    3
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900">Grow your business. Fast.</h3>
+                </div>
+                <div className="space-y-4 text-gray-600 leading-relaxed">
+                  <p>We take the hassle out of marketing your services. Niwi professionals receive hot, live leads as soon as they are placed.</p>
+                  <p>Plus tons of other benefits: online profile which boosts your web presence, award winning customer success team support by email and telephone.</p>
+                </div>
+                <Link
+                  to="/professional/signup"
+                  className="inline-flex items-center bg-emerald-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-emerald-700 transition-colors duration-300"
+                >
+                  Join as professional now
+                  <svg className="w-5 h-5 ml-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                  </svg>
+                </Link>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 group-hover:text-orange-600 transition-colors duration-300">Quality Guaranteed</h3>
-              <p className="text-gray-600 group-hover:text-gray-700 transition-colors duration-300">
-                Every lead is verified and ready to connect. Not a good fit? We'll replace it at no cost.
-              </p>
-              <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <span className="text-orange-600 font-medium text-sm">Learn more →</span>
+              <div className="bg-white rounded-2xl p-8 shadow-lg">
+                <div className="w-full h-64 bg-gradient-to-br from-green-100 to-emerald-100 rounded-xl flex items-center justify-center">
+                  <div className="text-center">
+                    <svg className="w-24 h-24 text-green-600 mx-auto mb-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M2 10.5a1.5 1.5 0 113 0v6a1.5 1.5 0 01-3 0v-6zM6 10.333v5.43a2 2 0 001.106 1.79l.05.025A4 4 0 008.943 18h5.416a2 2 0 001.962-1.608l1.2-6A2 2 0 0015.56 8H12V4a2 2 0 00-2-2 1 1 0 00-1 1v.667a4 4 0 01-.8 2.4L6.8 7.933a4 4 0 00-.8 2.4z" />
+                    </svg>
+                    <p className="text-gray-700 font-medium">Business growth and success</p>
+                  </div>
+                </div>
               </div>
+            </div>
+          </div>
+
+          {/* Get Started Quick Steps */}
+          <div className="mt-20 bg-white rounded-3xl p-8 sm:p-12 shadow-xl" data-animate id="quick-steps">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-900 mb-4">Get Started</h3>
+              <div className="w-16 h-1 bg-emerald-600 mx-auto rounded"></div>
+            </div>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                {
+                  icon: (
+                    <svg className="w-12 h-12 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clipRule="evenodd" />
+                    </svg>
+                  ),
+                  title: "Create your account in minutes",
+                  description: "Quick signup process with business verification"
+                },
+                {
+                  icon: (
+                    <svg className="w-12 h-12 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+                    </svg>
+                  ),
+                  title: "Start receiving leads today",
+                  description: "Immediate access to qualified customer requests"
+                },
+                {
+                  icon: (
+                    <svg className="w-12 h-12 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
+                    </svg>
+                  ),
+                  title: "No commission or hidden fees",
+                  description: "Transparent pricing with no surprises"
+                }
+              ].map((step, index) => (
+                <div key={index} className="text-center group">
+                  <div className="bg-gray-50 w-24 h-24 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:bg-gray-100 transition-colors duration-300">
+                    {step.icon}
+                  </div>
+                  <h4 className="text-lg font-bold text-gray-900 mb-3">{step.title}</h4>
+                  <p className="text-gray-600">{step.description}</p>
+                </div>
+              ))}
+            </div>
+
+            <div className="text-center mt-12">
+              <Link
+                to="/professional/signup"
+                className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
+              >
+                Create Your Free Profile
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Service Categories with enhanced animations */}
-      <section className="py-20 bg-gray-50">
+      {/* Service Categories */}
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 relative z-10" data-animate id="services-header" style={{
+          <div className="text-center mb-16" data-animate id="services-header" style={{
             opacity: isVisible['services-header'] ? 1 : 0,
             transform: isVisible['services-header'] ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
@@ -367,7 +494,7 @@ const LandingPage = () => {
             {serviceCategories.map((category, index) => (
               <div 
                 key={index} 
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group"
+                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100"
                 style={{
                   opacity: isVisible['service-cards'] ? 1 : 0,
                   transform: isVisible['service-cards'] 
@@ -412,7 +539,7 @@ const LandingPage = () => {
       </section>
 
       {/* Pricing Structure Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16" data-animate id="pricing-header" style={{
             opacity: isVisible['pricing-header'] ? 1 : 0,
@@ -507,82 +634,6 @@ const LandingPage = () => {
               className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
             >
               Get Started Today
-            </Link>
-          </div>
-        </div>
-      </section>
-      {/* How It Works with enhanced animations */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16" data-animate id="how-it-works-header" style={{
-            opacity: isVisible['how-it-works-header'] ? 1 : 0,
-            transform: isVisible['how-it-works-header'] ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
-          }}>
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Started in 3 Simple Steps</h2>
-            <p className="text-xl text-gray-600">
-              From signup to verified customer leads — in under 5 minutes
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-12" data-animate id="steps">
-            {[
-              {
-                step: 1,
-                title: "Create Your Free Profile",
-                description: "Add your business info, service areas, and what you offer. No credit card needed.",
-                color: "emerald"
-              },
-              {
-                step: 2, 
-                title: "Browse Real Leads",
-                description: "See actual customer requests filtered by your services, location, and preferences.",
-                color: "blue"
-              },
-              {
-                step: 3,
-                title: "Purchase & Connect",
-                description: "Buy credits to unlock full lead details and start connecting with customers.",
-                color: "orange"
-              }
-            ].map((item, index) => (
-              <div 
-                key={index}
-                className="text-center transform transition-all duration-500 hover:scale-105 cursor-pointer"
-                style={{
-                  opacity: isVisible.steps ? 1 : 0,
-                  transform: isVisible.steps 
-                    ? 'translateY(0)' 
-                    : 'translateY(40px)',
-                  transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-                  transitionDelay: `${index * 200}ms`
-                }}
-              >
-                <div className={`bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 border border-${item.color}-200 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-110 relative`}>
-                  <div className={`absolute inset-0 bg-${item.color}-600 rounded-full opacity-90`}></div>
-                  <span className="relative z-10 text-white font-bold text-xl">{item.step}</span>
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 hover:text-emerald-600">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {item.description}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12" data-animate id="how-it-works-cta" style={{
-            opacity: isVisible['how-it-works-cta'] ? 1 : 0,
-            transform: isVisible['how-it-works-cta'] ? 'translateY(0)' : 'translateY(30px)',
-            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
-            transitionDelay: '800ms'
-          }}>
-            <Link
-              to="/professional/signup"
-              className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
-            >
-              Create Your Free Profile
             </Link>
           </div>
         </div>
