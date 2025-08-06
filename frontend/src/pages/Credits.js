@@ -45,16 +45,23 @@ const Credits = () => {
 
   const handlePurchase = async (packageType) => {
     try {
-      const headers = getAuthHeaders();
-      const originUrl = window.location.origin;
+      // Map package types to Stripe payment links
+      const stripeLinks = {
+        'starter_10': 'https://buy.stripe.com/7sY7sEcN8ghrcDl5W3gUM07', // Tester Pack - $150
+        'basic_25': 'https://buy.stripe.com/6oUbIU7sO2qBeLtfwDgUM05', // 777 Pack - $499
+        'professional_50': 'https://buy.stripe.com/3cIcMYdRce9javdeszgUM04', // Elite Pack - $1500
+        'premium_100': 'https://buy.stripe.com/4gM7sEbJ48OZcDl2JRgUM06', // Pro Pack - $2000
+        'business_250': 'https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03', // Premium Deluxe - $6000
+        'enterprise_500': 'https://buy.stripe.com/cNi9AM28ughrcDl4RZgUM01' // Enterprise Deluxe - $13250
+      };
 
-      const response = await axios.post(`${API}/credits/purchase`, {
-        package_type: packageType,
-        origin_url: originUrl
-      }, { headers });
-
-      // Redirect to Stripe checkout
-      window.location.href = response.data.checkout_url;
+      const stripeUrl = stripeLinks[packageType];
+      if (stripeUrl) {
+        // Redirect directly to Stripe payment link
+        window.location.href = stripeUrl;
+      } else {
+        setError('Package not available');
+      }
     } catch (err) {
       setError('Failed to initiate purchase');
       console.error('Purchase error:', err);
