@@ -430,12 +430,12 @@ const LandingPage = () => {
 
                 <a
                   href={
-                    index === 0 ? 'https://buy.stripe.com/7sY7sEcN8ghrcDl5W3gUM07' : // Tester Pack
-                    index === 1 ? 'https://buy.stripe.com/6oUbIU7sO2qBeLtfwDgUM05' : // 777 Pack
-                    index === 2 ? 'https://buy.stripe.com/3cIcMYdRce9javdeszgUM04' : // Elite Pack
-                    index === 3 ? 'https://buy.stripe.com/4gM7sEbJ48OZcDl2JRgUM06' : // Pro Pack
-                    index === 4 ? 'https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03' : // Premium Deluxe
-                    'https://buy.stripe.com/cNi9AM28ughrcDl4RZgUM01' // Enterprise Deluxe
+                    index === 0 ? 'https://buy.stripe.com/7sY7sEcN8ghrcDl5W3gUM07' : // Tester Pack - $150
+                    index === 1 ? 'https://buy.stripe.com/7sYfZacN82qBcDl707gUM02' : // 777 Pack - $499
+                    index === 2 ? 'https://buy.stripe.com/4gM7sEbJ48OZcDl2JRgUM06' : // Elite Pack - $1500
+                    index === 3 ? 'https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03' : // Pro Pack - $2000
+                    index === 4 ? 'https://buy.stripe.com/cNi9AM28ughrcDl4RZgUM01' : // Premium Deluxe - $6000
+                    'https://buy.stripe.com/3cIcMYdRce9javdeszgUM04' // Enterprise Deluxe - $13250
                   }
                   target="_blank"
                   rel="noopener noreferrer"
