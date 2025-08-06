@@ -24,6 +24,11 @@ const CustomerRequest = () => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const serviceCategories = [
     { value: 'contractor', label: 'General Contractor' },
