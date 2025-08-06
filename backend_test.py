@@ -11,7 +11,7 @@ from datetime import datetime
 from typing import Dict, Any, Optional
 
 # Get backend URL from environment
-BACKEND_URL = "https://977da395-a5ab-4582-bbba-1e2c2c0310e2.preview.emergentagent.com/api"
+BACKEND_URL = "https://2b232f17-f126-4f2c-a5db-60abf34f60b4.preview.emergentagent.com/api"
 
 class NiwiAPITester:
     def __init__(self):
