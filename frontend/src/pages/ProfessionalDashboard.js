@@ -129,16 +129,18 @@ const ProfessionalDashboard = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats */}
+        {/* Stats with Credit Balance */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center">
               <div className="p-2 rounded-md bg-emerald-500 text-white">
-                <span className="text-xl">📊</span>
+                <span className="text-xl">💳</span>
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">Total Leads</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.total_leads}</p>
+                <p className="text-sm text-gray-600">Available Credits</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {creditBalance ? creditBalance.balance : 'Loading...'}
+                </p>
               </div>
             </div>
           </div>
@@ -146,11 +148,13 @@ const ProfessionalDashboard = () => {
           <div className="bg-white rounded-lg shadow p-6">
             <div className="flex items-center">
               <div className="p-2 rounded-md bg-blue-500 text-white">
-                <span className="text-xl">🔄</span>
+                <span className="text-xl">📊</span>
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">Active Leads</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.active_leads}</p>
+                <p className="text-sm text-gray-600">Credits Used</p>
+                <p className="text-2xl font-semibold text-gray-900">
+                  {creditBalance ? creditBalance.total_used : 'Loading...'}
+                </p>
               </div>
             </div>
           </div>
@@ -161,8 +165,8 @@ const ProfessionalDashboard = () => {
                 <span className="text-xl">✅</span>
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">Completed</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.completed_leads}</p>
+                <p className="text-sm text-gray-600">Available Leads</p>
+                <p className="text-2xl font-semibold text-gray-900">{leadPreviews.length}</p>
               </div>
             </div>
           </div>
@@ -173,57 +177,72 @@ const ProfessionalDashboard = () => {
                 <span className="text-xl">💹</span>
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">Win Rate</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.conversion_rate}%</p>
+                <p className="text-sm text-gray-600">Conversion Rate</p>
+                <p className="text-2xl font-semibold text-gray-900">85%</p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Recent Leads */}
-        <div className="bg-white shadow rounded-lg">
-          <div className="px-6 py-4 border-b border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900">Recent Leads</h2>
+        {/* Available Lead Previews */}
+        <div className="bg-white shadow rounded-lg mb-8">
+          <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 className="text-xl font-semibold text-gray-900">Available Leads (Preview)</h2>
+            <Link
+              to="/credits"
+              className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm hover:bg-emerald-700 transition"
+            >
+              Buy Credits
+            </Link>
           </div>
           <div className="divide-y divide-gray-200">
-            {mockLeads.map((lead) => (
-              <div key={lead.id} className="p-6 hover:bg-gray-50">
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h3 className="text-lg font-medium text-gray-900">{lead.title}</h3>
-                    <p className="text-gray-600 mt-1">{lead.description}</p>
-                    <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
-                      <span>📍 {lead.location}</span>
-                      <span>💰 {lead.budget}</span>
-                      <span>📅 {lead.created_at}</span>
+            {leadPreviews.length > 0 ? (
+              leadPreviews.map((lead) => (
+                <div key={lead.id} className="p-6 hover:bg-gray-50">
+                  <div className="flex items-start justify-between">
+                    <div className="flex-1">
+                      <h3 className="text-lg font-medium text-gray-900">{lead.title}</h3>
+                      <p className="text-gray-600 mt-1">{lead.description}</p>
+                      <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
+                        <span>📍 {lead.city}, {lead.province}</span>
+                        <span>💰 {lead.budget_range}</span>
+                        <span>⏰ {lead.timeline}</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end space-y-2">
+                      <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                        lead.urgency === 'urgent' 
+                          ? 'bg-red-100 text-red-800' 
+                          : lead.urgency === 'high'
+                          ? 'bg-orange-100 text-orange-800'
+                          : lead.urgency === 'medium'
+                          ? 'bg-yellow-100 text-yellow-800'
+                          : 'bg-green-100 text-green-800'
+                      }`}>
+                        {lead.urgency} Priority
+                      </span>
+                      <span className="text-xs text-gray-500">
+                        {lead.credits_required} credit to view
+                      </span>
+                      <button 
+                        onClick={() => handleViewLead(lead.id)}
+                        className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm hover:bg-emerald-700 transition disabled:opacity-50"
+                        disabled={creditBalance && creditBalance.balance < lead.credits_required}
+                      >
+                        {creditBalance && creditBalance.balance < lead.credits_required 
+                          ? 'Insufficient Credits' 
+                          : 'View Full Details'
+                        }
+                      </button>
                     </div>
                   </div>
-                  <div className="flex flex-col items-end space-y-2">
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      lead.urgency === 'high' 
-                        ? 'bg-red-100 text-red-800' 
-                        : lead.urgency === 'medium'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-green-100 text-green-800'
-                    }`}>
-                      {lead.urgency === 'high' ? 'Urgent' : lead.urgency === 'medium' ? 'Medium' : 'Low'} Priority
-                    </span>
-                    <span className={`px-2 py-1 rounded-full text-xs font-medium ${
-                      lead.status === 'assigned' 
-                        ? 'bg-blue-100 text-blue-800' 
-                        : lead.status === 'contacted'
-                        ? 'bg-emerald-100 text-emerald-800'
-                        : 'bg-gray-100 text-gray-800'
-                    }`}>
-                      {lead.status === 'assigned' ? 'New' : lead.status === 'contacted' ? 'Contacted' : lead.status}
-                    </span>
-                    <button className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm hover:bg-emerald-700 transition">
-                      View Details
-                    </button>
-                  </div>
                 </div>
+              ))
+            ) : (
+              <div className="p-8 text-center text-gray-500">
+                No leads available at the moment. Check back later!
               </div>
-            ))}
+            )}
           </div>
         </div>
 
