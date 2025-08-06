@@ -440,7 +440,7 @@ const LandingPage = () => {
                   }
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 text-center block transform hover:scale-105 active:scale-95 ${
+                  className={`w-full py-3 px-2 sm:px-4 rounded-lg font-medium transition-all duration-300 text-center block transform hover:scale-105 active:scale-95 text-sm ${
                     pkg.popular
                       ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:shadow-lg'
