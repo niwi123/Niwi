@@ -78,15 +78,16 @@ const LandingPage = () => {
             <div className="flex items-center">
               <span className="text-2xl font-bold text-emerald-600">Niwi</span>
             </div>
-            <nav className="flex items-center space-x-6">
-              <Link to="/login" className="text-gray-600 hover:text-emerald-600 font-medium">
+            <nav className="flex items-center space-x-2 sm:space-x-6">
+              <Link to="/login" className="text-gray-600 hover:text-emerald-600 font-medium text-sm sm:text-base">
                 Sign In
               </Link>
               <Link 
                 to="/professional/signup" 
-                className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition"
+                className="bg-emerald-600 text-white px-2 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-emerald-700 transition text-xs sm:text-sm font-medium"
               >
-                Join as Professional
+                <span className="hidden sm:inline">Join as Professional</span>
+                <span className="sm:hidden">Join</span>
               </Link>
             </nav>
           </div>
