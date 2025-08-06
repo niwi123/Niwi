@@ -456,51 +456,75 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-      <section className="py-20 bg-white">
+      {/* How It Works with enhanced animations */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-animate id="how-it-works-header" style={{
+            opacity: isVisible['how-it-works-header'] ? 1 : 0,
+            transform: isVisible['how-it-works-header'] ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          }}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Get Started in 3 Simple Steps</h2>
             <p className="text-xl text-gray-600">
               From signup to verified customer leads — in under 5 minutes
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-12">
-            <div className="text-center">
-              <div className="bg-emerald-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                1
+          <div className="grid md:grid-cols-3 gap-12" data-animate id="steps">
+            {[
+              {
+                step: 1,
+                title: "Create Your Free Profile",
+                description: "Add your business info, service areas, and what you offer. No credit card needed.",
+                color: "emerald"
+              },
+              {
+                step: 2, 
+                title: "Browse Real Leads",
+                description: "See actual customer requests filtered by your services, location, and preferences.",
+                color: "blue"
+              },
+              {
+                step: 3,
+                title: "Purchase & Connect",
+                description: "Buy credits to unlock full lead details and start connecting with customers.",
+                color: "orange"
+              }
+            ].map((item, index) => (
+              <div 
+                key={index}
+                className="text-center transform transition-all duration-500 hover:scale-105 cursor-pointer"
+                style={{
+                  opacity: isVisible.steps ? 1 : 0,
+                  transform: isVisible.steps 
+                    ? 'translateY(0)' 
+                    : 'translateY(40px)',
+                  transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: `${index * 200}ms`
+                }}
+              >
+                <div className={`bg-${item.color}-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-110`}>
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 hover:text-emerald-600">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 mb-6">
+                  {item.description}
+                </p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Create Your Free Profile</h3>
-              <p className="text-gray-600 mb-6">
-                Add your business info, service areas, and what you offer. No credit card needed.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-emerald-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                2
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Browse Real Leads</h3>
-              <p className="text-gray-600 mb-6">
-                See actual customer requests filtered by your services, location, and preferences.
-              </p>
-            </div>
-
-            <div className="text-center">
-              <div className="bg-emerald-600 text-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-6 text-xl font-bold">
-                3
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Start Connecting</h3>
-              <p className="text-gray-600 mb-6">
-                Receive verified leads by SMS, email, and dashboard. Only pay when you're ready to scale.
-              </p>
-            </div>
+            ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-12" data-animate id="how-it-works-cta" style={{
+            opacity: isVisible['how-it-works-cta'] ? 1 : 0,
+            transform: isVisible['how-it-works-cta'] ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            transitionDelay: '800ms'
+          }}>
             <Link
               to="/professional/signup"
-              className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition inline-block"
+              className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
             >
               Create Your Free Profile
             </Link>
