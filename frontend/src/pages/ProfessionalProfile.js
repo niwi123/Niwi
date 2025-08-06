@@ -127,10 +127,11 @@ const ProfessionalProfile = () => {
 
               {/* Contact Buttons */}
               <div className="space-y-3 mb-6">
-                <button className="w-full bg-emerald-600 text-white py-3 px-4 rounded-lg font-medium hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 active:scale-95">
-                  Request Quote
+                <button className="w-full bg-emerald-600 text-white py-3 px-2 sm:px-4 rounded-lg font-medium hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base">
+                  <span className="hidden sm:inline">Request Quote</span>
+                  <span className="sm:hidden">Quote</span>
                 </button>
-                <button className="w-full bg-gray-100 text-gray-700 py-3 px-4 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 active:scale-95">
+                <button className="w-full bg-gray-100 text-gray-700 py-3 px-2 sm:px-4 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 active:scale-95 text-sm sm:text-base">
                   Contact
                 </button>
               </div>
