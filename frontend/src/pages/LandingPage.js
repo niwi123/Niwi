@@ -476,7 +476,7 @@ const LandingPage = () => {
                 { name: "Tester Pack", credits: 3, price: 150, popular: false },
                 { name: "Elite Pack", credits: 20, price: 1500, popular: true },
                 { name: "Pro Pack", credits: 30, price: 2000, popular: false },
-                { name: "Premium Deluxe", credits: 50, price: 6000, popular: false }
+                { name: "Premium Deluxe", credits: 100, price: 6000, popular: false }
               ].map((pkg, index) => (
                 <div 
                   key={index}
