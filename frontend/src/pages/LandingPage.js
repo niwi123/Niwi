@@ -94,15 +94,19 @@ const LandingPage = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-emerald-50 to-blue-50 py-20">
+      <section className="bg-gradient-to-br from-emerald-50 to-blue-50 py-20 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-6">
+          <div className="text-center" data-animate id="hero" style={{
+            opacity: isVisible.hero ? 1 : 0,
+            transform: isVisible.hero ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          }}>
+            <div className="inline-block bg-emerald-100 text-emerald-800 px-4 py-2 rounded-full text-sm font-medium mb-6 animate-pulse">
               100% FREE • NO CREDIT CARD REQUIRED
             </div>
             
             <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Connect. Serve. <span className="text-emerald-600">Grow.</span>
+              Connect. Serve. <span className="text-emerald-600 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">Grow.</span>
             </h1>
             
             <p className="text-xl text-gray-600 mb-8 max-w-3xl mx-auto">
@@ -110,106 +114,148 @@ const LandingPage = () => {
               Get verified leads or find trusted experts — all in one place.
             </p>
 
-            {/* Dual CTA Tabs */}
-            <div className="bg-white rounded-2xl p-8 shadow-xl max-w-2xl mx-auto">
-              <div className="flex bg-gray-100 rounded-xl p-1 mb-6">
+            {/* Enhanced Dual CTA Tabs with animations */}
+            <div className="bg-white rounded-2xl p-8 shadow-xl max-w-2xl mx-auto transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+              <div className="flex bg-gray-100 rounded-xl p-1 mb-6 relative overflow-hidden">
+                <div 
+                  className="absolute top-1 bottom-1 bg-emerald-600 rounded-lg transition-all duration-300 ease-out"
+                  style={{
+                    left: activeTab === 'professionals' ? '4px' : '50%',
+                    width: 'calc(50% - 4px)',
+                  }}
+                />
                 <button
                   onClick={() => setActiveTab('professionals')}
-                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition ${
+                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-300 relative z-10 ${
                     activeTab === 'professionals'
-                      ? 'bg-emerald-600 text-white'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white shadow-lg'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
                   }`}
                 >
                   I'm a Professional
                 </button>
                 <button
                   onClick={() => setActiveTab('customers')}
-                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition ${
+                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-300 relative z-10 ${
                     activeTab === 'customers'
-                      ? 'bg-emerald-600 text-white'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-white shadow-lg'
+                      : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
                   }`}
                 >
                   I Need a Service
                 </button>
               </div>
 
-              {activeTab === 'professionals' ? (
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    Get Quality Leads. Grow Your Business.
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Connect with verified customers actively seeking your services in your area — in real time.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center justify-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      No payment required
+              {/* Enhanced Tab Content with slide animations */}
+              <div className="relative overflow-hidden" style={{ minHeight: '320px' }}>
+                <div 
+                  className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
+                    activeTab === 'professionals' 
+                      ? 'translate-x-0 opacity-100' 
+                      : '-translate-x-full opacity-0'
+                  }`}
+                >
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      Get Quality Leads. Grow Your Business.
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      Connect with verified customers actively seeking your services in your area — in real time.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      {[
+                        'No payment required',
+                        'Takes 2 minutes', 
+                        'Start getting local leads'
+                      ].map((text, i) => (
+                        <div 
+                          key={i}
+                          className="flex items-center justify-center text-sm text-gray-600 transform transition-all duration-300 hover:scale-105"
+                          style={{
+                            transitionDelay: `${i * 100}ms`
+                          }}
+                        >
+                          <span className="text-green-500 mr-2 animate-bounce" style={{ animationDelay: `${i * 200}ms` }}>✓</span>
+                          {text}
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex items-center justify-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      Takes 2 minutes
-                    </div>
-                    <div className="flex items-center justify-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      Start getting local leads
-                    </div>
+                    <Link
+                      to="/professional/signup"
+                      className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
+                    >
+                      Create Free Profile
+                    </Link>
                   </div>
-                  <Link
-                    to="/professional/signup"
-                    className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition inline-block"
-                  >
-                    Create Free Profile
-                  </Link>
                 </div>
-              ) : (
-                <div className="text-center">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    Find Trusted Professionals. Get Things Done.
-                  </h3>
-                  <p className="text-gray-600 mb-6">
-                    Get connected with verified, local professionals for your home and business needs.
-                  </p>
-                  <div className="space-y-3 mb-6">
-                    <div className="flex items-center justify-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      Verified professionals
+
+                <div 
+                  className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
+                    activeTab === 'customers' 
+                      ? 'translate-x-0 opacity-100' 
+                      : 'translate-x-full opacity-0'
+                  }`}
+                >
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                      Find Trusted Professionals. Get Things Done.
+                    </h3>
+                    <p className="text-gray-600 mb-6">
+                      Get connected with verified, local professionals for your home and business needs.
+                    </p>
+                    <div className="space-y-3 mb-6">
+                      {[
+                        'Verified professionals',
+                        'Quick response times',
+                        'Quality guaranteed'
+                      ].map((text, i) => (
+                        <div 
+                          key={i}
+                          className="flex items-center justify-center text-sm text-gray-600 transform transition-all duration-300 hover:scale-105"
+                          style={{
+                            transitionDelay: `${i * 100}ms`
+                          }}
+                        >
+                          <span className="text-green-500 mr-2 animate-bounce" style={{ animationDelay: `${i * 200}ms` }}>✓</span>
+                          {text}
+                        </div>
+                      ))}
                     </div>
-                    <div className="flex items-center justify-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      Quick response times
-                    </div>
-                    <div className="flex items-center justify-center text-sm text-gray-600">
-                      <span className="text-green-500 mr-2">✓</span>
-                      Quality guaranteed
-                    </div>
+                    <Link
+                      to="/customer/request"
+                      className="bg-orange-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-orange-600 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
+                    >
+                      Get Service Quotes
+                    </Link>
                   </div>
-                  <Link
-                    to="/customer/request"
-                    className="bg-orange-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-orange-600 transition inline-block"
-                  >
-                    Get Service Quotes
-                  </Link>
                 </div>
-              )}
+              </div>
             </div>
 
-            {/* Trust indicators */}
+            {/* Enhanced trust indicators with staggered animations */}
             <div className="mt-12 flex items-center justify-center space-x-8 text-gray-500">
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">2,500+</div>
-                <div className="text-sm">Active Professionals</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">4.8/5</div>
-                <div className="text-sm">Average Rating</div>
-              </div>
-              <div className="text-center">
-                <div className="text-2xl font-bold text-gray-900">3x</div>
-                <div className="text-sm">More Quality Leads</div>
-              </div>
+              {[
+                { number: '2,500+', label: 'Active Professionals' },
+                { number: '4.8/5', label: 'Average Rating' },
+                { number: '3x', label: 'More Quality Leads' }
+              ].map((item, i) => (
+                <div 
+                  key={i}
+                  className="text-center transform transition-all duration-500 hover:scale-110 cursor-pointer"
+                  style={{
+                    opacity: isVisible.hero ? 1 : 0,
+                    transform: isVisible.hero 
+                      ? 'translateY(0)' 
+                      : 'translateY(20px)',
+                    transitionDelay: `${1000 + i * 200}ms`
+                  }}
+                >
+                  <div className="text-2xl font-bold text-gray-900 hover:text-emerald-600 transition-colors duration-300">
+                    {item.number}
+                  </div>
+                  <div className="text-sm">{item.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
