@@ -136,24 +136,12 @@ const Credits = () => {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Credit Balance</h2>
           
           {creditBalance && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
               <div className="text-center p-6 bg-emerald-50 rounded-xl">
                 <div className="text-3xl font-bold text-emerald-600 mb-2">
                   {creditBalance.balance}
                 </div>
                 <div className="text-sm text-gray-600">Available Credits</div>
-              </div>
-              <div className="text-center p-6 bg-blue-50 rounded-xl">
-                <div className="text-3xl font-bold text-blue-600 mb-2">
-                  {creditBalance.total_purchased}
-                </div>
-                <div className="text-sm text-gray-600">Total Purchased</div>
-              </div>
-              <div className="text-center p-6 bg-orange-50 rounded-xl">
-                <div className="text-3xl font-bold text-orange-600 mb-2">
-                  {creditBalance.total_used}
-                </div>
-                <div className="text-sm text-gray-600">Total Used</div>
               </div>
             </div>
           )}
