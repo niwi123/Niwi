@@ -220,7 +220,25 @@ async def view_lead_details(
             detail=f"Failed to process lead view: {str(e)}"
         )
 
-@router.put("/leads/{lead_id}/status")
+@router.get("/leads", response_model=List[LeadResponse])
+async def get_my_leads(
+    status_filter: Optional[LeadStatus] = Query(None, description="Filter leads by status"),
+    current_user: dict = Depends(get_current_professional)
+):
+    """Get all leads purchased/assigned to current professional."""
+    db = get_database()
+    
+    # Build query - only show leads that have been viewed (purchased)
+    query = {
+        "professional_id": current_user["user_id"],
+        "viewed_at": {"$ne": None}
+    }
+    
+    if status_filter:
+        query["status"] = status_filter
+    
+    leads = await db.leads.find(query).sort("created_at", -1).to_list(100)
+    return [LeadResponse(**lead) for lead in leads]
 async def update_lead_status(
     lead_id: str,
     status_update: dict,
