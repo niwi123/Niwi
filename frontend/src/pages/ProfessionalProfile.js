@@ -483,21 +483,68 @@ const ProfessionalProfile = () => {
 
                 {activeTab === 'services' && (
                   <div className="space-y-6">
-                    <h3 className="text-lg font-semibold text-gray-900">Services</h3>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {profile?.service_categories?.map((category, index) => (
-                        <div key={index} className="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
-                          <h4 className="font-semibold text-gray-900 capitalize">
-                            {category.replace('_', ' ')}
-                          </h4>
-                          <p className="text-sm text-gray-600 mt-1">
-                            Professional {category.replace('_', ' ')} services
-                          </p>
-                        </div>
-                      ))}
+                    <div className="flex justify-between items-center">
+                      <h3 className="text-lg font-semibold text-gray-900">Services Offered</h3>
+                      {editing && (
+                        <span className="text-sm text-gray-600">Select your service categories</span>
+                      )}
                     </div>
 
-                    {profile?.hourly_rate_min && (
+                    {editing ? (
+                      <div className="space-y-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {serviceOptions.map((service) => (
+                            <label 
+                              key={service} 
+                              className="flex items-center p-4 border-2 border-gray-200 rounded-lg cursor-pointer hover:border-emerald-300 transition-colors"
+                              style={{
+                                borderColor: editForm.service_categories.includes(service) ? '#059669' : '#E5E7EB',
+                                backgroundColor: editForm.service_categories.includes(service) ? '#F0FDF4' : 'white'
+                              }}
+                            >
+                              <input
+                                type="checkbox"
+                                checked={editForm.service_categories.includes(service)}
+                                onChange={() => handleServiceToggle(service)}
+                                className="mr-3 h-5 w-5 text-emerald-600 focus:ring-emerald-500 border-gray-300 rounded"
+                              />
+                              <div>
+                                <h4 className="font-semibold text-gray-900 capitalize">
+                                  {service.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                                </h4>
+                                <p className="text-sm text-gray-600">
+                                  Professional {service.replace('_', ' ')} services
+                                </p>
+                              </div>
+                            </label>
+                          ))}
+                        </div>
+                        <p className="text-sm text-gray-500">
+                          Select all service categories that apply to your business.
+                        </p>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        {profile?.service_categories?.length > 0 ? (
+                          profile.service_categories.map((category, index) => (
+                            <div key={index} className="bg-gray-50 p-4 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                              <h4 className="font-semibold text-gray-900 capitalize">
+                                {category.replace('_', ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                              </h4>
+                              <p className="text-sm text-gray-600 mt-1">
+                                Professional {category.replace('_', ' ')} services
+                              </p>
+                            </div>
+                          ))
+                        ) : (
+                          <div className="col-span-2 text-center py-8 text-gray-500">
+                            <p>No services selected yet. Edit your profile to add services.</p>
+                          </div>
+                        )}
+                      </div>
+                    )}
+
+                    {profile?.hourly_rate_min && !editing && (
                       <div className="bg-emerald-50 p-4 rounded-lg">
                         <h4 className="font-semibold text-emerald-900 mb-2">Pricing</h4>
                         <p className="text-emerald-700">
@@ -508,16 +555,6 @@ const ProfessionalProfile = () => {
                   </div>
                 )}
               </div>
-            </div>
-
-            {/* Edit Profile Button */}
-            <div className="mt-6 text-center">
-              <button
-                onClick={() => setEditing(true)}
-                className="bg-gray-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-gray-700 transition-all duration-300 transform hover:scale-105 active:scale-95"
-              >
-                Edit Profile
-              </button>
             </div>
           </div>
         </div>
