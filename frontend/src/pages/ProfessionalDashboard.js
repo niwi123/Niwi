@@ -207,25 +207,25 @@ const ProfessionalDashboard = () => {
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-lg font-medium text-gray-900 mb-2">Update Profile</h3>
             <p className="text-gray-600 mb-4">Keep your business information and services up to date</p>
-            <button className="w-full bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-700 transition">
+            <Link to="/professional/profile" className="w-full bg-emerald-600 text-white py-2 px-4 rounded-md hover:bg-emerald-700 transition inline-block text-center">
               Edit Profile
-            </button>
+            </Link>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-lg font-medium text-gray-900 mb-2">Browse Leads</h3>
             <p className="text-gray-600 mb-4">See all available leads in your service areas</p>
-            <button className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition">
+            <Link to="/professional/leads" className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition inline-block text-center">
               View All Leads
-            </button>
+            </Link>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
             <h3 className="text-lg font-medium text-gray-900 mb-2">Get Support</h3>
             <p className="text-gray-600 mb-4">Need help or have questions? Contact our support team</p>
-            <button className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition">
+            <a href="mailto:admin@niwi.com" className="w-full bg-gray-600 text-white py-2 px-4 rounded-md hover:bg-gray-700 transition inline-block text-center">
               Contact Support
-            </button>
+            </a>
           </div>
         </div>
       </div>
