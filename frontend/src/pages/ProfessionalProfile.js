@@ -173,15 +173,47 @@ const ProfessionalProfile = () => {
             }}>
               {/* Profile Avatar */}
               <div className="text-center mb-6">
-                <div className="w-24 h-24 bg-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-3xl font-bold text-white">
-                    {user?.first_name?.charAt(0)}{user?.last_name?.charAt(0)}
-                  </span>
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  {profilePicture ? (
+                    <img
+                      src={profilePicture}
+                      alt="Profile"
+                      className="w-24 h-24 rounded-full object-cover border-2 border-emerald-500"
+                    />
+                  ) : (
+                    <div className="w-24 h-24 bg-emerald-600 rounded-full flex items-center justify-center">
+                      <span className="text-3xl font-bold text-white">
+                        {user?.first_name?.charAt(0)}{user?.last_name?.charAt(0)}
+                      </span>
+                    </div>
+                  )}
+                  
+                  {/* Edit Profile Picture Button */}
+                  <label className="absolute bottom-0 right-0 bg-emerald-600 text-white rounded-full p-2 cursor-pointer hover:bg-emerald-700 transition-colors shadow-lg">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
+                    </svg>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={handleProfilePictureChange}
+                      className="hidden"
+                    />
+                  </label>
                 </div>
+                
                 <h1 className="text-2xl font-bold text-gray-900">
                   {profile?.business_name || `${user?.first_name} ${user?.last_name}`}
                 </h1>
                 <p className="text-gray-600">{profile?.city}, {profile?.province}</p>
+                
+                {/* Edit Profile Button */}
+                <button
+                  onClick={() => setEditing(!editing)}
+                  className="mt-4 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                >
+                  {editing ? 'Cancel' : 'Edit Profile'}
+                </button>
               </div>
 
               {/* Service Categories */}
