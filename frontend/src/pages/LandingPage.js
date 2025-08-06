@@ -227,9 +227,10 @@ const LandingPage = () => {
                     </div>
                     <Link
                       to="/customer/request"
-                      className="bg-orange-500 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-orange-600 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
+                      className="bg-orange-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-orange-600 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
                     >
-                      Get Service Quotes
+                      <span className="hidden sm:inline">Get Service Quotes</span>
+                      <span className="sm:hidden">Get Quotes</span>
                     </Link>
                   </div>
                 </div>
