@@ -327,17 +327,17 @@ const LandingPage = () => {
               {keyFeatures.map((feature, index) => (
                 <div 
                   key={index}
-                  className="bg-white rounded-2xl p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                  className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
                 >
                   <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg border border-gray-200">
                     {feature.icon}
                   </div>
                   
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
                     {feature.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-6 leading-relaxed">
+                  <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
                     {feature.description}
                   </p>
 
