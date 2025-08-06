@@ -4,8 +4,8 @@ import uuid
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
-from ..auth import get_current_user
-from ..models import User
+from auth import get_current_user
+from models import User
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 
