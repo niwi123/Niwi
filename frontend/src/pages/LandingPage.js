@@ -466,33 +466,34 @@ const LandingPage = () => {
               <p className="text-xl text-gray-600">Only pay for the leads you want to pursue</p>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { name: "Tester Pack", credits: 10, price: 150, popular: false },
                 { name: "Elite Pack", credits: 20, price: 1500, popular: true },
-                { name: "Pro Pack", credits: 30, price: 2000, popular: false }
+                { name: "Pro Pack", credits: 30, price: 2000, popular: false },
+                { name: "Premium Deluxe", credits: 50, price: 6000, popular: false }
               ].map((pkg, index) => (
                 <div 
                   key={index}
-                  className={`rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
+                  className={`rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 ${
                     pkg.popular 
                       ? 'bg-emerald-50 border-2 border-emerald-500 transform scale-105' 
                       : 'bg-white border-2 border-gray-200'
                   }`}
                 >
                   {pkg.popular && (
-                    <div className="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
-                      MOST POPULAR
+                    <div className="bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded-full inline-block mb-3">
+                      POPULAR
                     </div>
                   )}
                   
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
                   
                   <div className="mb-4">
-                    <div className="text-2xl font-bold text-gray-900">
-                      {pkg.credits} <span className="text-base text-gray-600 font-normal">leads</span>
+                    <div className="text-xl sm:text-2xl font-bold text-gray-900">
+                      {pkg.credits} <span className="text-sm text-gray-600 font-normal">leads</span>
                     </div>
-                    <div className="text-xl font-semibold text-emerald-600">
+                    <div className="text-lg sm:text-xl font-semibold text-emerald-600">
                       ${pkg.price.toLocaleString()}
                     </div>
                   </div>
@@ -501,11 +502,12 @@ const LandingPage = () => {
                     href={
                       index === 0 ? 'https://buy.stripe.com/7sY7sEcN8ghrcDl5W3gUM07' : 
                       index === 1 ? 'https://buy.stripe.com/4gM7sEbJ48OZcDl2JRgUM06' : 
-                      'https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03'
+                      index === 2 ? 'https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03' :
+                      'https://buy.stripe.com/cNi9AM28ughrcDl4RZgUM01'
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`w-full py-3 rounded-lg font-medium transition-all duration-300 text-center block text-sm ${
+                    className={`w-full py-2 sm:py-3 rounded-lg font-medium transition-all duration-300 text-center block text-xs sm:text-sm ${
                       pkg.popular
                         ? 'bg-emerald-600 text-white hover:bg-emerald-700'
                         : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
@@ -519,7 +521,7 @@ const LandingPage = () => {
 
             <div className="text-center mt-8">
               <Link
-                to="/credits"
+                to="/pricing"
                 className="text-emerald-600 hover:text-emerald-700 font-medium"
               >
                 View All Packages →
