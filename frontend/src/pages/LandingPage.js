@@ -468,7 +468,7 @@ const LandingPage = () => {
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {[
-                { name: "Tester Pack", credits: 10, price: 150, popular: false },
+                { name: "Tester Pack", credits: 3, price: 150, popular: false },
                 { name: "Elite Pack", credits: 20, price: 1500, popular: true },
                 { name: "Pro Pack", credits: 30, price: 2000, popular: false },
                 { name: "Premium Deluxe", credits: 50, price: 6000, popular: false }
