@@ -448,12 +448,12 @@ const LandingPage = () => {
             transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
             transitionDelay: '600ms'
           }}>
-            <p className="text-gray-600 mb-4">Need more credits? We have packages up to 1,000 credits.</p>
+            <p className="text-gray-600 mb-4">All packages provide quality, verified leads from customers in your area.</p>
             <Link
               to="/professional/signup"
               className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
             >
-              View All Packages
+              Get Started Today
             </Link>
           </div>
         </div>
