@@ -12,6 +12,7 @@ import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import Credits from "./pages/Credits";
 import FullPricing from "./pages/FullPricing";
+import AllLeads from "./pages/AllLeads";
 import CreditSuccess from "./pages/CreditSuccess";
 import { AuthProvider } from "./contexts/AuthContext";
 
@@ -26,6 +27,7 @@ function App() {
             <Route path="/customer/request" element={<CustomerRequest />} />
             <Route path="/professional/dashboard" element={<ProfessionalDashboard />} />
             <Route path="/professional/profile" element={<ProfessionalProfile />} />
+            <Route path="/professional/leads" element={<AllLeads />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/credits" element={<Credits />} />
