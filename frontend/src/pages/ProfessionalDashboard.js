@@ -111,6 +111,7 @@ const ProfessionalDashboard = () => {
               <nav className="ml-10 flex space-x-8">
                 <a href="#" className="text-emerald-600 font-medium">Dashboard</a>
                 <a href="#" className="text-gray-500 hover:text-gray-700">Leads</a>
+                <Link to="/credits" className="text-gray-500 hover:text-gray-700">Credits</Link>
                 <a href="#" className="text-gray-500 hover:text-gray-700">Profile</a>
               </nav>
             </div>
