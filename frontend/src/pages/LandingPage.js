@@ -208,13 +208,13 @@ const LandingPage = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
                 <Link
                   to="/professional/signup"
-                  className="bg-emerald-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
+                  className="bg-emerald-600 text-white px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
                 >
                   Join as Professional
                 </Link>
                 <Link
                   to="/pricing"
-                  className="border-2 border-emerald-600 text-emerald-600 px-8 py-4 rounded-lg text-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all duration-300"
+                  className="border-2 border-emerald-600 text-emerald-600 px-6 py-3 sm:px-8 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-emerald-600 hover:text-white transition-all duration-300"
                 >
                   View Pricing
                 </Link>
