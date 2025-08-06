@@ -275,9 +275,9 @@ const ProfessionalSignup = () => {
               <div className="mt-8">
                 <button
                   type="submit"
-                  className="w-full bg-emerald-600 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-700 transition"
+                  className="w-full bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-3 px-6 rounded-lg font-medium hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
                 >
-                  Continue to Business Details
+                  Continue to Business Details →
                 </button>
               </div>
             </form>
