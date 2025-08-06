@@ -597,15 +597,17 @@ const LandingPage = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
             <Link
               to="/professional/signup"
-              className="bg-white text-emerald-600 px-8 py-4 rounded-xl text-lg font-semibold hover:bg-gray-100 transition"
+              className="bg-white text-emerald-600 px-4 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-gray-100 transition text-center"
             >
-              Create Free Profile
+              <span className="hidden sm:inline">Create Free Profile</span>
+              <span className="sm:hidden">Join as Professional</span>
             </Link>
             <Link
               to="/customer/request"
-              className="border-2 border-white text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-white hover:text-emerald-600 transition"
+              className="border-2 border-white text-white px-4 sm:px-8 py-3 sm:py-4 rounded-xl text-base sm:text-lg font-semibold hover:bg-white hover:text-emerald-600 transition text-center"
             >
-              Find Professionals
+              <span className="hidden sm:inline">Find Professionals</span>
+              <span className="sm:hidden">Find Services</span>
             </Link>
           </div>
 
