@@ -3,6 +3,8 @@
 ## Overview
 Niwi is a dual-sided marketplace connecting service professionals (contractors, real estate agents, mortgage brokers, electricians, plumbers, HVAC specialists) with customers seeking services. Built with React frontend, FastAPI backend, and MongoDB database.
 
+**NEW DESIGN**: The platform now features an Inkris-inspired features layout combined with Bark's "How it Works" process flow, maintaining all existing Niwi functionality while providing a more professional, conversion-focused user experience.
+
 ## Technology Stack
 - **Frontend**: React 18, Tailwind CSS, React Router DOM
 - **Backend**: FastAPI (Python), Pydantic, JWT Authentication
