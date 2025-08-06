@@ -37,7 +37,58 @@ class LeadPriority(str, Enum):
     HIGH = "high"
     URGENT = "urgent"
 
-# Base Models
+class PaymentStatus(str, Enum):
+    PENDING = "pending"
+    INITIATED = "initiated"
+    COMPLETED = "completed"
+    FAILED = "failed"
+    CANCELLED = "cancelled"
+    EXPIRED = "expired"
+
+class CreditPackage(str, Enum):
+    STARTER_10 = "starter_10"      # 10 credits
+    BASIC_25 = "basic_25"          # 25 credits  
+    PROFESSIONAL_50 = "professional_50"  # 50 credits
+    PREMIUM_100 = "premium_100"    # 100 credits
+    BUSINESS_250 = "business_250"  # 250 credits
+    ENTERPRISE_500 = "enterprise_500"  # 500 credits
+    ULTIMATE_1000 = "ultimate_1000"  # 1000 credits
+
+# Credit system models
+class CreditBalance(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    balance: int = 0
+    total_purchased: int = 0
+    total_used: int = 0
+    last_updated: datetime = Field(default_factory=datetime.utcnow)
+
+class CreditTransaction(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    transaction_type: str  # "purchase", "use", "refund"
+    amount: int  # positive for purchase/refund, negative for use
+    description: str
+    lead_id: Optional[str] = None  # if used for viewing a lead
+    payment_session_id: Optional[str] = None  # for purchase transactions
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+
+class PaymentTransaction(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    user_id: str
+    session_id: str
+    payment_id: Optional[str] = None
+    amount: float
+    currency: str = "usd"
+    credits_purchased: int
+    package_type: CreditPackage
+    payment_status: PaymentStatus = PaymentStatus.PENDING
+    metadata: Dict[str, Any] = {}
+    stripe_payment_intent_id: Optional[str] = None
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    updated_at: datetime = Field(default_factory=datetime.utcnow)
+
+# Base Models (existing ones remain the same)
 class User(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     email: EmailStr
@@ -156,6 +207,9 @@ class Lead(BaseModel):
     is_won: Optional[bool] = None
     feedback_rating: Optional[int] = None  # 1-5 stars
     feedback_comment: Optional[str] = None
+    # Credit system integration
+    credits_used: int = 1  # Default 1 credit per lead view
+    viewed_at: Optional[datetime] = None
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
 
@@ -181,7 +235,17 @@ class ReviewCreate(BaseModel):
     title: str
     comment: str
 
-# Response models
+# Payment request models
+class CreditPurchaseRequest(BaseModel):
+    package_type: CreditPackage
+    origin_url: str
+
+class PaymentStatusResponse(BaseModel):
+    payment_status: str
+    credits_added: int
+    new_balance: int
+
+# Response models (existing ones remain the same)
 class UserResponse(BaseModel):
     id: str
     email: str
@@ -235,4 +299,12 @@ class LeadResponse(BaseModel):
     assigned_at: datetime
     quote_amount: Optional[float]
     is_won: Optional[bool]
+    credits_used: int
+    viewed_at: Optional[datetime]
     created_at: datetime
+
+class CreditBalanceResponse(BaseModel):
+    balance: int
+    total_purchased: int
+    total_used: int
+    last_updated: datetime
