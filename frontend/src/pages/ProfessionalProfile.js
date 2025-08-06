@@ -306,12 +306,95 @@ const ProfessionalProfile = () => {
               <div className="p-8">
                 {activeTab === 'about' && (
                   <div className="space-y-6">
+                    {editing && (
+                      <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                        <h4 className="font-semibold text-yellow-900 mb-2">Editing Mode</h4>
+                        <p className="text-sm text-yellow-700">Make your changes and click "Save Changes" when done.</p>
+                      </div>
+                    )}
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Business Name</h3>
+                      {editing ? (
+                        <input
+                          type="text"
+                          value={editForm.business_name}
+                          onChange={(e) => setEditForm(prev => ({...prev, business_name: e.target.value}))}
+                          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                          placeholder="Enter business name"
+                        />
+                      ) : (
+                        <p className="text-gray-600">{profile?.business_name || 'No business name set'}</p>
+                      )}
+                    </div>
+
                     <div>
                       <h3 className="text-lg font-semibold text-gray-900 mb-3">About</h3>
-                      <p className="text-gray-600 leading-relaxed">
-                        {profile?.description || 'Professional service provider dedicated to delivering quality work and excellent customer service. Contact me for your project needs.'}
-                      </p>
+                      {editing ? (
+                        <textarea
+                          value={editForm.description}
+                          onChange={(e) => setEditForm(prev => ({...prev, description: e.target.value}))}
+                          rows="5"
+                          className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                          placeholder="Tell customers about your business, experience, and what makes you unique..."
+                        />
+                      ) : (
+                        <p className="text-gray-600 leading-relaxed">
+                          {profile?.description || 'Professional service provider dedicated to delivering quality work and excellent customer service. Contact me for your project needs.'}
+                        </p>
+                      )}
                     </div>
+
+                    <div>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-3">Contact Information</h3>
+                      {editing ? (
+                        <div className="space-y-4">
+                          <input
+                            type="tel"
+                            value={editForm.business_phone}
+                            onChange={(e) => setEditForm(prev => ({...prev, business_phone: e.target.value}))}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Business phone number"
+                          />
+                          <input
+                            type="url"
+                            value={editForm.website}
+                            onChange={(e) => setEditForm(prev => ({...prev, website: e.target.value}))}
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Website URL (https://...)"
+                          />
+                        </div>
+                      ) : (
+                        <div className="space-y-2">
+                          {profile?.business_phone && (
+                            <p className="text-gray-600">📞 {profile.business_phone}</p>
+                          )}
+                          {profile?.website && (
+                            <p className="text-gray-600">🌐 <a href={profile.website} target="_blank" rel="noopener noreferrer" className="text-emerald-600 hover:underline">{profile.website}</a></p>
+                          )}
+                          {!profile?.business_phone && !profile?.website && (
+                            <p className="text-gray-500 italic">No contact information added yet.</p>
+                          )}
+                        </div>
+                      )}
+                    </div>
+
+                    {editing && (
+                      <div className="flex space-x-4">
+                        <button
+                          onClick={handleSaveProfile}
+                          className="bg-emerald-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+                        >
+                          Save Changes
+                        </button>
+                        <button
+                          onClick={() => setEditing(false)}
+                          className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-400 transition-colors"
+                        >
+                          Cancel
+                        </button>
+                      </div>
+                    )}
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="bg-emerald-50 p-4 rounded-lg">
