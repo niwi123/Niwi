@@ -418,13 +418,13 @@ const LandingPage = () => {
                 <div className="mb-4">
                   <div className="text-3xl font-bold text-gray-900">
                     {pkg.credits}
-                    <span className="text-lg text-gray-600 font-normal"> credits</span>
+                    <span className="text-lg text-gray-600 font-normal"> leads</span>
                   </div>
                   <div className="text-2xl font-semibold text-emerald-600">
-                    ${pkg.price}
+                    ${pkg.price.toLocaleString()}
                   </div>
                   <div className="text-sm text-gray-500">
-                    ${(pkg.price / pkg.credits).toFixed(2)} per credit
+                    ${(pkg.price / pkg.credits).toFixed(0)} per lead
                   </div>
                 </div>
 
