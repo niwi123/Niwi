@@ -4,6 +4,7 @@ import { useAuth } from '../contexts/AuthContext';
 
 const ProfessionalSignup = () => {
   const [step, setStep] = useState(1);
+  const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     // User data
     first_name: '',
@@ -33,6 +34,10 @@ const ProfessionalSignup = () => {
   const [loading, setLoading] = useState(false);
   const { register } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const serviceCategories = [
     { value: 'contractor', label: 'General Contractor' },
