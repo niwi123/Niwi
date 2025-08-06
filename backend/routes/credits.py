@@ -23,49 +23,43 @@ def get_database() -> AsyncIOMotorDatabase:
     from server import db
     return db
 
-# Define credit packages with pricing
+# Define credit packages with new pricing structure
 CREDIT_PACKAGES = {
     CreditPackage.STARTER_10: {
         "credits": 10,
-        "price": 25.00,
-        "name": "Starter Pack",
-        "description": "Perfect for getting started"
+        "price": 150.00,
+        "name": "Tester Pack",
+        "description": "Perfect for testing the platform"
     },
     CreditPackage.BASIC_25: {
         "credits": 25, 
-        "price": 50.00,
-        "name": "Basic Pack",
+        "price": 499.00,
+        "name": "777 Pack",
         "description": "Great for small businesses"
     },
     CreditPackage.PROFESSIONAL_50: {
-        "credits": 50,
-        "price": 85.00,
-        "name": "Professional Pack", 
-        "description": "Ideal for growing businesses"
+        "credits": 20,
+        "price": 1500.00,
+        "name": "Elite Pack", 
+        "description": "20 quality leads for growing businesses"
     },
     CreditPackage.PREMIUM_100: {
-        "credits": 100,
-        "price": 150.00,
-        "name": "Premium Pack",
-        "description": "Best value for active professionals"
+        "credits": 30,
+        "price": 2000.00,
+        "name": "Pro Pack",
+        "description": "30 quality leads for active professionals"
     },
     CreditPackage.BUSINESS_250: {
-        "credits": 250,
-        "price": 325.00,
-        "name": "Business Pack",
+        "credits": 50,
+        "price": 6000.00,
+        "name": "Premium Deluxe",
         "description": "For established businesses"
     },
     CreditPackage.ENTERPRISE_500: {
-        "credits": 500,
-        "price": 575.00,
-        "name": "Enterprise Pack",
-        "description": "Maximum value for large operations"
-    },
-    CreditPackage.ULTIMATE_1000: {
-        "credits": 1000,
-        "price": 999.00,
-        "name": "Ultimate Pack",
-        "description": "Ultimate package for high-volume users"
+        "credits": 100,
+        "price": 13250.00,
+        "name": "Enterprise Deluxe",
+        "description": "100 quality leads for large operations"
     }
 }
 
