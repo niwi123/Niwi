@@ -67,36 +67,7 @@ const ProfessionalDashboard = () => {
     );
   }
 
-  // Mock data for demonstration
-  const mockLeads = [
-    {
-      id: '1',
-      title: 'Kitchen Renovation',
-      description: 'Complete kitchen remodel including cabinets, countertops, and flooring',
-      location: 'Toronto, ON',
-      budget: '$45,000',
-      urgency: 'high',
-      created_at: '2025-01-05',
-      status: 'assigned'
-    },
-    {
-      id: '2',
-      title: 'Bathroom Plumbing',
-      description: '3-piece bathroom installation with new fixtures',
-      location: 'Mississauga, ON',
-      budget: '$8,500',
-      urgency: 'medium',
-      created_at: '2025-01-04',
-      status: 'contacted'
-    }
-  ];
 
-  const mockStats = {
-    total_leads: 15,
-    active_leads: 3,
-    completed_leads: 12,
-    conversion_rate: 80
-  };
 
   return (
     <div className="min-h-screen bg-gray-50">
