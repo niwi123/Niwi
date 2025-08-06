@@ -7,6 +7,7 @@ import LandingPage from "./pages/LandingPage";
 import ProfessionalSignup from "./pages/ProfessionalSignup";
 import CustomerRequest from "./pages/CustomerRequest";
 import ProfessionalDashboard from "./pages/ProfessionalDashboard";
+import ProfessionalProfile from "./pages/ProfessionalProfile";
 import AdminDashboard from "./pages/AdminDashboard";
 import Login from "./pages/Login";
 import Credits from "./pages/Credits";
