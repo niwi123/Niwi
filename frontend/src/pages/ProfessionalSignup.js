@@ -383,16 +383,23 @@ const ProfessionalSignup = () => {
                 <button
                   type="button"
                   onClick={() => setStep(1)}
-                  className="flex-1 bg-gray-200 text-gray-800 py-3 px-4 rounded-md font-medium hover:bg-gray-300 transition"
+                  className="flex-1 bg-gray-100 text-gray-800 py-3 px-6 rounded-lg font-medium hover:bg-gray-200 transition-all duration-300 transform hover:scale-105 active:scale-95 shadow-sm hover:shadow-md"
                 >
-                  Back
+                  ← Back
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex-1 bg-emerald-600 text-white py-3 px-4 rounded-md font-medium hover:bg-emerald-700 transition disabled:opacity-50"
+                  className="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-3 px-6 rounded-lg font-medium hover:from-emerald-700 hover:to-emerald-800 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed transform hover:scale-105 active:scale-95 shadow-lg hover:shadow-xl"
                 >
-                  {loading ? 'Creating Profile...' : 'Create Profile'}
+                  {loading ? (
+                    <div className="flex items-center justify-center">
+                      <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
+                      Creating Profile...
+                    </div>
+                  ) : (
+                    'Create Profile'
+                  )}
                 </button>
               </div>
             </form>
