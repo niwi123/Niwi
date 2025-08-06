@@ -567,8 +567,9 @@ const LandingPage = () => {
                   transitionDelay: `${index * 200}ms`
                 }}
               >
-                <div className={`bg-${item.color}-600 text-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-110`}>
-                  {item.step}
+                <div className={`bg-gradient-to-br from-${item.color}-50 to-${item.color}-100 border border-${item.color}-200 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-bold shadow-lg transform transition-all duration-300 hover:shadow-xl hover:scale-110 relative`}>
+                  <div className={`absolute inset-0 bg-${item.color}-600 rounded-full opacity-90`}></div>
+                  <span className="relative z-10 text-white font-bold text-xl">{item.step}</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-4 transition-colors duration-300 hover:text-emerald-600">
                   {item.title}
