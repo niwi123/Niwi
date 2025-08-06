@@ -100,54 +100,32 @@ const ProfessionalDashboard = () => {
         {/* Stats with Credit Balance */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-emerald-500 text-white">
-                <span className="text-xl">💳</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Available Credits</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {creditBalance ? creditBalance.balance : 'Loading...'}
-                </p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Available Credits</p>
+              <p className="text-2xl font-semibold text-gray-900">
+                {creditBalance ? creditBalance.balance : 'Loading...'}
+              </p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-blue-500 text-white">
-                <span className="text-xl">📊</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Credits Used</p>
-                <p className="text-2xl font-semibold text-gray-900">
-                  {creditBalance ? creditBalance.total_used : 'Loading...'}
-                </p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Available Leads</p>
+              <p className="text-2xl font-semibold text-gray-900">{leadPreviews.length}</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-green-500 text-white">
-                <span className="text-xl">✅</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Available Leads</p>
-                <p className="text-2xl font-semibold text-gray-900">{leadPreviews.length}</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Conversion Rate</p>
+              <p className="text-2xl font-semibold text-gray-900">85%</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-orange-500 text-white">
-                <span className="text-xl">💹</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Conversion Rate</p>
-                <p className="text-2xl font-semibold text-gray-900">85%</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Profile Views</p>
+              <p className="text-2xl font-semibold text-gray-900">247</p>
             </div>
           </div>
         </div>
