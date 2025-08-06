@@ -217,7 +217,7 @@ frontend:
     file: "/app/frontend/src/pages/LandingPage.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
       - working: true
         agent: "main"
@@ -225,6 +225,9 @@ frontend:
       - working: true
         agent: "testing"
         comment: "Comprehensive testing completed successfully. Landing page loads correctly with Niwi branding visible. Dual-sided value proposition displays properly. Tab switching between 'I'm a Professional' and 'I Need a Service' works perfectly - content changes appropriately for each audience. Service categories grid displays all 6 categories (Contractors, Real Estate, Mortgage Brokers, Electricians, Plumbers, HVAC). All CTA buttons navigate correctly: 'Create Free Profile' → /professional/signup, 'Get Service Quotes' → /customer/request. Trust indicators (2,500+ professionals, 4.8/5 rating, 3x leads) display correctly. Responsive design works on mobile (390x844) and tablet (768x1024) viewports. All sections render properly including hero, features, testimonials, and footer."
+      - working: true
+        agent: "main"
+        comment: "Enhanced landing page with luxury professional icons, improved mobile responsiveness for hero buttons, and added right-side scrolling text effects to 'Why Choose Niwi' and 'Perfect for Service Professionals' sections. Replaced emoji icons with premium SVG icons in gradient backgrounds. Fixed mobile button padding and ensured full-width display on mobile devices."
 
   - task: "Authentication Context"
     implemented: true
