@@ -381,12 +381,14 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-animate id="pricing-cards">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-animate id="pricing-cards">
             {[
-              { name: "Starter", credits: 10, price: 25, description: "Perfect for trying out the platform", popular: false },
-              { name: "Basic", credits: 25, price: 50, description: "Great for small businesses", popular: false },
-              { name: "Professional", credits: 50, price: 85, description: "Ideal for growing businesses", popular: true },
-              { name: "Premium", credits: 100, price: 150, description: "Best value for active pros", popular: false }
+              { name: "Tester Pack", credits: 10, price: 150, description: "Perfect for testing the platform", popular: false },
+              { name: "777 Pack", credits: 25, price: 499, description: "Great for small businesses", popular: false },
+              { name: "Elite Pack", credits: 20, price: 1500, description: "20 quality leads", popular: true },
+              { name: "Pro Pack", credits: 30, price: 2000, description: "30 quality leads", popular: false },
+              { name: "Premium Deluxe", credits: 50, price: 6000, description: "For established businesses", popular: false },
+              { name: "Enterprise Deluxe", credits: 100, price: 13250, description: "100 quality leads", popular: false }
             ].map((pkg, index) => (
               <div 
                 key={index}
