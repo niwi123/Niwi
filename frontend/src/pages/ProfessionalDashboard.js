@@ -194,12 +194,22 @@ const ProfessionalDashboard = () => {
                       </span>
                       <button 
                         onClick={() => handleViewLead(lead.id)}
-                        className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm hover:bg-emerald-700 transition disabled:opacity-50"
+                        className="bg-emerald-600 text-white px-2 sm:px-4 py-2 rounded-md text-xs sm:text-sm hover:bg-emerald-700 transition disabled:opacity-50"
                         disabled={creditBalance && creditBalance.balance < lead.credits_required}
                       >
                         {creditBalance && creditBalance.balance < lead.credits_required 
-                          ? 'Insufficient Credits' 
-                          : 'View Full Details'
+                          ? (
+                            <>
+                              <span className="hidden sm:inline">Insufficient Credits</span>
+                              <span className="sm:hidden">Need Credits</span>
+                            </>
+                          ) 
+                          : (
+                            <>
+                              <span className="hidden sm:inline">View Full Details</span>
+                              <span className="sm:hidden">View Details</span>
+                            </>
+                          )
                         }
                       </button>
                     </div>
