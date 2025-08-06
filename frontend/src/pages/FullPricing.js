@@ -41,21 +41,21 @@ const FullPricing = () => {
     },
     { 
       name: "Premium Deluxe", 
-      credits: 50, 
+      credits: 100, 
       price: 6000, 
       description: "For established businesses", 
       popular: false,
       stripeUrl: "https://buy.stripe.com/cNi9AM28ughrcDl4RZgUM01",
-      features: ["50 premium leads", "Real-time notifications", "Dedicated support", "Lead replacement guarantee", "Custom targeting", "Account manager"]
+      features: ["100 premium leads", "Real-time notifications", "Dedicated support", "Lead replacement guarantee", "Custom targeting", "Account manager"]
     },
     { 
       name: "Enterprise Deluxe", 
-      credits: 100, 
+      credits: 200, 
       price: 13250, 
-      description: "100 quality leads", 
+      description: "200 quality leads", 
       popular: false,
       stripeUrl: "https://buy.stripe.com/3cIcMYdRce9javdeszgUM04",
-      features: ["100 premium leads", "Real-time notifications", "24/7 dedicated support", "Lead replacement guarantee", "Custom targeting", "Dedicated account manager", "API access"]
+      features: ["200 premium leads", "Real-time notifications", "24/7 dedicated support", "Lead replacement guarantee", "Custom targeting", "Dedicated account manager", "API access"]
     }
   ];
 
