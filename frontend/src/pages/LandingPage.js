@@ -367,21 +367,23 @@ const LandingPage = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {serviceCategories.map((category, index) => (
               <div 
                 key={index} 
-                className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100"
+                className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100"
               >
-                <div className="flex items-center mb-4">
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-12 h-12 rounded-2xl flex items-center justify-center mr-4 shadow-lg border border-gray-200 transform group-hover:scale-110 transition-all duration-300">
-                    {category.icon}
+                <div className="flex flex-col sm:flex-row items-center sm:items-start mb-4">
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center mb-2 sm:mb-0 sm:mr-4 shadow-lg border border-gray-200 transform group-hover:scale-110 transition-all duration-300">
+                    <div className="scale-75 sm:scale-100">
+                      {category.icon}
+                    </div>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 group-hover:text-emerald-600 transition-colors duration-300">
+                  <h3 className="text-sm sm:text-lg font-bold text-gray-900 group-hover:text-emerald-600 transition-colors duration-300 text-center sm:text-left">
                     {category.name}
                   </h3>
                 </div>
-                <p className="text-gray-600 text-sm">{category.description}</p>
+                <p className="text-gray-600 text-xs sm:text-sm text-center sm:text-left">{category.description}</p>
               </div>
             ))}
           </div>
