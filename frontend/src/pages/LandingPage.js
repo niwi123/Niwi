@@ -428,16 +428,25 @@ const LandingPage = () => {
                   </div>
                 </div>
 
-                <Link
-                  to="/professional/signup"
+                <a
+                  href={
+                    index === 0 ? 'https://buy.stripe.com/7sY7sEcN8ghrcDl5W3gUM07' : // Tester Pack
+                    index === 1 ? 'https://buy.stripe.com/6oUbIU7sO2qBeLtfwDgUM05' : // 777 Pack
+                    index === 2 ? 'https://buy.stripe.com/3cIcMYdRce9javdeszgUM04' : // Elite Pack
+                    index === 3 ? 'https://buy.stripe.com/4gM7sEbJ48OZcDl2JRgUM06' : // Pro Pack
+                    index === 4 ? 'https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03' : // Premium Deluxe
+                    'https://buy.stripe.com/cNi9AM28ughrcDl4RZgUM01' // Enterprise Deluxe
+                  }
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 text-center block transform hover:scale-105 active:scale-95 ${
                     pkg.popular
                       ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:shadow-lg'
                   }`}
                 >
-                  Get Started
-                </Link>
+                  Purchase Now
+                </a>
               </div>
             ))}
           </div>
