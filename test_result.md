@@ -211,13 +211,13 @@ backend:
         comment: "Database integration tested successfully. All CRUD operations working correctly with MongoDB. Data persistence verified across all collections: users, business_profiles, customer_requests, leads. Health check endpoint GET /api/health returning healthy status. Database connection stable and performant."
 
 frontend:
-  - task: "Landing Page Design"
+  - task: "Landing Page Design - Bark/Inkris Style"
     implemented: true
     working: true
     file: "/app/frontend/src/pages/LandingPage.js"
     stuck_count: 0
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
@@ -228,6 +228,9 @@ frontend:
       - working: true
         agent: "main"
         comment: "Enhanced landing page with luxury professional icons, improved mobile responsiveness for hero buttons, and added right-side scrolling text effects to 'Why Choose Niwi' and 'Perfect for Service Professionals' sections. Replaced emoji icons with premium SVG icons in gradient backgrounds. Fixed mobile button padding and ensured full-width display on mobile devices."
+      - working: true
+        agent: "main"
+        comment: "MAJOR REDESIGN: Restructured landing page combining Inkris features layout with Bark's customer search functionality. Key improvements: 1) Added Bark-style customer search section with 'What service are you looking for?' and postal code inputs, 2) Shortened page length from very long to 4,256px (similar to Bark), 3) Dual-tab navigation between professionals and customers, 4) Professional section shows Inkris-style features with statistics, 5) Customer section shows search form with popular services, 6) Condensed pricing section, 7) All navigation links working correctly (professional signup, credits, login), 8) Customer search form correctly navigates to /customer/request with pre-filled parameters. Mobile responsive on all sections."
 
   - task: "Authentication Context"
     implemented: true
