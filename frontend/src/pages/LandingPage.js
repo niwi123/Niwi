@@ -305,25 +305,44 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Service Categories */}
+      {/* Service Categories with enhanced animations */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
+          <div className="text-center mb-16" data-animate id="services-header" style={{
+            opacity: isVisible['services-header'] ? 1 : 0,
+            transform: isVisible['services-header'] ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+          }}>
             <h2 className="text-4xl font-bold text-gray-900 mb-4">Perfect for Service Professionals</h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               Join thousands of successful professionals already growing their business
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" data-animate id="service-cards">
             {serviceCategories.map((category, index) => (
-              <div key={index} className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition">
+              <div 
+                key={index} 
+                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group"
+                style={{
+                  opacity: isVisible['service-cards'] ? 1 : 0,
+                  transform: isVisible['service-cards'] 
+                    ? 'translateY(0)' 
+                    : 'translateY(30px)',
+                  transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+                  transitionDelay: `${index * 100}ms`
+                }}
+              >
                 <div className="flex items-center mb-4">
-                  <span className="text-3xl mr-4">{category.icon}</span>
-                  <h3 className="text-xl font-bold text-gray-900">{category.name}</h3>
+                  <span className="text-3xl mr-4 transform group-hover:scale-110 transition-transform duration-300">
+                    {category.icon}
+                  </span>
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-600 transition-colors duration-300">
+                    {category.name}
+                  </h3>
                 </div>
                 <p className="text-gray-600 mb-4">{category.description}</p>
-                <div className="bg-gray-50 rounded-lg p-4">
+                <div className="bg-gray-50 rounded-lg p-4 group-hover:bg-emerald-50 transition-colors duration-300">
                   <p className="text-sm text-gray-700">
                     <strong>Example lead:</strong> "{category.example}"
                   </p>
@@ -332,10 +351,15 @@ const LandingPage = () => {
             ))}
           </div>
 
-          <div className="text-center mt-12">
+          <div className="text-center mt-12" data-animate id="services-cta" style={{
+            opacity: isVisible['services-cta'] ? 1 : 0,
+            transform: isVisible['services-cta'] ? 'translateY(0)' : 'translateY(30px)',
+            transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            transitionDelay: '600ms'
+          }}>
             <Link
               to="/professional/signup"
-              className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition inline-block"
+              className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
             >
               View Sample Leads • Create Free Profile
             </Link>
