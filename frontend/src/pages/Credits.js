@@ -205,13 +205,14 @@ const Credits = () => {
 
                 <button
                   onClick={() => handlePurchase(pkg.package_type)}
-                  className={`w-full py-3 px-4 rounded-lg font-medium transition ${
+                  className={`w-full py-3 px-2 sm:px-4 rounded-lg font-medium transition text-sm ${
                     index === 3
                       ? 'bg-emerald-600 text-white hover:bg-emerald-700'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                   }`}
                 >
-                  Purchase Credits
+                  <span className="hidden sm:inline">Purchase Credits</span>
+                  <span className="sm:hidden">Purchase</span>
                 </button>
               </div>
             ))}
