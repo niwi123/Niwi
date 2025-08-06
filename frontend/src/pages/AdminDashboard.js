@@ -72,74 +72,44 @@ const AdminDashboard = () => {
         {/* Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-blue-500 text-white">
-                <span className="text-xl">👥</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Total Users</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.total_users.toLocaleString()}</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Total Users</p>
+              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_users.toLocaleString()}</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-emerald-500 text-white">
-                <span className="text-xl">🔨</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Professionals</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.total_professionals.toLocaleString()}</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Professionals</p>
+              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_professionals.toLocaleString()}</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-purple-500 text-white">
-                <span className="text-xl">🏠</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Customers</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.total_customers.toLocaleString()}</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Customers</p>
+              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_customers.toLocaleString()}</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-orange-500 text-white">
-                <span className="text-xl">📋</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Total Leads</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.total_leads}</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Total Leads</p>
+              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_leads}</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-yellow-500 text-white">
-                <span className="text-xl">🔄</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Active Leads</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.active_leads}</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Active Leads</p>
+              <p className="text-2xl font-semibold text-gray-900">{mockStats.active_leads}</p>
             </div>
           </div>
 
           <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex items-center">
-              <div className="p-2 rounded-md bg-green-500 text-white">
-                <span className="text-xl">📈</span>
-              </div>
-              <div className="ml-4">
-                <p className="text-sm text-gray-600">Conversion Rate</p>
-                <p className="text-2xl font-semibold text-gray-900">{mockStats.conversion_rate}%</p>
-              </div>
+            <div className="ml-4">
+              <p className="text-sm text-gray-600">Conversion Rate</p>
+              <p className="text-2xl font-semibold text-gray-900">{mockStats.conversion_rate}%</p>
             </div>
           </div>
         </div>
