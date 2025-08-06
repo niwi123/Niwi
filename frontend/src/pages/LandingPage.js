@@ -349,10 +349,19 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Service Categories with enhanced animations */}
-      <section className="py-20 bg-gray-50">
+      {/* Service Categories with enhanced animations and Scrolling Text */}
+      <section className="py-20 bg-gray-50 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16" data-animate id="services-header" style={{
+          {/* Scrolling text effect */}
+          <div className="relative mb-8">
+            <div className="absolute right-0 top-0 opacity-10 text-right overflow-hidden">
+              <div className="animate-scroll-right text-4xl sm:text-6xl font-bold text-gray-900 whitespace-nowrap">
+                Professional • Excellence • Growth • Service • Quality • Professional • Excellence • Growth • Service • Quality •
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center mb-16 relative z-10" data-animate id="services-header" style={{
             opacity: isVisible['services-header'] ? 1 : 0,
             transform: isVisible['services-header'] ? 'translateY(0)' : 'translateY(30px)',
             transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
