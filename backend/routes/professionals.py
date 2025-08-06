@@ -82,21 +82,143 @@ async def update_my_profile(
     profile_doc = await db.business_profiles.find_one({"user_id": current_user["user_id"]})
     return BusinessProfileResponse(**profile_doc)
 
-@router.get("/leads", response_model=List[LeadResponse])
-async def get_my_leads(
-    status_filter: Optional[LeadStatus] = Query(None, description="Filter leads by status"),
+@router.get("/leads/preview", response_model=List[dict])
+async def get_available_leads_preview(
+    service_category: Optional[ServiceCategory] = Query(None, description="Filter by service category"),
+    city: Optional[str] = Query(None, description="Filter by city"),
+    province: Optional[str] = Query(None, description="Filter by province"),
+    skip: int = Query(0, ge=0, description="Number of records to skip"),
+    limit: int = Query(10, ge=1, le=50, description="Number of records to return"),
     current_user: dict = Depends(get_current_professional)
 ):
-    """Get all leads assigned to current professional."""
+    """Get preview of available customer requests (limited info, no credits required)."""
     db = get_database()
     
-    # Build query
-    query = {"professional_id": current_user["user_id"]}
-    if status_filter:
-        query["status"] = status_filter
+    # Build query for pending customer requests
+    query = {"status": "pending"}
     
-    leads = await db.leads.find(query).sort("created_at", -1).to_list(100)
-    return [LeadResponse(**lead) for lead in leads]
+    if service_category:
+        query["service_category"] = service_category
+    
+    if city:
+        query["city"] = {"$regex": city, "$options": "i"}
+    
+    if province:
+        query["province"] = {"$regex": province, "$options": "i"}
+    
+    # Get customer requests
+    requests = await db.customer_requests.find(query) \
+        .sort("created_at", -1) \
+        .skip(skip) \
+        .limit(limit) \
+        .to_list(limit)
+    
+    # Return limited preview information (no contact details)
+    previews = []
+    for req in requests:
+        preview = {
+            "id": req["id"],
+            "title": req["title"],
+            "service_category": req["service_category"],
+            "description": req["description"][:150] + "..." if len(req["description"]) > 150 else req["description"],
+            "city": req["city"],
+            "province": req["province"],
+            "timeline": req["timeline"],
+            "urgency": req["urgency"],
+            "budget_range": f"${req.get('budget_min', 0):,.0f} - ${req.get('budget_max', 0):,.0f}" if req.get('budget_min') else "Budget not specified",
+            "created_at": req["created_at"],
+            "credits_required": 1  # Standard cost to view full details
+        }
+        previews.append(preview)
+    
+    return previews
+
+@router.post("/leads/{request_id}/view")
+async def view_lead_details(
+    request_id: str,
+    current_user: dict = Depends(get_current_professional)
+):
+    """View full lead details (requires 1 credit)."""
+    db = get_database()
+    
+    # Check if customer request exists
+    request_doc = await db.customer_requests.find_one({"id": request_id})
+    if not request_doc:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Lead not found"
+        )
+    
+    # Check if professional already viewed this lead
+    existing_lead = await db.leads.find_one({
+        "customer_request_id": request_id,
+        "professional_id": current_user["user_id"]
+    })
+    
+    if existing_lead and existing_lead.get("viewed_at"):
+        # Already viewed, return full details without charging
+        return {
+            "lead_details": request_doc,
+            "credits_used": 0,
+            "message": "Lead already purchased"
+        }
+    
+    # Use credit system to charge for viewing
+    from routes.credits import use_credits_for_lead
+    
+    try:
+        # Create lead record or update existing one
+        if existing_lead:
+            # Update existing lead with view information
+            await use_credits_for_lead(db, current_user["user_id"], existing_lead["id"])
+            
+            await db.leads.update_one(
+                {"id": existing_lead["id"]},
+                {
+                    "$set": {
+                        "viewed_at": datetime.utcnow(),
+                        "credits_used": 1,
+                        "updated_at": datetime.utcnow()
+                    }
+                }
+            )
+            lead_id = existing_lead["id"]
+        else:
+            # Create new lead record
+            lead = Lead(
+                customer_request_id=request_id,
+                professional_id=current_user["user_id"],
+                status=LeadStatus.ASSIGNED,
+                viewed_at=datetime.utcnow(),
+                credits_used=1
+            )
+            
+            await use_credits_for_lead(db, current_user["user_id"], lead.id)
+            await db.leads.insert_one(lead.dict())
+            lead_id = lead.id
+        
+        # Update customer request status if this is the first assignment
+        if request_doc["status"] == "pending":
+            await db.customer_requests.update_one(
+                {"id": request_id},
+                {"$set": {"status": "assigned", "updated_at": datetime.utcnow()}}
+            )
+        
+        return {
+            "lead_details": request_doc,
+            "credits_used": 1,
+            "lead_id": lead_id,
+            "message": "Lead details unlocked"
+        }
+        
+    except HTTPException as e:
+        # Re-raise HTTP exceptions (like insufficient credits)
+        raise e
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Failed to process lead view: {str(e)}"
+        )
 
 @router.put("/leads/{lead_id}/status")
 async def update_lead_status(
