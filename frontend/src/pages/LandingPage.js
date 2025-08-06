@@ -127,23 +127,25 @@ const LandingPage = () => {
                 />
                 <button
                   onClick={() => setActiveTab('professionals')}
-                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-300 relative z-10 ${
+                  className={`flex-1 py-3 px-2 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-sm sm:text-base ${
                     activeTab === 'professionals'
                       ? 'text-white shadow-lg'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
                   }`}
                 >
-                  I'm a Professional
+                  <span className="hidden sm:inline">I'm a Professional</span>
+                  <span className="sm:hidden">Professional</span>
                 </button>
                 <button
                   onClick={() => setActiveTab('customers')}
-                  className={`flex-1 py-3 px-6 rounded-lg font-medium transition-all duration-300 relative z-10 ${
+                  className={`flex-1 py-3 px-2 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-sm sm:text-base ${
                     activeTab === 'customers'
                       ? 'text-white shadow-lg'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
                   }`}
                 >
-                  I Need a Service
+                  <span className="hidden sm:inline">I Need a Service</span>
+                  <span className="sm:hidden">Customer</span>
                 </button>
               </div>
 
