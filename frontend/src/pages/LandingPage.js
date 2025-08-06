@@ -140,7 +140,7 @@ const LandingPage = () => {
             </p>
 
             {/* Enhanced Dual CTA Tabs with animations */}
-            <div className="bg-white rounded-2xl p-4 sm:p-8 shadow-xl max-w-2xl mx-auto transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
+            <div className="bg-white rounded-2xl p-3 sm:p-8 shadow-xl max-w-2xl mx-auto transform hover:scale-105 transition-all duration-300 hover:shadow-2xl">
               <div className="flex bg-gray-100 rounded-xl p-1 mb-4 sm:mb-6 relative overflow-hidden">
                 <div 
                   className="absolute top-1 bottom-1 bg-emerald-600 rounded-lg transition-all duration-300 ease-out"
@@ -151,7 +151,7 @@ const LandingPage = () => {
                 />
                 <button
                   onClick={() => setActiveTab('professionals')}
-                  className={`flex-1 py-2 sm:py-3 px-2 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-xs sm:text-base ${
+                  className={`flex-1 py-2 sm:py-3 px-1 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-xs sm:text-base ${
                     activeTab === 'professionals'
                       ? 'text-white shadow-lg'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
@@ -162,7 +162,7 @@ const LandingPage = () => {
                 </button>
                 <button
                   onClick={() => setActiveTab('customers')}
-                  className={`flex-1 py-2 sm:py-3 px-2 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-xs sm:text-base ${
+                  className={`flex-1 py-2 sm:py-3 px-1 sm:px-6 rounded-lg font-medium transition-all duration-300 relative z-10 text-xs sm:text-base ${
                     activeTab === 'customers'
                       ? 'text-white shadow-lg'
                       : 'text-gray-600 hover:text-gray-900 hover:bg-gray-200'
@@ -174,7 +174,7 @@ const LandingPage = () => {
               </div>
 
               {/* Enhanced Tab Content with slide animations */}
-              <div className="relative overflow-hidden" style={{ minHeight: '280px' }}>
+              <div className="relative overflow-hidden" style={{ minHeight: '320px' }}>
                 <div 
                   className={`absolute inset-0 transition-all duration-500 ease-in-out transform ${
                     activeTab === 'professionals' 
@@ -182,14 +182,14 @@ const LandingPage = () => {
                       : '-translate-x-full opacity-0'
                   }`}
                 >
-                  <div className="text-center px-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+                  <div className="text-center px-2 sm:px-4">
+                    <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                       Get Quality Leads. Grow Your Business.
                     </h3>
                     <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                       Connect with verified customers actively seeking your services in your area — in real time.
                     </p>
-                    <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                    <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
                       {[
                         'No payment required',
                         'Takes 2 minutes', 
@@ -209,7 +209,7 @@ const LandingPage = () => {
                     </div>
                     <Link
                       to="/professional/signup"
-                      className="bg-emerald-600 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto"
+                      className="bg-emerald-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto min-w-0"
                     >
                       <span className="hidden sm:inline">Create Free Profile</span>
                       <span className="sm:hidden">Get Started Free</span>
@@ -224,14 +224,14 @@ const LandingPage = () => {
                       : 'translate-x-full opacity-0'
                   }`}
                 >
-                  <div className="text-center px-2">
-                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
+                  <div className="text-center px-2 sm:px-4">
+                    <h3 className="text-lg sm:text-2xl font-bold text-gray-900 mb-3 sm:mb-4">
                       Find Trusted Professionals. Get Things Done.
                     </h3>
                     <p className="text-gray-600 mb-4 sm:mb-6 text-sm sm:text-base">
                       Get connected with verified, local professionals for your home and business needs.
                     </p>
-                    <div className="space-y-2 sm:space-y-3 mb-4 sm:mb-6">
+                    <div className="space-y-2 sm:space-y-3 mb-6 sm:mb-8">
                       {[
                         'Verified professionals',
                         'Quick response times',
@@ -251,7 +251,7 @@ const LandingPage = () => {
                     </div>
                     <Link
                       to="/customer/request"
-                      className="bg-orange-500 text-white px-4 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold hover:bg-orange-600 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto"
+                      className="bg-orange-500 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-lg font-semibold hover:bg-orange-600 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95 w-full sm:w-auto min-w-0"
                     >
                       <span className="hidden sm:inline">Get Service Quotes</span>
                       <span className="sm:hidden">Find Services</span>
