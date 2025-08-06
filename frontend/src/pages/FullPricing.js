@@ -5,12 +5,12 @@ const FullPricing = () => {
   const allPackages = [
     { 
       name: "Tester Pack", 
-      credits: 10, 
+      credits: 3, 
       price: 150, 
       description: "Perfect for testing the platform", 
       popular: false,
       stripeUrl: "https://buy.stripe.com/7sY7sEcN8ghrcDl5W3gUM07",
-      features: ["10 verified leads", "Email & SMS alerts", "Basic support", "Lead replacement guarantee"]
+      features: ["3 verified leads", "Email & SMS alerts", "Basic support", "Lead replacement guarantee"]
     },
     { 
       name: "777 Pack", 
