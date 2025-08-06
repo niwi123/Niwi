@@ -13,6 +13,19 @@ const ProfessionalProfile = () => {
   const [editing, setEditing] = useState(false);
   const [activeTab, setActiveTab] = useState('about');
   const [isVisible, setIsVisible] = useState(false);
+  const [profilePicture, setProfilePicture] = useState(null);
+  const [editForm, setEditForm] = useState({
+    business_name: '',
+    description: '',
+    business_phone: '',
+    website: '',
+    service_categories: []
+  });
+
+  const serviceOptions = [
+    'contractors', 'real_estate_agents', 'mortgage_brokers', 
+    'electricians', 'plumbers', 'hvac_specialists'
+  ];
 
   useEffect(() => {
     setIsVisible(true);
@@ -26,10 +39,70 @@ const ProfessionalProfile = () => {
       const headers = getAuthHeaders();
       const response = await axios.get(`${API}/professionals/profile`, { headers });
       setProfile(response.data);
+      setEditForm({
+        business_name: response.data.business_name || '',
+        description: response.data.description || '',
+        business_phone: response.data.business_phone || '',
+        website: response.data.website || '',
+        service_categories: response.data.service_categories || []
+      });
+      setProfilePicture(response.data.profile_picture || null);
     } catch (err) {
       console.error('Error fetching profile:', err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleProfilePictureChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        setProfilePicture(e.target.result);
+        updateProfilePicture(e.target.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const updateProfilePicture = async (imageData) => {
+    try {
+      const headers = getAuthHeaders();
+      await axios.put(`${API}/professionals/profile`, 
+        { profile_picture: imageData }, 
+        { headers }
+      );
+      fetchProfile(); // Refresh profile data
+    } catch (err) {
+      console.error('Error updating profile picture:', err);
+      alert('Failed to update profile picture');
+    }
+  };
+
+  const handleServiceToggle = (service) => {
+    setEditForm(prev => ({
+      ...prev,
+      service_categories: prev.service_categories.includes(service)
+        ? prev.service_categories.filter(s => s !== service)
+        : [...prev.service_categories, service]
+    }));
+  };
+
+  const handleSaveProfile = async () => {
+    try {
+      const headers = getAuthHeaders();
+      const updateData = {
+        ...editForm,
+        profile_picture: profilePicture
+      };
+      await axios.put(`${API}/professionals/profile`, updateData, { headers });
+      setEditing(false);
+      fetchProfile(); // Refresh profile data
+      alert('Profile updated successfully!');
+    } catch (err) {
+      console.error('Error updating profile:', err);
+      alert('Failed to update profile');
     }
   };
 
