@@ -435,12 +435,99 @@ const ProfessionalProfile = () => {
                 {activeTab === 'reviews' && (
                   <div className="space-y-6">
                     <div className="flex justify-between items-center">
-                      <h3 className="text-lg font-semibold text-gray-900">Reviews</h3>
-                      <button className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 active:scale-95">
+                      <h3 className="text-lg font-semibold text-gray-900">Customer Reviews</h3>
+                      <button
+                        onClick={() => {
+                          const reviewForm = document.getElementById('review-form');
+                          if (reviewForm.style.display === 'none') {
+                            reviewForm.style.display = 'block';
+                          } else {
+                            reviewForm.style.display = 'none';
+                          }
+                        }}
+                        className="bg-emerald-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105 active:scale-95"
+                      >
                         Leave a Review
                       </button>
                     </div>
 
+                    {/* Review Form */}
+                    <div id="review-form" style={{display: 'none'}} className="bg-gray-50 rounded-lg p-6">
+                      <h4 className="text-lg font-semibold text-gray-900 mb-4">Share Your Experience</h4>
+                      <form onSubmit={async (e) => {
+                        e.preventDefault();
+                        const formData = new FormData(e.target);
+                        const reviewData = {
+                          rating: parseInt(formData.get('rating')),
+                          title: formData.get('title'),
+                          comment: formData.get('comment'),
+                          professional_id: profile?._id
+                        };
+                        
+                        try {
+                          const headers = getAuthHeaders();
+                          await axios.post(`${API}/api/reviews`, reviewData, { headers });
+                          alert('Review submitted successfully!');
+                          e.target.reset();
+                          document.getElementById('review-form').style.display = 'none';
+                          // Refresh reviews would go here
+                        } catch (err) {
+                          console.error('Error submitting review:', err);
+                          alert('Failed to submit review. Please try again.');
+                        }
+                      }}>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Rating</label>
+                            <select name="rating" required className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                              <option value="">Select rating</option>
+                              <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                              <option value="4">⭐⭐⭐⭐ Very Good</option>
+                              <option value="3">⭐⭐⭐ Good</option>
+                              <option value="2">⭐⭐ Fair</option>
+                              <option value="1">⭐ Poor</option>
+                            </select>
+                          </div>
+                          <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-2">Review Title</label>
+                            <input
+                              type="text"
+                              name="title"
+                              required
+                              className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                              placeholder="Summary of your experience"
+                            />
+                          </div>
+                        </div>
+                        <div className="mb-4">
+                          <label className="block text-sm font-medium text-gray-700 mb-2">Your Review</label>
+                          <textarea
+                            name="comment"
+                            rows="4"
+                            required
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500"
+                            placeholder="Tell others about your experience with this professional..."
+                          />
+                        </div>
+                        <div className="flex space-x-4">
+                          <button
+                            type="submit"
+                            className="bg-emerald-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-emerald-700 transition-colors"
+                          >
+                            Submit Review
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => document.getElementById('review-form').style.display = 'none'}
+                            className="bg-gray-300 text-gray-700 px-6 py-2 rounded-lg font-medium hover:bg-gray-400 transition-colors"
+                          >
+                            Cancel
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+
+                    {/* Existing Reviews */}
                     {mockReviews.length > 0 ? (
                       <div className="space-y-4">
                         {mockReviews.map((review) => (
@@ -460,7 +547,9 @@ const ProfessionalProfile = () => {
                         ))}
                       </div>
                     ) : (
-                      <div className="text-center py-8 text-gray-500">
+                      <div className="text-center py-8 text-gray-500 bg-gray-50 rounded-lg">
+                        <div className="text-4xl mb-4">⭐</div>
+                        <p className="text-lg font-medium text-gray-700 mb-2">No reviews yet</p>
                         <p>Be the first to leave a review for {profile?.business_name}.</p>
                       </div>
                     )}
