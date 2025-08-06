@@ -1,9 +1,71 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+const API = `${BACKEND_URL}/api`;
 
 const ProfessionalDashboard = () => {
-  const { user, logout } = useAuth();
+  const { user, logout, getAuthHeaders } = useAuth();
+  const [creditBalance, setCreditBalance] = useState(null);
+  const [leadPreviews, setLeadPreviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (user && user.user_type === 'professional') {
+      fetchDashboardData();
+    }
+  }, [user]);
+
+  const fetchDashboardData = async () => {
+    try {
+      const headers = getAuthHeaders();
+      
+      // Fetch credit balance and available lead previews
+      const [creditRes, leadsRes] = await Promise.all([
+        axios.get(`${API}/credits/balance`, { headers }),
+        axios.get(`${API}/professionals/leads/preview?limit=5`, { headers })
+      ]);
+
+      setCreditBalance(creditRes.data);
+      setLeadPreviews(leadsRes.data);
+    } catch (err) {
+      console.error('Error fetching dashboard data:', err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleViewLead = async (leadId) => {
+    try {
+      const headers = getAuthHeaders();
+      const response = await axios.post(`${API}/professionals/leads/${leadId}/view`, {}, { headers });
+      
+      if (response.data.credits_used > 0) {
+        // Refresh dashboard data to update credit balance
+        fetchDashboardData();
+        alert(`Lead details unlocked! You used ${response.data.credits_used} credit(s).`);
+      } else {
+        alert('Lead details accessed (already purchased)');
+      }
+    } catch (err) {
+      if (err.response?.status === 402) {
+        alert('Insufficient credits! Please purchase more credits to view leads.');
+      } else {
+        alert('Error viewing lead details');
+      }
+      console.error('Error viewing lead:', err);
+    }
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-emerald-600"></div>
+      </div>
+    );
+  }
 
   // Mock data for demonstration
   const mockLeads = [
