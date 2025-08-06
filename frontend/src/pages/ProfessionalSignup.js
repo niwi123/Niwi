@@ -145,39 +145,59 @@ const ProfessionalSignup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-emerald-50 to-blue-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <Link to="/" className="inline-block mb-4">
+        {/* Enhanced Header with animations */}
+        <div className="text-center mb-8" style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(-30px)',
+          transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
+        }}>
+          <Link to="/" className="inline-block mb-4 transition-transform duration-300 hover:scale-110">
             <span className="text-3xl font-bold text-emerald-600">Niwi</span>
           </Link>
-          <h1 className="text-3xl font-bold text-gray-900">Join as a Professional</h1>
-          <p className="text-gray-600 mt-2">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2">Join as a Professional</h1>
+          <p className="text-gray-600">
             Create your profile and start receiving quality leads in minutes
           </p>
         </div>
 
-        {/* Progress indicator */}
-        <div className="mb-8">
+        {/* Enhanced Progress indicator */}
+        <div className="mb-8" style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '200ms'
+        }}>
           <div className="flex items-center">
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 1 ? 'bg-emerald-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+            <div className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${
+              step >= 1 ? 'bg-emerald-600 text-white shadow-lg' : 'bg-gray-200 text-gray-600'
+            }`}>
               1
             </div>
-            <div className={`flex-1 h-1 mx-4 ${step >= 2 ? 'bg-emerald-600' : 'bg-gray-200'}`}></div>
-            <div className={`flex items-center justify-center w-8 h-8 rounded-full ${step >= 2 ? 'bg-emerald-600 text-white' : 'bg-gray-200 text-gray-600'}`}>
+            <div className={`flex-1 h-2 mx-4 rounded-full transition-all duration-500 ${
+              step >= 2 ? 'bg-emerald-600' : 'bg-gray-200'
+            }`}></div>
+            <div className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-300 ${
+              step >= 2 ? 'bg-emerald-600 text-white shadow-lg' : 'bg-gray-200 text-gray-600'
+            }`}>
               2
             </div>
           </div>
           <div className="flex justify-between mt-2 text-sm text-gray-600">
-            <span>Personal Info</span>
-            <span>Business Details</span>
+            <span className={step >= 1 ? 'text-emerald-600 font-medium' : ''}>Personal Info</span>
+            <span className={step >= 2 ? 'text-emerald-600 font-medium' : ''}>Business Details</span>
           </div>
         </div>
 
-        <div className="bg-white shadow rounded-lg p-6">
+        <div className="bg-white shadow-xl rounded-2xl p-8" style={{
+          opacity: isVisible ? 1 : 0,
+          transform: isVisible ? 'translateY(0)' : 'translateY(40px)',
+          transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+          transitionDelay: '400ms'
+        }}>
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
+            <div className="bg-red-50 border-l-4 border-red-400 text-red-600 px-4 py-3 rounded-lg mb-6 animate-pulse">
               {error}
             </div>
           )}
