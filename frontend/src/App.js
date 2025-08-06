@@ -24,6 +24,7 @@ function App() {
             <Route path="/professional/signup" element={<ProfessionalSignup />} />
             <Route path="/customer/request" element={<CustomerRequest />} />
             <Route path="/professional/dashboard" element={<ProfessionalDashboard />} />
+            <Route path="/professional/profile" element={<ProfessionalProfile />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/credits" element={<Credits />} />
