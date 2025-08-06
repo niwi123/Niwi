@@ -124,18 +124,13 @@ const AdminDashboard = () => {
               {mockRecentActivity.map((activity) => (
                 <div key={activity.id} className="p-6">
                   <div className="flex items-start">
-                    <div className={`p-1 rounded-full ${
+                    <div className={`w-3 h-3 mt-1 rounded-full ${
                       activity.type === 'user_registered' 
-                        ? 'bg-blue-100 text-blue-600'
+                        ? 'bg-blue-600'
                         : activity.type === 'request_created'
-                        ? 'bg-emerald-100 text-emerald-600'
-                        : 'bg-orange-100 text-orange-600'
-                    }`}>
-                      <span className="text-sm">
-                        {activity.type === 'user_registered' ? '👤' : 
-                         activity.type === 'request_created' ? '📝' : '🔗'}
-                      </span>
-                    </div>
+                        ? 'bg-emerald-600'
+                        : 'bg-orange-600'
+                    }`}></div>
                     <div className="ml-3">
                       <p className="text-sm text-gray-900">{activity.description}</p>
                       <p className="text-xs text-gray-500 mt-1">{activity.timestamp}</p>
