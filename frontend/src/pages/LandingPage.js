@@ -34,37 +34,61 @@ const LandingPage = () => {
     {
       name: 'Contractors',
       description: 'General contracting, renovations, and construction projects',
-      icon: '🔨',
+      icon: (
+        <svg className="w-8 h-8 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zm0 4a1 1 0 011-1h12a1 1 0 011 1v8a1 1 0 01-1 1H4a1 1 0 01-1-1V8zm2 2v2h2v-2H5zm4 0v2h2v-2H9zm4 0v2h2v-2h-2z" clipRule="evenodd" />
+        </svg>
+      ),
       example: 'Kitchen renovation project, $45K budget, Toronto area'
     },
     {
       name: 'Real Estate Agents',
       description: 'Home buying, selling, and property investment guidance',
-      icon: '🏠',
+      icon: (
+        <svg className="w-8 h-8 text-emerald-600" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+        </svg>
+      ),
       example: 'First-time buyer looking for condos under $600K in Vancouver'
     },
     {
       name: 'Mortgage Brokers',
       description: 'Home financing, refinancing, and mortgage advice',
-      icon: '🏦',
+      icon: (
+        <svg className="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4zM18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z" />
+        </svg>
+      ),
       example: 'Looking for refinance on $850K home with better rates'
     },
     {
       name: 'Electricians',
       description: 'Electrical installations, repairs, and home upgrades',
-      icon: '⚡',
+      icon: (
+        <svg className="w-8 h-8 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clipRule="evenodd" />
+        </svg>
+      ),
       example: 'Panel upgrade and home electrical inspection needed'
     },
     {
       name: 'Plumbers',
       description: 'Plumbing repairs, installations, and emergency services',
-      icon: '🔧',
+      icon: (
+        <svg className="w-8 h-8 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M11.49 3.17c-.38-1.56-2.6-1.56-2.98 0a1.532 1.532 0 01-2.286.948c-1.372-.836-2.942.734-2.106 2.106.54.886.061 2.042-.947 2.287-1.561.379-1.561 2.6 0 2.978a1.532 1.532 0 01.947 2.287c-.836 1.372.734 2.942 2.106 2.106a1.532 1.532 0 012.287.947c.379 1.561 2.6 1.561 2.978 0a1.533 1.533 0 012.287-.947c1.372.836 2.942-.734 2.106-2.106a1.533 1.533 0 01.947-2.287c1.561-.379 1.561-2.6 0-2.978a1.532 1.532 0 01-.947-2.287c.836-1.372-.734-2.942-2.106-2.106a1.532 1.532 0 01-2.287-.947zM10 13a3 3 0 100-6 3 3 0 000 6z" clipRule="evenodd" />
+        </svg>
+      ),
       example: 'Bathroom renovation plumbing, 3-piece installation'
     },
     {
       name: 'HVAC Specialists',
       description: 'Heating, cooling, and ventilation system services',
-      icon: '❄️',
+      icon: (
+        <svg className="w-8 h-8 text-cyan-600" fill="currentColor" viewBox="0 0 20 20">
+          <path fillRule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+        </svg>
+      ),
       example: 'Central AC installation for 2,500 sq ft home'
     }
   ];
