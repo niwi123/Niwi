@@ -184,4 +184,18 @@ async def create_quick_request(request_data: dict):
     )
     
     await db.customer_requests.insert_one(customer_request.dict())
+    
+    # Send admin notification for new customer request
+    try:
+        customer_data = {
+            'email': request_data["email"],
+            'phone': request_data["phone"],
+            'first_name': request_data.get("first_name", ""),
+            'last_name': request_data.get("last_name", "")
+        }
+        await notification_service.notify_new_customer_request(customer_request.dict(), customer_data)
+    except Exception as e:
+        # Log error but don't fail the request creation
+        print(f"Failed to send admin notification: {str(e)}")
+    
     return CustomerRequestResponse(**customer_request.dict())
