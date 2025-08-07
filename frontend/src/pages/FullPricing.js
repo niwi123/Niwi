@@ -183,8 +183,8 @@ const FullPricing = () => {
               </div>
               
               <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Do credits expire?</h3>
-                <p className="text-gray-600">No, your credits never expire. Use them at your own pace as quality leads become available in your area.</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">Do leads expire?</h3>
+                <p className="text-gray-600">No, your leads never expire. Use them at your own pace as quality leads become available in your area.</p>
               </div>
             </div>
           </div>
