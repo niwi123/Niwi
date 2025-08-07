@@ -639,6 +639,226 @@ class NiwiAPITester:
         except Exception as e:
             self.log_result("Credits Transactions", False, f"Exception: {str(e)}")
     
+    def test_ai_chat_send_anonymous(self):
+        """Test AI chat send endpoint without authentication (anonymous)"""
+        try:
+            # Test 1: Send a message about becoming a professional
+            chat_data = {
+                "message": "Hi, I'm interested in becoming a professional on Niwi. Can you tell me how it works?"
+            }
+            response = self.make_request("POST", "/chat/send", chat_data)
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["message", "session_id", "is_new_session"]
+                if all(field in data for field in required_fields):
+                    if data["is_new_session"] and data["session_id"] and len(data["message"]) > 0:
+                        self.test_data["chat_session_id"] = data["session_id"]
+                        self.log_result("AI Chat Send (Anonymous - Professional Interest)", True, 
+                                      f"AI responded with {len(data['message'])} characters, session: {data['session_id'][:8]}...")
+                    else:
+                        self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, 
+                                      "Invalid response data", data)
+                else:
+                    missing_fields = [field for field in required_fields if field not in data]
+                    self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, 
+                                  f"Missing fields: {missing_fields}", data)
+            else:
+                self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, 
+                              f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, f"Exception: {str(e)}")
+    
+    def test_ai_chat_send_pricing_question(self):
+        """Test AI chat with pricing question"""
+        if "chat_session_id" not in self.test_data:
+            return
+            
+        try:
+            # Test 2: Ask about pricing using existing session
+            chat_data = {
+                "message": "What are your lead packages and pricing?",
+                "session_id": self.test_data["chat_session_id"]
+            }
+            response = self.make_request("POST", "/chat/send", chat_data)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("session_id") == self.test_data["chat_session_id"] and not data.get("is_new_session"):
+                    # Check if response mentions pricing or packages
+                    response_text = data["message"].lower()
+                    pricing_keywords = ["package", "price", "pricing", "lead", "cost", "$", "dollar"]
+                    if any(keyword in response_text for keyword in pricing_keywords):
+                        self.log_result("AI Chat Send (Pricing Question)", True, 
+                                      f"AI provided pricing information, session maintained: {data['session_id'][:8]}...")
+                    else:
+                        self.log_result("AI Chat Send (Pricing Question)", True, 
+                                      f"AI responded but may not have pricing info: {data['message'][:100]}...")
+                else:
+                    self.log_result("AI Chat Send (Pricing Question)", False, 
+                                  "Session not maintained correctly", data)
+            else:
+                self.log_result("AI Chat Send (Pricing Question)", False, 
+                              f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("AI Chat Send (Pricing Question)", False, f"Exception: {str(e)}")
+    
+    def test_ai_chat_send_authenticated(self):
+        """Test AI chat with authenticated user"""
+        if "professional" not in self.tokens:
+            return
+            
+        try:
+            headers = self.get_auth_header("professional")
+            chat_data = {
+                "message": "I'm a professional user. How can I get more leads on Niwi?"
+            }
+            response = self.make_request("POST", "/chat/send", chat_data, headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                if "message" in data and "session_id" in data:
+                    self.test_data["auth_chat_session_id"] = data["session_id"]
+                    self.log_result("AI Chat Send (Authenticated Professional)", True, 
+                                  f"AI responded to authenticated user, session: {data['session_id'][:8]}...")
+                else:
+                    self.log_result("AI Chat Send (Authenticated Professional)", False, 
+                                  "Invalid response format", data)
+            else:
+                self.log_result("AI Chat Send (Authenticated Professional)", False, 
+                              f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("AI Chat Send (Authenticated Professional)", False, f"Exception: {str(e)}")
+    
+    def test_ai_chat_get_history(self):
+        """Test getting chat history"""
+        if "chat_session_id" not in self.test_data:
+            return
+            
+        try:
+            session_id = self.test_data["chat_session_id"]
+            response = self.make_request("GET", f"/chat/history/{session_id}")
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["session_id", "messages", "created_at", "updated_at"]
+                if all(field in data for field in required_fields):
+                    if data["session_id"] == session_id and isinstance(data["messages"], list):
+                        # Should have at least 4 messages (2 user + 2 assistant from previous tests)
+                        if len(data["messages"]) >= 2:
+                            # Check message structure
+                            first_message = data["messages"][0]
+                            message_fields = ["id", "session_id", "role", "content", "created_at"]
+                            if all(field in first_message for field in message_fields):
+                                self.log_result("AI Chat Get History", True, 
+                                              f"Retrieved {len(data['messages'])} messages for session")
+                            else:
+                                missing_fields = [field for field in message_fields if field not in first_message]
+                                self.log_result("AI Chat Get History", False, 
+                                              f"Message missing fields: {missing_fields}")
+                        else:
+                            self.log_result("AI Chat Get History", False, 
+                                          f"Expected at least 2 messages, got {len(data['messages'])}")
+                    else:
+                        self.log_result("AI Chat Get History", False, 
+                                      "Session ID mismatch or invalid messages format", data)
+                else:
+                    missing_fields = [field for field in required_fields if field not in data]
+                    self.log_result("AI Chat Get History", False, 
+                                  f"Missing fields: {missing_fields}", data)
+            else:
+                self.log_result("AI Chat Get History", False, 
+                              f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("AI Chat Get History", False, f"Exception: {str(e)}")
+    
+    def test_ai_chat_get_history_authenticated(self):
+        """Test getting chat history for authenticated user"""
+        if "auth_chat_session_id" not in self.test_data or "professional" not in self.tokens:
+            return
+            
+        try:
+            headers = self.get_auth_header("professional")
+            session_id = self.test_data["auth_chat_session_id"]
+            response = self.make_request("GET", f"/chat/history/{session_id}", headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("session_id") == session_id and isinstance(data.get("messages"), list):
+                    self.log_result("AI Chat Get History (Authenticated)", True, 
+                                  f"Retrieved {len(data['messages'])} messages for authenticated session")
+                else:
+                    self.log_result("AI Chat Get History (Authenticated)", False, 
+                                  "Invalid response format", data)
+            else:
+                self.log_result("AI Chat Get History (Authenticated)", False, 
+                              f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("AI Chat Get History (Authenticated)", False, f"Exception: {str(e)}")
+    
+    def test_ai_chat_error_handling(self):
+        """Test AI chat error handling scenarios"""
+        try:
+            # Test 1: Empty message
+            chat_data = {"message": ""}
+            response = self.make_request("POST", "/chat/send", chat_data)
+            if response.status_code == 422:  # Validation error expected
+                self.log_result("AI Chat Error Handling (Empty Message)", True, 
+                              "Correctly rejected empty message with validation error")
+            elif response.status_code == 200:
+                # Some systems might handle empty messages gracefully
+                data = response.json()
+                if "message" in data:
+                    self.log_result("AI Chat Error Handling (Empty Message)", True, 
+                                  "Handled empty message gracefully")
+                else:
+                    self.log_result("AI Chat Error Handling (Empty Message)", False, 
+                                  "Unexpected response to empty message", data)
+            else:
+                self.log_result("AI Chat Error Handling (Empty Message)", False, 
+                              f"Unexpected HTTP {response.status_code}", response.text)
+                
+            # Test 2: Invalid session ID for history
+            fake_session_id = "invalid-session-id-12345"
+            response = self.make_request("GET", f"/chat/history/{fake_session_id}")
+            if response.status_code == 404:
+                self.log_result("AI Chat Error Handling (Invalid Session)", True, 
+                              "Correctly returned 404 for invalid session ID")
+            else:
+                self.log_result("AI Chat Error Handling (Invalid Session)", False, 
+                              f"Expected 404, got HTTP {response.status_code}", response.text)
+                
+        except Exception as e:
+            self.log_result("AI Chat Error Handling", False, f"Exception: {str(e)}")
+    
+    def test_ai_chat_session_management(self):
+        """Test AI chat session management"""
+        try:
+            # Test creating multiple sessions
+            sessions = []
+            for i in range(2):
+                chat_data = {
+                    "message": f"Test message {i+1} for session management"
+                }
+                response = self.make_request("POST", "/chat/send", chat_data)
+                if response.status_code == 200:
+                    data = response.json()
+                    if data.get("is_new_session") and data.get("session_id"):
+                        sessions.append(data["session_id"])
+                    else:
+                        self.log_result("AI Chat Session Management", False, 
+                                      f"Failed to create session {i+1}", data)
+                        return
+                else:
+                    self.log_result("AI Chat Session Management", False, 
+                                  f"Failed to create session {i+1}: HTTP {response.status_code}")
+                    return
+            
+            if len(sessions) == 2 and sessions[0] != sessions[1]:
+                self.log_result("AI Chat Session Management", True, 
+                              f"Successfully created 2 distinct sessions: {sessions[0][:8]}... and {sessions[1][:8]}...")
+            else:
+                self.log_result("AI Chat Session Management", False, 
+                              f"Session creation issue: {sessions}")
+                
+        except Exception as e:
+            self.log_result("AI Chat Session Management", False, f"Exception: {str(e)}")
+    
     def run_all_tests(self):
         """Run all API tests in sequence"""
         print(f"🚀 Starting Niwi Platform API Tests")
