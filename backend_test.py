@@ -675,6 +675,11 @@ class NiwiAPITester:
         self.test_professional_get_leads()
         self.test_professional_update_lead_status()
         
+        # Credits system tests
+        self.test_credits_packages()
+        self.test_credits_balance()
+        self.test_credits_transactions()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 TEST SUMMARY")
