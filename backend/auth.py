@@ -97,7 +97,7 @@ async def get_current_admin(current_user: dict = Depends(get_current_user)):
         )
     return current_user
 
-async def get_current_user_optional(token: Optional[str] = Depends(oauth2_scheme)):
+async def get_current_user_optional(token: Optional[str] = Depends(oauth2_scheme_optional)):
     """Get current user from JWT token, but allow None if no token provided."""
     if token is None:
         return None
