@@ -114,7 +114,7 @@ const Credits = () => {
               <nav className="ml-10 flex space-x-8">
                 <Link to="/professional/dashboard" className="text-gray-500 hover:text-gray-700">Dashboard</Link>
                 <Link to="/professional/leads" className="text-gray-500 hover:text-gray-700">Leads</Link>
-                <span className="text-emerald-600 font-medium">Credits</span>
+                <span className="text-emerald-600 font-medium">Leads</span>
               </nav>
             </div>
             <div className="text-gray-700">
