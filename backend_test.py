@@ -900,6 +900,15 @@ class NiwiAPITester:
         self.test_credits_balance()
         self.test_credits_transactions()
         
+        # AI Chat system tests
+        self.test_ai_chat_send_anonymous()
+        self.test_ai_chat_send_pricing_question()
+        self.test_ai_chat_send_authenticated()
+        self.test_ai_chat_get_history()
+        self.test_ai_chat_get_history_authenticated()
+        self.test_ai_chat_error_handling()
+        self.test_ai_chat_session_management()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 TEST SUMMARY")
