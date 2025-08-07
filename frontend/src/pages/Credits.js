@@ -147,11 +147,11 @@ const Credits = () => {
           )}
 
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">How Credits Work</h3>
+            <h3 className="font-semibold text-gray-900 mb-2">How Leads Work</h3>
             <ul className="text-sm text-gray-600 space-y-1">
-              <li>• Use 1 credit to view full lead details and contact information</li>
+              <li>• Use 1 lead to view full lead details and contact information</li>
               <li>• Preview lead summaries are always free</li>
-              <li>• Credits never expire</li>
+              <li>• Leads never expire</li>
               <li>• Get the best value with larger packages</li>
             </ul>
           </div>
