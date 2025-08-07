@@ -34,7 +34,7 @@ const FullPricing = () => {
       name: "Pro Pack", 
       credits: 30, 
       price: 2000, 
-      description: "30 quality leads", 
+      description: "30 Exclusive leads", 
       popular: false,
       stripeUrl: "https://buy.stripe.com/9B6aEQ5kG7KVavd0BJgUM03",
       features: ["30 premium leads", "Instant notifications", "Phone support", "Lead replacement guarantee", "Advanced filtering"]
