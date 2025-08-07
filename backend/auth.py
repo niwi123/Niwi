@@ -7,6 +7,9 @@ import jwt
 import os
 from models import User, UserType
 
+# Make OAuth2PasswordBearer not auto-error if no token
+oauth2_scheme_optional = OAuth2PasswordBearer(tokenUrl="/api/auth/login", auto_error=False)
+
 # Configuration
 SECRET_KEY = os.getenv("JWT_SECRET", "your-secret-key-here-change-in-production")
 ALGORITHM = "HS256"
