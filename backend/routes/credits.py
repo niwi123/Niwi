@@ -59,7 +59,7 @@ CREDIT_PACKAGES = {
         "credits": 200,
         "price": 13250.00,
         "name": "Enterprise Deluxe",
-        "description": "200 quality leads for large operations"
+        "description": "200 Exclusive leads for large operations"
     }
 }
 
