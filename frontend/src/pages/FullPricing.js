@@ -179,7 +179,7 @@ const FullPricing = () => {
               
               <div className="bg-white rounded-2xl p-6 shadow-sm">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">Can I upgrade or downgrade?</h3>
-                <p className="text-gray-600">Yes! You can purchase additional credits anytime. There are no long-term contracts or commitments.</p>
+                <p className="text-gray-600">Yes! You can purchase additional leads anytime. There are no long-term contracts or commitments.</p>
               </div>
               
               <div className="bg-white rounded-2xl p-6 shadow-sm">
