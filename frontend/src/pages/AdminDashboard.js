@@ -183,6 +183,9 @@ const AdminDashboard = () => {
           </div>
         </div>
       </div>
+      
+      {/* AI Chat Button */}
+      <ChatButton />
     </div>
   );
 };
