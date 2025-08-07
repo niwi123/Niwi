@@ -92,8 +92,8 @@ class NiwiAPITester:
             {
                 "type": "admin",
                 "data": {
-                    "email": "admin@niwi.ca",
-                    "password": "admin123",
+                    "email": "admin@test.com",
+                    "password": "password",
                     "user_type": "admin",
                     "first_name": "Admin",
                     "last_name": "User",
@@ -103,8 +103,8 @@ class NiwiAPITester:
             {
                 "type": "professional",
                 "data": {
-                    "email": "mike@contractor.ca",
-                    "password": "password123",
+                    "email": "contractor@test.com",
+                    "password": "password",
                     "user_type": "professional",
                     "first_name": "Mike",
                     "last_name": "Johnson",
@@ -114,8 +114,8 @@ class NiwiAPITester:
             {
                 "type": "customer",
                 "data": {
-                    "email": "sarah@customer.ca",
-                    "password": "customer123",
+                    "email": "customer@test.com",
+                    "password": "password",
                     "user_type": "customer",
                     "first_name": "Sarah",
                     "last_name": "Wilson",
