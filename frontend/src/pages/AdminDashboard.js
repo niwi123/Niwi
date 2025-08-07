@@ -151,33 +151,33 @@ const AdminDashboard = () => {
               <h2 className="text-xl font-semibold text-gray-900">Quick Actions</h2>
             </div>
             <div className="p-6 space-y-4">
-              <button className="w-full bg-emerald-600 text-white py-3 px-4 rounded-md hover:bg-emerald-700 transition text-left">
+              <Link to="/admin/professionals" className="w-full bg-emerald-600 text-white py-3 px-4 rounded-md hover:bg-emerald-700 transition text-left block">
                 <div>
                   <div className="font-medium">Verify Professionals</div>
                   <div className="text-sm text-emerald-100">Review and approve new professional applications</div>
                 </div>
-              </button>
+              </Link>
 
-              <button className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition text-left">
+              <Link to="/admin/leads" className="w-full bg-blue-600 text-white py-3 px-4 rounded-md hover:bg-blue-700 transition text-left block">
                 <div>
                   <div className="font-medium">Assign Leads</div>
                   <div className="text-sm text-blue-100">Manually assign customer requests to professionals</div>
                 </div>
-              </button>
+              </Link>
 
-              <button className="w-full bg-purple-600 text-white py-3 px-4 rounded-md hover:bg-purple-700 transition text-left">
+              <Link to="/admin/reports" className="w-full bg-purple-600 text-white py-3 px-4 rounded-md hover:bg-purple-700 transition text-left block">
                 <div>
                   <div className="font-medium">View Reports</div>
                   <div className="text-sm text-purple-100">Generate detailed platform analytics and reports</div>
                 </div>
-              </button>
+              </Link>
 
-              <button className="w-full bg-orange-600 text-white py-3 px-4 rounded-md hover:bg-orange-700 transition text-left">
+              <Link to="/admin/settings" className="w-full bg-orange-600 text-white py-3 px-4 rounded-md hover:bg-orange-700 transition text-left block">
                 <div>
                   <div className="font-medium">Platform Settings</div>
                   <div className="text-sm text-orange-100">Configure platform settings and features</div>
                 </div>
-              </button>
+              </Link>
             </div>
           </div>
         </div>
