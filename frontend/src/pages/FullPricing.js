@@ -168,8 +168,8 @@ const FullPricing = () => {
             
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">How do credits work?</h3>
-                <p className="text-gray-600">Each credit allows you to unlock one verified lead with full contact details. Credits never expire and you only pay for leads you choose to pursue.</p>
+                <h3 className="text-lg font-bold text-gray-900 mb-3">How do leads work?</h3>
+                <p className="text-gray-600">Each lead allows you to unlock one verified lead with full contact details. Leads never expire and you only pay for leads you choose to pursue.</p>
               </div>
               
               <div className="bg-white rounded-2xl p-6 shadow-sm">
