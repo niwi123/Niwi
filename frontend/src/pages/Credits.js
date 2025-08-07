@@ -141,7 +141,7 @@ const Credits = () => {
                 <div className="text-3xl font-bold text-emerald-600 mb-2">
                   {creditBalance.balance}
                 </div>
-                <div className="text-sm text-gray-600">Available Credits</div>
+                <div className="text-sm text-gray-600">Available Leads</div>
               </div>
             </div>
           )}
