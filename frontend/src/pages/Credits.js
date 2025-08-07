@@ -199,7 +199,7 @@ const Credits = () => {
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                   }`}
                 >
-                  <span className="hidden sm:inline">Purchase Credits</span>
+                  <span className="hidden sm:inline">Purchase Leads</span>
                   <span className="sm:hidden">Purchase</span>
                 </button>
               </div>
