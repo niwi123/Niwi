@@ -131,9 +131,9 @@ const Credits = () => {
           </div>
         )}
 
-        {/* Credit Balance */}
+        {/* Lead Balance */}
         <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Credit Balance</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">Lead Balance</h2>
           
           {creditBalance && (
             <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
