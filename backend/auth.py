@@ -93,3 +93,19 @@ async def get_current_admin(current_user: dict = Depends(get_current_user)):
             detail="Access forbidden: Admin access required"
         )
     return current_user
+
+async def get_current_user_optional(token: Optional[str] = Depends(oauth2_scheme)):
+    """Get current user from JWT token, but allow None if no token provided."""
+    if token is None:
+        return None
+        
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: str = payload.get("sub")
+        user_type: str = payload.get("user_type")
+        user_id: str = payload.get("user_id")
+        if email is None:
+            return None
+        return {"email": email, "user_type": user_type, "user_id": user_id}
+    except jwt.PyJWTError:
+        return None
