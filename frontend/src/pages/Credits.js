@@ -260,7 +260,7 @@ const Credits = () => {
             </div>
           ) : (
             <div className="text-center py-8 text-gray-500">
-              No transactions yet. Purchase your first credit package to get started!
+              No transactions yet. Purchase your first lead package to get started!
             </div>
           )}
         </div>
