@@ -47,7 +47,7 @@ CREDIT_PACKAGES = {
         "credits": 30,
         "price": 2000.00,
         "name": "Pro Pack",
-        "description": "30 quality leads for active professionals"
+        "description": "30 Exclusive leads for active professionals"
     },
     CreditPackage.BUSINESS_250: {
         "credits": 100,
