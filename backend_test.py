@@ -150,9 +150,9 @@ class NiwiAPITester:
     def test_user_login(self):
         """Test user login for all user types"""
         test_logins = [
-            {"type": "admin", "username": "admin@niwi.ca", "password": "admin123"},
-            {"type": "professional", "username": "mike@contractor.ca", "password": "password123"},
-            {"type": "customer", "username": "sarah@customer.ca", "password": "customer123"}
+            {"type": "admin", "username": "admin@test.com", "password": "password"},
+            {"type": "professional", "username": "contractor@test.com", "password": "password"},
+            {"type": "customer", "username": "customer@test.com", "password": "password"}
         ]
         
         for login in test_logins:
