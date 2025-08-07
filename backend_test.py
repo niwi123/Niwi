@@ -540,6 +540,105 @@ class NiwiAPITester:
         except Exception as e:
             self.log_result("Admin Get Stats", False, f"Exception: {str(e)}")
     
+    def test_credits_packages(self):
+        """Test GET /api/credits/packages endpoint for updated package descriptions"""
+        try:
+            response = self.make_request("GET", "/credits/packages")
+            if response.status_code == 200:
+                data = response.json()
+                if "packages" in data and isinstance(data["packages"], list):
+                    packages = data["packages"]
+                    
+                    # Check that we have 6 packages
+                    if len(packages) != 6:
+                        self.log_result("Credits Packages Count", False, f"Expected 6 packages, got {len(packages)}")
+                        return
+                    
+                    # Find specific packages and verify descriptions
+                    package_checks = {
+                        "Elite Pack": "20 Exclusive leads for growing businesses",
+                        "Pro Pack": "30 Exclusive leads for active professionals", 
+                        "Enterprise Deluxe": "200 Exclusive leads for large operations"
+                    }
+                    
+                    found_packages = {}
+                    for package in packages:
+                        if package["name"] in package_checks:
+                            found_packages[package["name"]] = package["description"]
+                    
+                    # Verify all expected packages were found and have correct descriptions
+                    all_correct = True
+                    for name, expected_desc in package_checks.items():
+                        if name not in found_packages:
+                            self.log_result("Credits Package Description", False, f"Package '{name}' not found")
+                            all_correct = False
+                        elif found_packages[name] != expected_desc:
+                            self.log_result("Credits Package Description", False, 
+                                          f"Package '{name}' has incorrect description. Expected: '{expected_desc}', Got: '{found_packages[name]}'")
+                            all_correct = False
+                    
+                    if all_correct:
+                        self.log_result("Credits Package Descriptions", True, "All package descriptions updated correctly")
+                    
+                    # Verify all packages have required fields
+                    required_fields = ["package_type", "credits", "price", "name", "description", "price_per_credit"]
+                    for package in packages:
+                        missing_fields = [field for field in required_fields if field not in package]
+                        if missing_fields:
+                            self.log_result("Credits Package Structure", False, 
+                                          f"Package '{package.get('name', 'Unknown')}' missing fields: {missing_fields}")
+                            all_correct = False
+                    
+                    if all_correct:
+                        self.log_result("Credits Packages Structure", True, "All packages have correct structure")
+                        self.log_result("Credits Packages", True, f"Successfully retrieved {len(packages)} credit packages")
+                else:
+                    self.log_result("Credits Packages", False, "Invalid response format", data)
+            else:
+                self.log_result("Credits Packages", False, f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Credits Packages", False, f"Exception: {str(e)}")
+    
+    def test_credits_balance(self):
+        """Test GET /api/credits/balance endpoint for professional users"""
+        if "professional" not in self.tokens:
+            return
+            
+        try:
+            headers = self.get_auth_header("professional")
+            response = self.make_request("GET", "/credits/balance", headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                required_fields = ["user_id", "balance", "total_purchased", "total_used"]
+                if all(field in data for field in required_fields):
+                    self.log_result("Credits Balance", True, f"Retrieved balance: {data['balance']} credits")
+                else:
+                    missing_fields = [field for field in required_fields if field not in data]
+                    self.log_result("Credits Balance", False, f"Missing fields: {missing_fields}", data)
+            else:
+                self.log_result("Credits Balance", False, f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Credits Balance", False, f"Exception: {str(e)}")
+    
+    def test_credits_transactions(self):
+        """Test GET /api/credits/transactions endpoint for professional users"""
+        if "professional" not in self.tokens:
+            return
+            
+        try:
+            headers = self.get_auth_header("professional")
+            response = self.make_request("GET", "/credits/transactions", headers=headers)
+            if response.status_code == 200:
+                data = response.json()
+                if "transactions" in data and isinstance(data["transactions"], list):
+                    self.log_result("Credits Transactions", True, f"Retrieved {len(data['transactions'])} transactions")
+                else:
+                    self.log_result("Credits Transactions", False, "Invalid response format", data)
+            else:
+                self.log_result("Credits Transactions", False, f"HTTP {response.status_code}", response.text)
+        except Exception as e:
+            self.log_result("Credits Transactions", False, f"Exception: {str(e)}")
+    
     def run_all_tests(self):
         """Run all API tests in sequence"""
         print(f"🚀 Starting Niwi Platform API Tests")
