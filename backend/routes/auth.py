@@ -48,6 +48,19 @@ async def register_user(user_data: UserCreate):
     # Insert user into database
     result = await db.users.insert_one(user.dict())
     
+    # Send admin notification for new user signup
+    try:
+        await notification_service.notify_new_user_signup({
+            'first_name': user.first_name,
+            'last_name': user.last_name,
+            'email': user.email,
+            'user_type': user.user_type.value,
+            'phone': user.phone
+        })
+    except Exception as e:
+        # Log error but don't fail the registration
+        print(f"Failed to send admin notification: {str(e)}")
+    
     # Create access token
     access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     access_token = create_access_token(
