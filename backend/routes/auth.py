@@ -12,6 +12,7 @@ from auth import (
     get_password_hash, verify_password, create_access_token, 
     get_current_user, ACCESS_TOKEN_EXPIRE_MINUTES
 )
+from services.notifications import notification_service
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
