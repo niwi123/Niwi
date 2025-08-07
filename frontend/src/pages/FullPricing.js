@@ -91,7 +91,7 @@ const FullPricing = () => {
               Simple, Transparent <span className="text-emerald-600">Pricing</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Choose the credit package that fits your business needs. Only pay for the leads you want to pursue.
+              Choose the lead package that fits your business needs. Only pay for the leads you want to pursue.
             </p>
           </div>
         </div>
