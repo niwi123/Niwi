@@ -1064,6 +1064,14 @@ class NiwiAPITester:
         self.test_ai_chat_error_handling()
         self.test_ai_chat_session_management()
         
+        # Enhanced AI Chat tests
+        self.test_enhanced_ai_chat_quick_actions()
+        
+        # Email Notification tests
+        self.test_email_notification_user_registration()
+        self.test_email_notification_customer_request()
+        self.test_notification_service_integration()
+        
         # Summary
         print("\n" + "=" * 60)
         print("📊 TEST SUMMARY")
