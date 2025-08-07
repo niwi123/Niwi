@@ -102,7 +102,105 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "Build a website similar to business.inkris.ca using existing codes. Transform the basic React/FastAPI/MongoDB app into Niwi - a comprehensive dual-sided marketplace connecting service professionals (contractors, real estate agents, mortgage brokers, electricians, plumbers, etc.) with customers needing services."
+user_problem_statement: "The user wants several enhancements: 1) AI chatbot for customer support and lead conversion, 2) Change 'credits' to 'leads' throughout the app, 3) Update package descriptions to use 'Exclusive leads' for Elite, Pro, Premium Deluxe, Enterprise Deluxe packages, 4) SMS/email/app notifications, 5) Fix admin backend navigation and sign out functionality, 6) Email notifications to niwimedia1@gmail.com for new signups, 7) Enhanced admin dashboard with live data, proper navigation, and management pages."
+
+backend:
+  - task: "Text Updates - Credits to Leads"
+    implemented: true
+    working: true
+    file: "/app/backend/routes/credits.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated backend credit package descriptions to change 'quality leads' to 'Exclusive leads' for Elite Pack, Pro Pack, and Enterprise Deluxe packages"
+
+  - task: "AI Chatbot Integration"
+    implemented: false
+    working: false
+    file: "TBD"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Not yet started - will need OpenAI integration"
+
+  - task: "SMS/Email Notifications System"
+    implemented: false
+    working: false
+    file: "TBD"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Not yet started - will need Twilio and SendGrid integration"
+
+  - task: "Email Notifications to Admin"
+    implemented: false
+    working: false
+    file: "TBD"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Not yet started - need to set up email notifications to niwimedia1@gmail.com for new signups"
+
+frontend:
+  - task: "Text Updates - Credits to Leads"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/Credits.js, /app/frontend/src/pages/FullPricing.js, /app/frontend/src/pages/LandingPage.js"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated all frontend text to change 'credits' to 'leads', updated package descriptions to use 'Exclusive leads', changed navigation labels, updated FAQ sections"
+
+  - task: "Admin Dashboard Navigation Fixes"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/AdminDashboard.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed admin dashboard navigation: updated sign out to redirect to main page, removed leads tab, connected quick actions to proper routes, fixed Niwi Admin link to go to platform overview"
+
+  - task: "AI Chatbot UI Integration"
+    implemented: false
+    working: false
+    file: "TBD"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Not yet started - need to add chatbot UI components to main pages"
+
+  - task: "Admin Management Pages"
+    implemented: false
+    working: false
+    file: "TBD"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "main"
+        comment: "Not yet started - need to create /admin/users, /admin/professionals, /admin/leads, /admin/reports, /admin/settings pages"
 
 backend:
   - task: "Database Models and Schema"
