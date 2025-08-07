@@ -5,6 +5,11 @@ import { useAuth } from '../contexts/AuthContext';
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
 
+  const handleSignOut = () => {
+    logout();
+    window.location.href = '/'; // Redirect to main menu page
+  };
+
   // Mock data for demonstration
   const mockStats = {
     total_users: 2547,
