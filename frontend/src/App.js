@@ -31,6 +31,8 @@ function App() {
             <Route path="/professional/profile" element={<ProfessionalProfile />} />
             <Route path="/professional/leads" element={<AllLeads />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/professionals" element={<AdminProfessionals />} />
             <Route path="/login" element={<Login />} />
             <Route path="/credits" element={<Credits />} />
             <Route path="/pricing" element={<FullPricing />} />
