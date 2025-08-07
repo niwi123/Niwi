@@ -8,6 +8,7 @@ from models import (
     ServiceCategory, LeadStatus, LeadPriority, UserType
 )
 from auth import get_current_user
+from services.notifications import notification_service
 
 router = APIRouter(prefix="/customers", tags=["customers"])
 
