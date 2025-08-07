@@ -266,6 +266,9 @@ const Credits = () => {
           )}
         </div>
       </div>
+      
+      {/* AI Chat Button */}
+      <ChatButton />
     </div>
   );
 };
