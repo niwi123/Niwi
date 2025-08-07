@@ -52,7 +52,7 @@ const FullPricing = () => {
       name: "Enterprise Deluxe", 
       credits: 200, 
       price: 13250, 
-      description: "200 quality leads", 
+      description: "200 Exclusive leads", 
       popular: false,
       stripeUrl: "https://buy.stripe.com/3cIcMYdRce9javdeszgUM04",
       features: ["200 premium leads", "Real-time notifications", "24/7 dedicated support", "Lead replacement guarantee", "Custom targeting", "Dedicated account manager", "API access"]
