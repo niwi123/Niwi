@@ -9,6 +9,8 @@ import CustomerRequest from "./pages/CustomerRequest";
 import ProfessionalDashboard from "./pages/ProfessionalDashboard";
 import ProfessionalProfile from "./pages/ProfessionalProfile";
 import AdminDashboard from "./pages/AdminDashboard";
+import AdminUsers from "./pages/AdminUsers";
+import AdminProfessionals from "./pages/AdminProfessionals";
 import Login from "./pages/Login";
 import Credits from "./pages/Credits";
 import FullPricing from "./pages/FullPricing";
