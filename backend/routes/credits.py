@@ -41,7 +41,7 @@ CREDIT_PACKAGES = {
         "credits": 20,
         "price": 1500.00,
         "name": "Elite Pack", 
-        "description": "20 quality leads for growing businesses"
+        "description": "20 Exclusive leads for growing businesses"
     },
     CreditPackage.PREMIUM_100: {
         "credits": 30,
