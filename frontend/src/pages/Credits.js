@@ -187,7 +187,7 @@ const Credits = () => {
                     ${pkg.price}
                   </div>
                   <div className="text-sm text-gray-500">
-                    ${pkg.price_per_credit} per credit
+                    ${pkg.price_per_credit} per lead
                   </div>
                 </div>
 
