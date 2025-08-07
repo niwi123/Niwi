@@ -437,28 +437,21 @@ frontend:
 
 metadata:
   created_by: "main_agent"
-  version: "2.0"
-  test_sequence: 1
+  version: "3.0"
+  test_sequence: 2
   run_ui: true
   platform_name: "Niwi"
-  platform_description: "Dual-sided marketplace connecting service professionals with customers"
+  platform_description: "Dual-sided marketplace connecting service professionals with customers - Enhanced with AI chatbot and notifications"
 
 test_plan:
   current_focus:
-    - "End-to-end user flows testing"
-    - "API integration testing"
-    - "Professional registration and profile creation flow"
-    - "Customer request submission and processing"
+    - "Text Updates - Credits to Leads functionality"
+    - "Admin Dashboard Navigation Fixes"
+    - "AI Chatbot Integration preparation"
   stuck_tasks: []
-  test_all: true
+  test_all: false
   test_priority: "high_first"
 
 agent_communication:
   - agent: "main"
-    message: "Successfully transformed basic app into Niwi platform. All core features implemented and manually tested. Authentication working for all user types (admin, professional, customer). Ready for comprehensive testing of user flows and API integrations."
-  - agent: "testing"
-    message: "Completed comprehensive backend API testing. All 25 core API tests passed (100% success rate). Tested authentication system, professional APIs, customer request system, admin management APIs, and health check. Also ran 16 edge case tests with 93.8% success rate (15/16 passed). One minor validation issue found with service category enum returning 500 instead of 422, but core functionality works correctly. All critical user flows are working: user registration/login, professional profile creation, customer request submission, admin lead assignment, and lead status updates. Backend is fully functional and ready for production use."
-  - agent: "testing"
-    message: "COMPREHENSIVE FRONTEND TESTING COMPLETED SUCCESSFULLY! Tested all critical scenarios from the review request: ✅ Landing page with dual-sided value proposition and tab switching ✅ Customer journey from landing page to request submission ✅ Professional registration 2-step flow ✅ Authentication system with role-based redirects ✅ Professional dashboard with stats and leads ✅ Admin dashboard with platform overview ✅ Responsive design on mobile/tablet ✅ Form validation and error handling ✅ Navigation and routing. ALL TESTS PASSED - The Niwi platform is working perfectly and ready for production use. Both frontend and backend are fully functional with seamless integration."
-  - agent: "main"
-    message: "Enhanced landing page UI/UX with luxury improvements: 1) Replaced emoji icons with professional SVG icons in gradient backgrounds for service categories and feature sections 2) Added right-side scrolling text animation effects to 'Why Choose Niwi' and 'Perfect for Service Professionals' sections using CSS keyframes 3) Improved mobile responsiveness for hero section buttons with better padding and full-width display 4) Enhanced visual hierarchy with luxury styling including shadows, gradients, and hover effects. All improvements maintain the warm, professional aesthetic while ensuring optimal mobile and desktop performance."
+    message: "Phase 1 completed: Successfully updated all frontend and backend text from 'credits' to 'leads', updated package descriptions to use 'Exclusive leads' for specified packages, and fixed basic admin dashboard navigation issues. Ready to test these changes before proceeding to AI chatbot integration."
