@@ -195,15 +195,18 @@ frontend:
 
   - task: "AI Chatbot UI Integration"
     implemented: true
-    working: true
+    working: false
     file: "/app/frontend/src/components/ChatBot.js, /app/frontend/src/components/ChatButton.js"
-    stuck_count: 0
+    stuck_count: 1
     priority: "high"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Successfully implemented frontend AI chatbot with ChatBot and ChatButton components. Added chat button to LandingPage, ProfessionalDashboard, Credits, and AdminDashboard pages. Chat UI includes message history, loading states, quick actions, and proper styling. Integrated with backend chat API endpoints."
+      - working: false
+        agent: "testing"
+        comment: "CRITICAL ISSUE FOUND: Chat button exists and is clickable, but clicking it does not open the chat window. React app is loading correctly (bundle.js loads successfully, DOM content is rendered), but the ChatButton component's onClick handler is not functioning. The issue is specifically with the React state management in ChatButton.js - when setIsChatOpen(true) is called, it's not triggering the conditional rendering to show the ChatBot component. This prevents users from accessing any chat functionality, including the quick action buttons that were reported as not working. Root cause: React state update not working in ChatButton component."
 
   - task: "Admin Management Pages"
     implemented: false
