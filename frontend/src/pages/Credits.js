@@ -135,31 +135,31 @@ const Credits = () => {
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
         {error && (
-          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-6">
+          <div className="bg-red-50 border border-red-200 text-red-600 px-4 py-3 rounded-lg mb-4 sm:mb-6 text-sm">
             {error}
           </div>
         )}
 
         {/* Lead Balance */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Lead Balance</h2>
+        <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Lead Balance</h2>
           
           {creditBalance && (
-            <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
-              <div className="text-center p-6 bg-emerald-50 rounded-xl">
-                <div className="text-3xl font-bold text-emerald-600 mb-2">
+            <div className="grid grid-cols-1 gap-4 sm:gap-6">
+              <div className="text-center p-4 sm:p-6 bg-emerald-50 rounded-xl">
+                <div className="text-2xl sm:text-3xl font-bold text-emerald-600 mb-2">
                   {creditBalance.balance}
                 </div>
-                <div className="text-sm text-gray-600">Available Leads</div>
+                <div className="text-sm sm:text-base text-gray-600">Available Leads</div>
               </div>
             </div>
           )}
 
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg">
-            <h3 className="font-semibold text-gray-900 mb-2">How Leads Work</h3>
-            <ul className="text-sm text-gray-600 space-y-1">
+          <div className="mt-4 sm:mt-6 p-3 sm:p-4 bg-gray-50 rounded-lg">
+            <h3 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">How Leads Work</h3>
+            <ul className="text-xs sm:text-sm text-gray-600 space-y-1">
               <li>• Use 1 lead to view full lead details and contact information</li>
               <li>• Preview lead summaries are always free</li>
               <li>• Leads never expire</li>
@@ -169,49 +169,48 @@ const Credits = () => {
         </div>
 
         {/* Lead Packages */}
-        <div className="bg-white rounded-lg shadow-sm p-6 mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Buy Leads</h2>
+        <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6 mb-6 sm:mb-8">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Buy Leads</h2>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {creditPackages.map((pkg, index) => (
               <div 
                 key={pkg.package_type} 
-                className={`rounded-xl p-6 border-2 transition-all duration-300 hover:shadow-lg ${
-                  index === 3 ? 'border-emerald-500 bg-emerald-50 transform scale-105' : 'border-gray-200 hover:border-emerald-300'
+                className={`rounded-xl p-4 sm:p-6 border-2 transition-all duration-300 hover:shadow-lg ${
+                  index === 3 ? 'border-emerald-500 bg-emerald-50 transform scale-100 sm:scale-105' : 'border-gray-200 hover:border-emerald-300'
                 }`}
               >
                 {index === 3 && (
-                  <div className="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+                  <div className="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-3 sm:mb-4">
                     MOST POPULAR
                   </div>
                 )}
                 
-                <h3 className="text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                <p className="text-sm text-gray-600 mb-4">{pkg.description}</p>
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">{pkg.description}</p>
                 
-                <div className="mb-4">
-                  <div className="text-3xl font-bold text-gray-900">
+                <div className="mb-3 sm:mb-4">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900">
                     {pkg.credits}
-                    <span className="text-lg text-gray-600 font-normal"> leads</span>
+                    <span className="text-sm sm:text-lg text-gray-600 font-normal"> leads</span>
                   </div>
-                  <div className="text-2xl font-semibold text-emerald-600">
+                  <div className="text-lg sm:text-2xl font-semibold text-emerald-600">
                     ${pkg.price}
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs sm:text-sm text-gray-500">
                     ${pkg.price_per_credit} per lead
                   </div>
                 </div>
 
                 <button
                   onClick={() => handlePurchase(pkg.package_type)}
-                  className={`w-full py-3 px-2 sm:px-4 rounded-lg font-medium transition text-sm ${
+                  className={`w-full py-2 sm:py-3 px-2 sm:px-4 rounded-lg font-medium transition text-xs sm:text-sm ${
                     index === 3
                       ? 'bg-emerald-600 text-white hover:bg-emerald-700'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                   }`}
                 >
-                  <span className="hidden sm:inline">Purchase Leads</span>
-                  <span className="sm:hidden">Purchase</span>
+                  Purchase Leads
                 </button>
               </div>
             ))}
@@ -219,24 +218,24 @@ const Credits = () => {
         </div>
 
         {/* Recent Transactions */}
-        <div className="bg-white rounded-lg shadow-sm p-6">
-          <h2 className="text-2xl font-bold text-gray-900 mb-6">Recent Transactions</h2>
+        <div className="bg-white rounded-lg shadow-sm p-4 sm:p-6">
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4 sm:mb-6">Recent Transactions</h2>
           
           {transactions.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-gray-200">
                 <thead className="bg-gray-50">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Date
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Type
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Description
                     </th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    <th className="px-4 sm:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Leads
                     </th>
                   </tr>
@@ -244,10 +243,10 @@ const Credits = () => {
                 <tbody className="bg-white divide-y divide-gray-200">
                   {transactions.slice(0, 10).map((transaction) => (
                     <tr key={transaction.id}>
-                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                      <td className="px-4 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm text-gray-900">
                         {new Date(transaction.created_at).toLocaleDateString()}
                       </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-4 sm:px-6 py-4 whitespace-nowrap">
                         <span className={`px-2 py-1 text-xs font-medium rounded-full ${
                           transaction.transaction_type === 'purchase' 
                             ? 'bg-green-100 text-green-800'
@@ -256,10 +255,10 @@ const Credits = () => {
                           {transaction.transaction_type}
                         </span>
                       </td>
-                      <td className="px-6 py-4 text-sm text-gray-900">
+                      <td className="px-4 sm:px-6 py-4 text-xs sm:text-sm text-gray-900">
                         {transaction.description}
                       </td>
-                      <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${
+                      <td className={`px-4 sm:px-6 py-4 whitespace-nowrap text-xs sm:text-sm font-medium ${
                         transaction.amount > 0 ? 'text-green-600' : 'text-red-600'
                       }`}>
                         {transaction.amount > 0 ? '+' : ''}{transaction.amount}
@@ -270,7 +269,7 @@ const Credits = () => {
               </table>
             </div>
           ) : (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-6 sm:py-8 text-gray-500 text-sm sm:text-base">
               No transactions yet. Purchase your first lead package to get started!
             </div>
           )}
