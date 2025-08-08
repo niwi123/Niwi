@@ -140,13 +140,13 @@ const AllLeads = () => {
           </div>
 
           {/* Filters */}
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex justify-between items-center mb-4">
-              <h3 className="text-lg font-semibold text-gray-900">Filter by Service Type</h3>
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-4">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900">Filter by Service Type</h3>
               <div className="flex space-x-2">
                 <Link
                   to="/professional/assigned-leads"
-                  className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                  className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition text-sm sm:text-base"
                 >
                   Assigned Leads
                 </Link>
@@ -158,7 +158,7 @@ const AllLeads = () => {
                 <select
                   value={filter}
                   onChange={(e) => setFilter(e.target.value)}
-                  className={`px-4 py-2 rounded-lg font-medium transition border focus:outline-none focus:border-emerald-500 ${
+                  className={`px-3 sm:px-4 py-2 rounded-lg font-medium transition border focus:outline-none focus:border-emerald-500 text-xs sm:text-sm ${
                     filter === 'all'
                       ? 'bg-emerald-600 text-white border-emerald-600'
                       : 'bg-gray-100 text-gray-700 border-gray-300'
@@ -174,23 +174,25 @@ const AllLeads = () => {
               </div>
 
               {/* Individual service type buttons for quick access */}
-              {serviceTypes.slice(0, 5).map(serviceType => (
+              {serviceTypes.slice(0, 4).map(serviceType => (
                 <button
                   key={serviceType}
                   onClick={() => setFilter(serviceType)}
-                  className={`px-4 py-2 rounded-lg font-medium transition ${
+                  className={`px-2 sm:px-4 py-2 rounded-lg font-medium transition text-xs sm:text-sm ${
                     filter === serviceType
                       ? 'bg-emerald-600 text-white'
                       : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
                   }`}
                 >
-                  {formatServiceType(serviceType)} ({leads.filter(l => l.service_type === serviceType).length})
+                  <span className="hidden sm:inline">{formatServiceType(serviceType)} ({leads.filter(l => l.service_type === serviceType).length})</span>
+                  <span className="sm:hidden">{formatServiceType(serviceType)}</span>
                 </button>
               ))}
               
-              {serviceTypes.length > 5 && (
-                <button className="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition">
-                  More... ({serviceTypes.length - 5})
+              {serviceTypes.length > 4 && (
+                <button className="px-2 sm:px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition text-xs sm:text-sm">
+                  <span className="hidden sm:inline">More... ({serviceTypes.length - 4})</span>
+                  <span className="sm:hidden">More...</span>
                 </button>
               )}
             </div>
