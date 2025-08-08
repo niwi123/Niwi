@@ -142,6 +142,33 @@ const AdminProfessionals = () => {
     { value: '3d', label: '3 Days' }
   ];
 
+  const handleViewProfile = (professional) => {
+    setSelectedProfessional(professional);
+    setShowProfileModal(true);
+  };
+
+  const closeProfileModal = () => {
+    setShowProfileModal(false);
+    setSelectedProfessional(null);
+  };
+
+  const handleSendMessage = () => {
+    setShowMessageModal(true);
+    setShowProfileModal(false);
+  };
+
+  const closeMessageModal = () => {
+    setShowMessageModal(false);
+    setMessageText('');
+  };
+
+  const handleSendCustomMessage = () => {
+    // In real implementation, this would send the message via email/SMS
+    console.log(`Sending message to ${selectedProfessional?.business_name}: ${messageText}`);
+    alert(`Message sent to ${selectedProfessional?.business_name}!`);
+    closeMessageModal();
+  };
+
   // Mock leads for assignment dropdown
   const availableLeads = [
     { id: 'lead1', title: 'Kitchen Renovation - Toronto', category: 'contractor' },
