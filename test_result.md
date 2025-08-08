@@ -102,7 +102,7 @@
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
 
-user_problem_statement: "The user wants several enhancements: 1) AI chatbot for customer support and lead conversion, 2) Change 'credits' to 'leads' throughout the app, 3) Update package descriptions to use 'Exclusive leads' for Elite, Pro, Premium Deluxe, Enterprise Deluxe packages, 4) SMS/email/app notifications, 5) Fix admin backend navigation and sign out functionality, 6) Email notifications to niwimedia1@gmail.com for new signups, 7) Enhanced admin dashboard with live data, proper navigation, and management pages."
+user_problem_statement: "The user wants to complete the Inkris.ca styling replication on the LandingPage, including font size harmonization and browse categories section with clickable/interchangeable features. Additionally, update all email notifications to use niwimedia@gmail.com instead of niwimedia1@gmail.com for support, sign up, and any notifications."
 
 backend:
   - task: "Text Updates - Credits to Leads"
