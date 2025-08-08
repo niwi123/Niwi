@@ -13,6 +13,10 @@ const AdminProfessionals = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [showProfileModal, setShowProfileModal] = useState(false);
+  const [selectedProfessional, setSelectedProfessional] = useState(null);
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [messageText, setMessageText] = useState('');
 
   const handleSignOut = () => {
     logout();
