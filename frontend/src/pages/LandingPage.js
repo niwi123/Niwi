@@ -241,29 +241,29 @@ const LandingPage = () => {
 
           {/* Customer Section - Bark Style Search */}
           <div className={`transition-all duration-500 ${activeTab === 'customers' ? 'block' : 'hidden'}`}>
-            <div className="text-center mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 py-20 rounded-3xl">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+            <div className="text-center mb-8 sm:mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 py-12 sm:py-20 rounded-2xl sm:rounded-3xl mx-2 sm:mx-0">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 leading-tight px-4">
                 Find the <span className="text-emerald-600">right professional</span><br />
                 for your project
               </h1>
               
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+              <p className="text-base sm:text-lg text-gray-600 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
                 Connect with verified professionals across Canada. Get personalized quotes in minutes.
               </p>
 
               {/* Search Form */}
-              <form onSubmit={handleCustomerSearch} className="max-w-2xl mx-auto mb-8">
-                <div className="bg-white rounded-2xl p-6 shadow-xl">
-                  <div className="space-y-4">
+              <form onSubmit={handleCustomerSearch} className="max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
+                <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-xl">
+                  <div className="space-y-3 sm:space-y-4">
                     <div className="relative">
                       <input
                         type="text"
                         placeholder="What service are you looking for?"
                         value={searchService}
                         onChange={(e) => setSearchService(e.target.value)}
-                        className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                        className="w-full px-3 sm:px-4 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
                       />
-                      <svg className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
                       </svg>
                     </div>
@@ -274,16 +274,16 @@ const LandingPage = () => {
                         placeholder="Postal code"
                         value={postalCode}
                         onChange={(e) => setPostalCode(e.target.value)}
-                        className="w-full px-4 py-4 text-lg border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
+                        className="w-full px-3 sm:px-4 py-3 sm:py-4 text-base sm:text-lg border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
                       />
-                      <svg className="absolute right-4 top-1/2 transform -translate-y-1/2 w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="absolute right-3 sm:right-4 top-1/2 transform -translate-y-1/2 w-5 h-5 sm:w-6 sm:h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                       </svg>
                     </div>
 
                     <button
                       type="submit"
-                      className="w-full bg-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+                      className="w-full bg-blue-600 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
                     >
                       Find Professionals
                     </button>
