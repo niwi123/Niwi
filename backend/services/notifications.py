@@ -9,7 +9,7 @@ logger = logging.getLogger(__name__)
 class NotificationService:
     def __init__(self):
         self.sendgrid_api_key = os.environ.get('SENDGRID_API_KEY')
-        self.admin_email = os.environ.get('ADMIN_EMAIL', 'niwimedia1@gmail.com')
+        self.admin_email = os.environ.get('ADMIN_EMAIL', 'niwimedia@gmail.com')
         self.sendgrid_client = None
         
         if self.sendgrid_api_key:
