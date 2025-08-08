@@ -122,24 +122,20 @@ const AllLeads = () => {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats and Filters */}
+        {/* Available Leads Stats */}
         <div className="mb-8">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-white rounded-lg shadow p-6 text-center">
-              <div className="text-2xl font-bold text-emerald-600">{creditBalance?.balance || 0}</div>
-              <div className="text-sm text-gray-600">Available Credits</div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-blue-600">{leads.length}</div>
+              <div className="text-xs sm:text-sm text-gray-600">Total Leads Available</div>
             </div>
-            <div className="bg-white rounded-lg shadow p-6 text-center">
-              <div className="text-2xl font-bold text-blue-600">{leads.length}</div>
-              <div className="text-sm text-gray-600">Total Leads Available</div>
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6 text-center">
+              <div className="text-xl sm:text-2xl font-bold text-orange-600">{filteredLeads.length}</div>
+              <div className="text-xs sm:text-sm text-gray-600">Filtered Results</div>
             </div>
-            <div className="bg-white rounded-lg shadow p-6 text-center">
-              <div className="text-2xl font-bold text-orange-600">{filteredLeads.length}</div>
-              <div className="text-sm text-gray-600">Filtered Results</div>
-            </div>
-            <div className="bg-white rounded-lg shadow p-6 text-center">
-              <Link to="/credits" className="text-emerald-600 hover:text-emerald-700 font-medium">
-                Buy More Credits →
+            <div className="bg-white rounded-lg shadow p-4 sm:p-6 text-center">
+              <Link to="/pricing" className="text-emerald-600 hover:text-emerald-700 font-medium text-sm sm:text-base">
+                Buy More Leads →
               </Link>
             </div>
           </div>
