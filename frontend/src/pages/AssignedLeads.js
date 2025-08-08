@@ -419,9 +419,6 @@ const AssignedLeads = () => {
           </div>
         </div>
       )}
-      
-      {/* AI Chat Button */}
-      <SimpleChatBot />
     </div>
   );
 };
