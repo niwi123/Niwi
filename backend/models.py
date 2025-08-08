@@ -308,37 +308,3 @@ class CreditBalanceResponse(BaseModel):
     total_purchased: int
     total_used: int
     last_updated: datetime
-
-# Chat-related models
-class ChatSession(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    user_id: Optional[str] = None  # Can be anonymous
-    session_id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    is_active: bool = True
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    updated_at: datetime = Field(default_factory=datetime.utcnow)
-    metadata: Dict[str, Any] = Field(default_factory=dict)
-
-class ChatMessage(BaseModel):
-    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
-    session_id: str
-    role: str  # "user" or "assistant"
-    content: str
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-    metadata: Dict[str, Any] = Field(default_factory=dict)
-
-class ChatRequest(BaseModel):
-    message: str
-    session_id: Optional[str] = None  # If None, create new session
-    user_id: Optional[str] = None  # For logged in users
-
-class ChatResponse(BaseModel):
-    message: str
-    session_id: str
-    is_new_session: bool = False
-
-class ChatHistory(BaseModel):
-    session_id: str
-    messages: List[ChatMessage]
-    created_at: datetime
-    updated_at: datetime
