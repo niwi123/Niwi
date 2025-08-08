@@ -169,35 +169,35 @@ const ProfessionalProfile = () => {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
           {/* Left Column - Profile Info */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl shadow-lg p-8" style={{
+            <div className="bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8" style={{
               opacity: isVisible ? 1 : 0,
               transform: isVisible ? 'translateY(0)' : 'translateY(30px)',
               transition: 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}>
               {/* Profile Avatar */}
-              <div className="text-center mb-6">
-                <div className="relative w-24 h-24 mx-auto mb-4">
+              <div className="text-center mb-4 sm:mb-6">
+                <div className="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto mb-3 sm:mb-4">
                   {profilePicture ? (
                     <img
                       src={profilePicture}
                       alt="Profile"
-                      className="w-24 h-24 rounded-full object-cover border-2 border-emerald-500"
+                      className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover border-2 border-emerald-500"
                     />
                   ) : (
-                    <div className="w-24 h-24 bg-emerald-600 rounded-full flex items-center justify-center">
-                      <span className="text-3xl font-bold text-white">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 bg-emerald-600 rounded-full flex items-center justify-center">
+                      <span className="text-lg sm:text-2xl lg:text-3xl font-bold text-white">
                         {user?.first_name?.charAt(0)}{user?.last_name?.charAt(0)}
                       </span>
                     </div>
                   )}
                   
                   {/* Edit Profile Picture Button */}
-                  <label className="absolute bottom-0 right-0 bg-emerald-600 text-white rounded-full p-2 cursor-pointer hover:bg-emerald-700 transition-colors shadow-lg">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <label className="absolute bottom-0 right-0 bg-emerald-600 text-white rounded-full p-1.5 sm:p-2 cursor-pointer hover:bg-emerald-700 transition-colors shadow-lg">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 20 20">
                       <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
                     </svg>
                     <input
@@ -209,15 +209,15 @@ const ProfessionalProfile = () => {
                   </label>
                 </div>
                 
-                <h1 className="text-2xl font-bold text-gray-900">
+                <h1 className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 line-clamp-2">
                   {profile?.business_name || `${user?.first_name} ${user?.last_name}`}
                 </h1>
-                <p className="text-gray-600">{profile?.city}, {profile?.province}</p>
+                <p className="text-sm sm:text-base text-gray-600">{profile?.city}, {profile?.province}</p>
                 
                 {/* Edit Profile Button */}
                 <button
                   onClick={() => setEditing(!editing)}
-                  className="mt-4 bg-gray-100 text-gray-700 px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-colors"
+                  className="mt-3 sm:mt-4 bg-gray-100 text-gray-700 px-3 sm:px-4 py-2 rounded-lg font-medium hover:bg-gray-200 transition-colors text-xs sm:text-sm"
                 >
                   {editing ? 'Cancel' : 'Edit Profile'}
                 </button>
