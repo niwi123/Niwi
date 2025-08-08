@@ -132,6 +132,31 @@ const AssignedLeads = () => {
     ));
   };
 
+  const handleAddNote = (lead) => {
+    setSelectedLeadForNote(lead);
+    setNoteText(lead.personalNotes || '');
+    setNoteModalOpen(true);
+  };
+
+  const handleSaveNote = () => {
+    if (selectedLeadForNote) {
+      setAssignedLeads(prev => prev.map(lead => 
+        lead.id === selectedLeadForNote.id 
+          ? { ...lead, personalNotes: noteText, lastNoteUpdate: new Date().toISOString() }
+          : lead
+      ));
+      setNoteModalOpen(false);
+      setSelectedLeadForNote(null);
+      setNoteText('');
+    }
+  };
+
+  const closeNoteModal = () => {
+    setNoteModalOpen(false);
+    setSelectedLeadForNote(null);
+    setNoteText('');
+  };
+
   if (!user || user.user_type !== 'professional') {
     return (
       <div className="min-h-screen flex items-center justify-center">
