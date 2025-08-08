@@ -32,6 +32,7 @@ function App() {
             <Route path="/professional/dashboard" element={<ProfessionalDashboard />} />
             <Route path="/professional/profile" element={<ProfessionalProfile />} />
             <Route path="/professional/leads" element={<AllLeads />} />
+            <Route path="/professional/assigned-leads" element={<AssignedLeads />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/users" element={<AdminUsers />} />
             <Route path="/admin/professionals" element={<AdminProfessionals />} />
