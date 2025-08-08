@@ -508,11 +508,20 @@ const AdminLeads = () => {
                 >
                   Close
                 </button>
-                {selectedLead.status === 'pending' && !selectedLead.assigned_to && (
+                {!selectedLead.assigned_to && (
                   <button
+                    onClick={() => handleAssignFromModal(selectedLead)}
                     className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
                   >
-                    Assign Lead
+                    Assign to Professional
+                  </button>
+                )}
+                {selectedLead.assigned_to && (
+                  <button
+                    onClick={() => handleAssignFromModal(selectedLead)}
+                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-orange-600 text-base font-medium text-white hover:bg-orange-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Re-assign Lead
                   </button>
                 )}
               </div>
