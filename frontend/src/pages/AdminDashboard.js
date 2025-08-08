@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
-import ChatButton from '../components/ChatButton';
+import SimpleChatBot from '../components/SimpleChatBot';
 
 const AdminDashboard = () => {
   const { user, logout } = useAuth();
