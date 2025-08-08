@@ -215,7 +215,12 @@ const AdminLeads = () => {
         ) : (
           <div className="space-y-6">
             {filteredLeads.map((lead) => (
-              <div key={lead.id} className="bg-white shadow rounded-lg overflow-hidden">
+              <div 
+                key={lead.id} 
+                className={`bg-white shadow rounded-lg overflow-hidden ${
+                  lead.assigned_to ? 'border-l-4 border-red-500' : 'border-l-4 border-gray-200'
+                }`}
+              >
                 <div className="p-6">
                   <div className="flex justify-between items-start mb-4">
                     <div className="flex-1">
@@ -229,6 +234,11 @@ const AdminLeads = () => {
                         <span className={`text-sm font-medium ${getUrgencyColor(lead.urgency)}`}>
                           {lead.urgency.toUpperCase()} PRIORITY
                         </span>
+                        {lead.assigned_to && (
+                          <span className="bg-red-100 text-red-800 px-2 py-1 text-xs rounded-full font-medium">
+                            ASSIGNED TO: {lead.assigned_to}
+                          </span>
+                        )}
                       </div>
                       
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -259,7 +269,7 @@ const AdminLeads = () => {
                         {lead.assigned_to && (
                           <>
                             <span>•</span>
-                            <span>Assigned to: <span className="font-medium text-gray-900">{lead.assigned_to}</span></span>
+                            <span>Assigned to: <span className="font-medium text-red-700">{lead.assigned_to}</span></span>
                           </>
                         )}
                       </div>
@@ -267,7 +277,10 @@ const AdminLeads = () => {
                   </div>
 
                   <div className="flex space-x-3">
-                    <button className="text-blue-600 hover:text-blue-900 text-sm font-medium px-3 py-1 bg-blue-50 hover:bg-blue-100 rounded transition">
+                    <button 
+                      onClick={() => handleViewDetails(lead)}
+                      className="text-blue-600 hover:text-blue-900 text-sm font-medium px-3 py-1 bg-blue-50 hover:bg-blue-100 rounded transition"
+                    >
                       View Details
                     </button>
                     
@@ -286,12 +299,11 @@ const AdminLeads = () => {
                       </div>
                     )}
                     
-                    <button className="text-orange-600 hover:text-orange-900 text-sm font-medium px-3 py-1 bg-orange-50 hover:bg-orange-100 rounded transition">
-                      Edit
-                    </button>
-                    
-                    <button className="text-red-600 hover:text-red-900 text-sm font-medium px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition">
-                      Cancel
+                    <button 
+                      onClick={() => handleCancelLead(lead.id)}
+                      className="text-red-600 hover:text-red-900 text-sm font-medium px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition"
+                    >
+                      Cancel Lead
                     </button>
                   </div>
                 </div>
