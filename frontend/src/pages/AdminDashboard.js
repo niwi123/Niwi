@@ -165,20 +165,6 @@ const AdminDashboard = () => {
                   <div className="text-sm text-blue-100">Manually assign customer requests to professionals</div>
                 </div>
               </Link>
-
-              <Link to="/admin/reports" className="w-full bg-purple-600 text-white py-3 px-4 rounded-md hover:bg-purple-700 transition text-left block">
-                <div>
-                  <div className="font-medium">View Reports</div>
-                  <div className="text-sm text-purple-100">Generate detailed platform analytics and reports</div>
-                </div>
-              </Link>
-
-              <Link to="/admin/settings" className="w-full bg-orange-600 text-white py-3 px-4 rounded-md hover:bg-orange-700 transition text-left block">
-                <div>
-                  <div className="font-medium">Platform Settings</div>
-                  <div className="text-sm text-orange-100">Configure platform settings and features</div>
-                </div>
-              </Link>
             </div>
           </div>
         </div>
