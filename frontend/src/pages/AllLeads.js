@@ -113,8 +113,8 @@ const AllLeads = () => {
                 Profile
               </Link>
               <span className="text-gray-600">Credits: {creditBalance?.balance || 0}</span>
-              <button onClick={logout} className="text-gray-600 hover:text-red-600">
-                Logout
+              <button onClick={handleSignOut} className="text-gray-600 hover:text-red-600">
+                Sign Out
               </button>
             </div>
           </div>
