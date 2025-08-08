@@ -241,11 +241,14 @@ frontend:
     file: "/app/backend/services/notifications.py"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: true
+    needs_retesting: false
     status_history:
       - working: true
         agent: "main"
         comment: "Updated admin email from niwimedia1@gmail.com to niwimedia@gmail.com in the notifications service. This affects all admin notifications including new user signups and customer service requests."
+      - working: true
+        agent: "testing"
+        comment: "VERIFIED: Admin email change successfully implemented and tested. Environment variable ADMIN_EMAIL updated from 'niwimedia1@gmail.com' to 'niwimedia@gmail.com'. Email notification service confirmed working correctly: 1) New user signup notifications sent to niwimedia@gmail.com, 2) Customer service request notifications sent to niwimedia@gmail.com, 3) SendGrid integration properly configured and functional, 4) Notification error handling works correctly without breaking core functionality, 5) Email content includes proper user/customer details and service information. All 6 email notification tests passed with 100% success rate."
 
 backend:
   - task: "Database Models and Schema"
