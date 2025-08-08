@@ -1,7 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const FullPricing = () => {
+  const { user, logout } = useAuth();
+
+  const handleSignOut = () => {
+    logout();
+    window.location.href = '/';
+  };
   const allPackages = [
     { 
       name: "Tester Pack", 
