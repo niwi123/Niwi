@@ -354,21 +354,21 @@ const LandingPage = () => {
       )}
 
         {/* What can we help you with - Browse Categories (Inkris Style) */}
-        <section className="py-12 bg-white">
+        <section className="py-8 sm:py-12 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            <div className="text-center mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
                 What can we help you with?
               </h2>
-              <p className="text-base text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600 px-2">
                 Explore our comprehensive range of professional services, tailored to meet all your needs.
               </p>
             </div>
 
             {/* Browse Categories */}
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-6">Browse Categories</h3>
-              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="mb-6 sm:mb-8">
+              <h3 className="text-base sm:text-lg font-semibold text-gray-900 mb-4 sm:mb-6 text-center sm:text-left">Browse Categories</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                 {[
                   { name: 'Home Services', count: '8 services', id: 'home' },
                   { name: 'Professional Services', count: '4 services', id: 'professional' },
@@ -378,18 +378,18 @@ const LandingPage = () => {
                   <button
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`p-4 rounded-lg border-2 text-left transition-all duration-200 ${
+                    className={`p-3 sm:p-4 rounded-lg border-2 text-left transition-all duration-200 min-h-[80px] sm:min-h-[100px] ${
                       selectedCategory === category.id
                         ? 'border-emerald-500 bg-emerald-50'
                         : 'border-gray-200 bg-white hover:border-emerald-300 hover:bg-emerald-25'
                     }`}
                   >
-                    <h4 className={`text-base font-semibold mb-1 ${
+                    <h4 className={`text-sm sm:text-base font-semibold mb-1 leading-tight ${
                       selectedCategory === category.id ? 'text-emerald-700' : 'text-gray-900'
                     }`}>
                       {category.name}
                     </h4>
-                    <p className={`text-sm ${
+                    <p className={`text-xs sm:text-sm ${
                       selectedCategory === category.id ? 'text-emerald-600' : 'text-gray-500'
                     }`}>
                       {category.count}
@@ -400,7 +400,7 @@ const LandingPage = () => {
             </div>
 
             {/* Category Services Display */}
-            <div className="bg-gray-50 rounded-lg p-6">
+            <div className="bg-gray-50 rounded-lg p-4 sm:p-6">
               {selectedCategory === 'home' && (
                 <div>
                   <h3 className="text-xl font-semibold text-gray-900 mb-2">Home Services</h3>
