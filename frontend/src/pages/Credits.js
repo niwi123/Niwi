@@ -8,7 +8,7 @@ const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
 const Credits = () => {
-  const { user, getAuthHeaders } = useAuth();
+  const { user, logout, getAuthHeaders } = useAuth();
   const [creditBalance, setCreditBalance] = useState(null);
   const [creditPackages, setCreditPackages] = useState([]);
   const [transactions, setTransactions] = useState([]);
