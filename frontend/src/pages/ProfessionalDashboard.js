@@ -60,6 +60,11 @@ const ProfessionalDashboard = () => {
     }
   };
 
+  const handleSignOut = () => {
+    logout();
+    window.location.href = '/'; // Redirect to main website page
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
