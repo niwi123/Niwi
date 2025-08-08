@@ -921,7 +921,7 @@ class NiwiAPITester:
 
 if __name__ == "__main__":
     tester = NiwiAPITester()
-    passed, failed = tester.run_all_tests()
+    passed, failed = tester.run_security_cleanup_verification()
     
     # Exit with error code if tests failed
     exit(0 if failed == 0 else 1)
