@@ -95,7 +95,7 @@ const AllLeads = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center space-x-4">
-              <Link to="/" className="text-2xl font-bold text-emerald-600">Niwi</Link>
+              <Link to="/professional/dashboard" className="text-2xl font-bold text-emerald-600">Niwi</Link>
               <span className="text-gray-300">|</span>
               <h1 className="text-xl font-semibold text-gray-900">All Leads</h1>
             </div>
