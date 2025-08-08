@@ -82,7 +82,7 @@ const SimpleChatBot = () => {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200">
+    <div className="fixed bottom-4 right-4 z-[10000] w-80 bg-white rounded-2xl shadow-2xl border border-gray-200">
       {/* Header */}
       <div className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white p-4 rounded-t-2xl flex justify-between items-center">
         <div>
