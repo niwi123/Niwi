@@ -115,8 +115,8 @@ const ProfessionalDashboard = () => {
 
         {/* Available Lead Previews */}
         <div className="bg-white shadow rounded-lg mb-8">
-          <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
-            <h2 className="text-xl font-semibold text-gray-900">Available Leads (Preview)</h2>
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-gray-200 flex justify-between items-center">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-900">Available Leads (Preview)</h2>
             <Link
               to="/pricing"
               className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm hover:bg-emerald-700 transition"
@@ -127,18 +127,18 @@ const ProfessionalDashboard = () => {
           <div className="divide-y divide-gray-200">
             {leadPreviews.length > 0 ? (
               leadPreviews.map((lead) => (
-                <div key={lead.id} className="p-6 hover:bg-gray-50">
+                <div key={lead.id} className="p-4 sm:p-6 hover:bg-gray-50">
                   <div className="flex items-start justify-between">
-                    <div className="flex-1">
-                      <h3 className="text-lg font-medium text-gray-900">{lead.title}</h3>
-                      <p className="text-gray-600 mt-1">{lead.description}</p>
-                      <div className="flex items-center mt-2 space-x-4 text-sm text-gray-500">
-                        <span>📍 {lead.city}, {lead.province}</span>
-                        <span>💰 {lead.budget_range}</span>
-                        <span>⏰ {lead.timeline}</span>
+                    <div className="flex-1 min-w-0">
+                      <h3 className="text-base sm:text-lg font-medium text-gray-900 truncate">{lead.title}</h3>
+                      <p className="text-sm sm:text-base text-gray-600 mt-1 line-clamp-2">{lead.description}</p>
+                      <div className="flex flex-wrap items-center mt-2 gap-2 text-xs sm:text-sm text-gray-500">
+                        <span className="flex items-center">📍 {lead.city}, {lead.province}</span>
+                        <span className="flex items-center">💰 {lead.budget_range}</span>
+                        <span className="flex items-center">⏰ {lead.timeline}</span>
                       </div>
                     </div>
-                    <div className="flex flex-col items-end space-y-2">
+                    <div className="flex flex-col items-end space-y-2 ml-4">
                       <span className={`px-2 py-1 rounded-full text-xs font-medium ${
                         lead.urgency === 'urgent' 
                           ? 'bg-red-100 text-red-800' 
@@ -148,29 +148,19 @@ const ProfessionalDashboard = () => {
                           ? 'bg-yellow-100 text-yellow-800'
                           : 'bg-green-100 text-green-800'
                       }`}>
-                        {lead.urgency} Priority
+                        {lead.urgency}
                       </span>
-                      <span className="text-xs text-gray-500">
-                        {lead.credits_required} credit to view
+                      <span className="text-xs text-gray-500 text-center">
+                        {lead.credits_required} credit
                       </span>
                       <button 
                         onClick={() => handleViewLead(lead.id)}
-                        className="bg-emerald-600 text-white px-2 sm:px-4 py-2 rounded-md text-xs sm:text-sm hover:bg-emerald-700 transition disabled:opacity-50"
+                        className="bg-emerald-600 text-white px-3 py-2 rounded-md text-xs sm:text-sm hover:bg-emerald-700 transition disabled:opacity-50"
                         disabled={creditBalance && creditBalance.balance < lead.credits_required}
                       >
                         {creditBalance && creditBalance.balance < lead.credits_required 
-                          ? (
-                            <>
-                              <span className="hidden sm:inline">Insufficient Credits</span>
-                              <span className="sm:hidden">Need Credits</span>
-                            </>
-                          ) 
-                          : (
-                            <>
-                              <span className="hidden sm:inline">View Full Details</span>
-                              <span className="sm:hidden">View Details</span>
-                            </>
-                          )
+                          ? 'Need Credits' 
+                          : 'View Details'
                         }
                       </button>
                     </div>
