@@ -629,9 +629,6 @@ const LandingPage = () => {
           </div>
         </div>
       </footer>
-      
-      {/* AI Chat Button */}
-      <SimpleChatBot />
     </div>
   );
 };
