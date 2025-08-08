@@ -233,7 +233,7 @@ frontend:
     status_history:
       - working: true
         agent: "main"
-        comment: "Fixed selectedCategory duplicate declaration error that was preventing frontend compilation. The Browse Categories section with Inkris-style interactive categories is already implemented and working correctly. Users can click between Home Services, Professional Services, Creative Services, and Specialized Services categories, and the content updates dynamically. Font sizes appear consistent throughout the landing page. The dual-tab navigation between professionals and customers is working well."
+        comment: "Fixed selectedCategory duplicate declaration error that was preventing frontend compilation. The Browse Categories section with Inkris-style interactive categories is already implemented and working correctly. Users can click between Home Services, Professional Services, Creative Services, and Specialized Services categories, and the content updates dynamically. Font sizes appear consistent throughout the landing page. The dual-tab navigation between professionals and customers is working well. MOBILE IMPROVEMENTS COMPLETED: Enhanced mobile responsiveness across all sections - Browse Categories now displays in single column on mobile with better spacing, Customer search form is more compact and mobile-friendly, tab navigation is full-width responsive, improved text sizing and spacing throughout, pricing section optimized for mobile display, and all interactions work seamlessly on mobile devices."
 
   - task: "Email Notifications Update - Admin Email Change"
     implemented: true
