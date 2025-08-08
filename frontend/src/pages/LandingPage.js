@@ -353,54 +353,160 @@ const LandingPage = () => {
         </section>
       )}
 
-      {/* Service Categories - Always show */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              {activeTab === 'professionals' ? 'Perfect for Service Professionals' : 'Popular Service Categories'}
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              {activeTab === 'professionals' 
-                ? 'Join thousands of successful professionals already growing their business'
-                : 'Connect with verified professionals in these popular categories'
-              }
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-            {serviceCategories.map((category, index) => (
-              <div 
-                key={index} 
-                className="bg-white rounded-2xl p-4 sm:p-6 shadow-sm hover:shadow-lg transition-all duration-300 transform hover:-translate-y-2 cursor-pointer group border border-gray-100"
-              >
-                <div className="flex flex-col sm:flex-row items-center sm:items-start mb-4">
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-10 h-10 sm:w-12 sm:h-12 rounded-2xl flex items-center justify-center mb-2 sm:mb-0 sm:mr-4 shadow-lg border border-gray-200 transform group-hover:scale-110 transition-all duration-300">
-                    <div className="scale-75 sm:scale-100">
-                      {category.icon}
-                    </div>
-                  </div>
-                  <h3 className="text-sm sm:text-lg font-bold text-gray-900 group-hover:text-emerald-600 transition-colors duration-300 text-center sm:text-left">
-                    {category.name}
-                  </h3>
-                </div>
-                <p className="text-gray-600 text-xs sm:text-sm text-center sm:text-left">{category.description}</p>
-              </div>
-            ))}
-          </div>
-
-          {activeTab === 'professionals' && (
-            <div className="text-center mt-12">
-              <Link
-                to="/professional/signup"
-                className="bg-emerald-600 text-white px-8 py-4 rounded-xl text-lg font-semibold hover:bg-emerald-700 transition-all duration-300 inline-block transform hover:scale-105 hover:shadow-xl active:scale-95"
-              >
-                Create Your Free Profile
-              </Link>
+        {/* What can we help you with - Browse Categories (Inkris Style) */}
+        <section className="py-12 bg-white">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">
+                What can we help you with?
+              </h2>
+              <p className="text-base text-gray-600">
+                Explore our comprehensive range of professional services, tailored to meet all your needs.
+              </p>
             </div>
-          )}
-        </div>
-      </section>
+
+            {/* Browse Categories */}
+            <div className="mb-8">
+              <h3 className="text-lg font-semibold text-gray-900 mb-6">Browse Categories</h3>
+              <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                {[
+                  { name: 'Home Services', count: '8 services', id: 'home' },
+                  { name: 'Professional Services', count: '4 services', id: 'professional' },
+                  { name: 'Creative Services', count: '2 services', id: 'creative' },
+                  { name: 'Specialized Services', count: '2 services', id: 'specialized' }
+                ].map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`p-4 rounded-lg border-2 text-left transition-all duration-200 ${
+                      selectedCategory === category.id
+                        ? 'border-emerald-500 bg-emerald-50'
+                        : 'border-gray-200 bg-white hover:border-emerald-300 hover:bg-emerald-25'
+                    }`}
+                  >
+                    <h4 className={`text-base font-semibold mb-1 ${
+                      selectedCategory === category.id ? 'text-emerald-700' : 'text-gray-900'
+                    }`}>
+                      {category.name}
+                    </h4>
+                    <p className={`text-sm ${
+                      selectedCategory === category.id ? 'text-emerald-600' : 'text-gray-500'
+                    }`}>
+                      {category.count}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Category Services Display */}
+            <div className="bg-gray-50 rounded-lg p-6">
+              {selectedCategory === 'home' && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Home Services</h3>
+                  <p className="text-sm text-gray-600 mb-6">8 services available</p>
+                  <p className="text-base text-gray-700 mb-6">
+                    Professional home improvement and maintenance services for your property.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { name: 'General Contractors', desc: 'Complete home renovations and construction projects', tag: 'Construction' },
+                      { name: 'Electricians', desc: 'Electrical installation, repair and maintenance services', tag: 'Electrical' },
+                      { name: 'Plumbers', desc: 'Plumbing installation, repair and emergency services', tag: 'Plumbing' },
+                      { name: 'HVAC Specialists', desc: 'Heating, ventilation and air conditioning services', tag: 'HVAC' },
+                      { name: 'Real Estate Agents', desc: 'Property buying and selling professional services', tag: 'Real Estate' },
+                      { name: 'Mortgage Brokers', desc: 'Home financing and mortgage advisory services', tag: 'Finance' },
+                      { name: 'Landscapers', desc: 'Garden design, maintenance and outdoor improvement', tag: 'Landscaping' },
+                      { name: 'Cleaning Services', desc: 'Professional residential and commercial cleaning', tag: 'Cleaning' }
+                    ].map((service, index) => (
+                      <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{service.name}</h4>
+                        <p className="text-sm text-gray-600 mb-3">{service.desc}</p>
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-emerald-100 text-emerald-800 rounded">
+                          {service.tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedCategory === 'professional' && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Professional Services</h3>
+                  <p className="text-sm text-gray-600 mb-6">4 services available</p>
+                  <p className="text-base text-gray-700 mb-6">
+                    Specialized professional services for business and personal needs.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { name: 'Social Media Marketing', desc: 'SEO, SEM and digital marketing specialist services', tag: 'Marketing' },
+                      { name: 'Private Investigators', desc: 'Professional investigation and research services', tag: 'Investigation' },
+                      { name: 'Counselling Services', desc: 'Professional counseling and therapy services', tag: 'Counseling' },
+                      { name: 'Business Consultants', desc: 'Strategic business advice and consulting services', tag: 'Consulting' }
+                    ].map((service, index) => (
+                      <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{service.name}</h4>
+                        <p className="text-sm text-gray-600 mb-3">{service.desc}</p>
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-emerald-100 text-emerald-800 rounded">
+                          {service.tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedCategory === 'creative' && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Creative Services</h3>
+                  <p className="text-sm text-gray-600 mb-6">2 services available</p>
+                  <p className="text-base text-gray-700 mb-6">
+                    Professional creative and event services for special occasions.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { name: 'Wedding Photography', desc: 'Professional wedding and event photography services', tag: 'Photography' },
+                      { name: 'Event Videography', desc: 'Wedding and event videography with highlight reels', tag: 'Videography' }
+                    ].map((service, index) => (
+                      <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{service.name}</h4>
+                        <p className="text-sm text-gray-600 mb-3">{service.desc}</p>
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-emerald-100 text-emerald-800 rounded">
+                          {service.tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {selectedCategory === 'specialized' && (
+                <div>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Specialized Services</h3>
+                  <p className="text-sm text-gray-600 mb-6">2 services available</p>
+                  <p className="text-base text-gray-700 mb-6">
+                    Specialized professional services for unique requirements.
+                  </p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                    {[
+                      { name: 'Legal Consultants', desc: 'Professional legal advice and consultation services', tag: 'Legal' },
+                      { name: 'Financial Advisors', desc: 'Personal and business financial planning services', tag: 'Finance' }
+                    ].map((service, index) => (
+                      <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
+                        <h4 className="text-base font-semibold text-gray-900 mb-2">{service.name}</h4>
+                        <p className="text-sm text-gray-600 mb-3">{service.desc}</p>
+                        <span className="inline-block px-2 py-1 text-xs font-medium bg-emerald-100 text-emerald-800 rounded">
+                          {service.tag}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
 
       {/* How It Works - Condensed */}
       {activeTab === 'professionals' && (
