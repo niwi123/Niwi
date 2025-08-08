@@ -232,7 +232,7 @@ const ProfessionalDashboard = () => {
       </div>
       
       {/* AI Chat Button */}
-      <ChatButton />
+      <SimpleChatBot />
     </div>
   );
 };
