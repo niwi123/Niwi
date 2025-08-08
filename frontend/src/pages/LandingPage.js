@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import ChatButton from '../components/ChatButton';
+import SimpleChatBot from '../components/SimpleChatBot';
 
 const LandingPage = () => {
   const [activeTab, setActiveTab] = useState('professionals');
