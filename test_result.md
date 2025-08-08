@@ -223,6 +223,30 @@ frontend:
         agent: "main"
         comment: "Not yet started - need to create /admin/users, /admin/professionals, /admin/leads, /admin/reports, /admin/settings pages"
 
+  - task: "Landing Page Inkris.ca Styling Completion"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/LandingPage.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Fixed selectedCategory duplicate declaration error that was preventing frontend compilation. The Browse Categories section with Inkris-style interactive categories is already implemented and working correctly. Users can click between Home Services, Professional Services, Creative Services, and Specialized Services categories, and the content updates dynamically. Font sizes appear consistent throughout the landing page. The dual-tab navigation between professionals and customers is working well."
+
+  - task: "Email Notifications Update - Admin Email Change"
+    implemented: true
+    working: true
+    file: "/app/backend/services/notifications.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: true
+    status_history:
+      - working: true
+        agent: "main"
+        comment: "Updated admin email from niwimedia1@gmail.com to niwimedia@gmail.com in the notifications service. This affects all admin notifications including new user signups and customer service requests."
+
 backend:
   - task: "Database Models and Schema"
     implemented: true
