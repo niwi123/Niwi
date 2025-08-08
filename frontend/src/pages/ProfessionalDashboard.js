@@ -103,35 +103,12 @@ const ProfessionalDashboard = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Stats with Credit Balance */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Available Credits</p>
-              <p className="text-2xl font-semibold text-gray-900">
-                {creditBalance ? creditBalance.balance : 'Loading...'}
-              </p>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Available Leads</p>
-              <p className="text-2xl font-semibold text-gray-900">{leadPreviews.length}</p>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Conversion Rate</p>
-              <p className="text-2xl font-semibold text-gray-900">85%</p>
-            </div>
-          </div>
-
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Profile Views</p>
-              <p className="text-2xl font-semibold text-gray-900">247</p>
+        {/* Available Leads Only - Mobile Optimized */}
+        <div className="grid grid-cols-1 gap-4 mb-8">
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="text-center">
+              <p className="text-sm sm:text-base text-gray-600 mb-2">Available Leads</p>
+              <p className="text-xl sm:text-2xl font-semibold text-emerald-600">{leadPreviews.length}</p>
             </div>
           </div>
         </div>
