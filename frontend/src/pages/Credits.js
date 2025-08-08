@@ -111,7 +111,7 @@ const Credits = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
-              <Link to="/" className="text-2xl font-bold text-emerald-600">Niwi</Link>
+              <Link to="/professional/dashboard" className="text-2xl font-bold text-emerald-600">Niwi</Link>
               <nav className="ml-10 flex space-x-8">
                 <Link to="/professional/dashboard" className="text-gray-500 hover:text-gray-700">Dashboard</Link>
                 <Link to="/professional/leads" className="text-gray-500 hover:text-gray-700">All Leads</Link>
