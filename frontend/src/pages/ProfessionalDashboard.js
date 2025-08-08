@@ -235,9 +235,6 @@ const ProfessionalDashboard = () => {
           </div>
         </div>
       </div>
-      
-      {/* AI Chat Button */}
-      <SimpleChatBot />
     </div>
   );
 };
