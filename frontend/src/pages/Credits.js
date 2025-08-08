@@ -113,20 +113,20 @@ const Credits = () => {
       {/* Header */}
       <header className="bg-white shadow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-6">
+          <div className="flex justify-between items-center py-4 sm:py-6">
             <div className="flex items-center">
-              <Link to="/professional/dashboard" className="text-2xl font-bold text-emerald-600">Niwi</Link>
-              <nav className="ml-10 flex space-x-8">
-                <Link to="/professional/dashboard" className="text-gray-500 hover:text-gray-700">Dashboard</Link>
-                <Link to="/professional/leads" className="text-gray-500 hover:text-gray-700">All Leads</Link>
-                <span className="text-emerald-600 font-medium">Buy Leads</span>
+              <Link to="/professional/dashboard" className="text-xl sm:text-2xl font-bold text-emerald-600">Niwi</Link>
+              <nav className="hidden sm:ml-10 sm:flex sm:space-x-6 lg:space-x-8">
+                <Link to="/professional/dashboard" className="text-gray-500 hover:text-gray-700 text-sm lg:text-base">Dashboard</Link>
+                <Link to="/professional/leads" className="text-gray-500 hover:text-gray-700 text-sm lg:text-base">All Leads</Link>
+                <span className="text-emerald-600 font-medium text-sm lg:text-base">Buy Leads</span>
               </nav>
             </div>
-            <div className="flex items-center space-x-4">
-              <span className="text-gray-700">Welcome, {user?.first_name}</span>
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <span className="text-xs sm:text-sm text-gray-700">Welcome, {user?.first_name}</span>
               <button
                 onClick={handleSignOut}
-                className="text-gray-500 hover:text-gray-700"
+                className="text-xs sm:text-sm text-gray-500 hover:text-gray-700"
               >
                 Sign Out
               </button>
