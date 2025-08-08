@@ -12,6 +12,9 @@ const AssignedLeads = () => {
   const [assignedLeads, setAssignedLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [noteModalOpen, setNoteModalOpen] = useState(false);
+  const [selectedLeadForNote, setSelectedLeadForNote] = useState(null);
+  const [noteText, setNoteText] = useState('');
 
   const handleSignOut = () => {
     logout();
