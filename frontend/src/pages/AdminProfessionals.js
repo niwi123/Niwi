@@ -110,6 +110,10 @@ const AdminProfessionals = () => {
     { value: 'plumber', label: 'Plumbers' },
     { value: 'real_estate', label: 'Real Estate' },
     { value: 'hvac', label: 'HVAC' },
+    { value: 'wedding_photography', label: 'Wedding & Event Photography/Videography' },
+    { value: 'social_media_marketing', label: 'Social Media Marketing/SEO/SEM' },
+    { value: 'private_investigator', label: 'Private Investigator' },
+    { value: 'counselling', label: 'Counselling' },
   ];
 
   const filteredProfessionals = selectedCategory === 'all' 
