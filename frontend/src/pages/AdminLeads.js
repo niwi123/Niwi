@@ -147,6 +147,54 @@ const AdminLeads = () => {
     setSelectedLead(null);
   };
 
+  const handleAssignFromModal = (lead) => {
+    setLeadForAssignment(lead);
+    setShowAssignModal(true);
+    setShowDetailsModal(false);
+  };
+
+  const handleReassignLead = (lead) => {
+    setLeadForAssignment(lead);
+    setShowAssignModal(true);
+  };
+
+  const closeAssignModal = () => {
+    setShowAssignModal(false);
+    setLeadForAssignment(null);
+  };
+
+  const handleConfirmAssignment = (professionalName) => {
+    if (leadForAssignment) {
+      setLeads(prev => prev.map(lead => 
+        lead.id === leadForAssignment.id ? { ...lead, assigned_to: professionalName, status: 'active' } : lead
+      ));
+      closeAssignModal();
+    }
+  };
+
+  // Mock professionals data organized by service category
+  const mockProfessionals = {
+    contractor: [
+      { id: 1, name: 'Johnson Construction', rating: 4.8, reviews: 45, experience: '15 years' },
+      { id: 2, name: 'Prime Builders Inc', rating: 4.6, reviews: 32, experience: '12 years' },
+      { id: 3, name: 'Elite Construction Co', rating: 4.9, reviews: 68, experience: '18 years' }
+    ],
+    electrician: [
+      { id: 4, name: 'Elite Electrical Services', rating: 4.5, reviews: 23, experience: '12 years' },
+      { id: 5, name: 'PowerLine Electric', rating: 4.7, reviews: 41, experience: '10 years' },
+      { id: 6, name: 'Volt Masters', rating: 4.4, reviews: 19, experience: '8 years' }
+    ],
+    plumber: [
+      { id: 7, name: 'Quick Fix Plumbing', rating: 4.9, reviews: 67, experience: '8 years' },
+      { id: 8, name: 'AquaFlow Solutions', rating: 4.6, reviews: 34, experience: '15 years' },
+      { id: 9, name: 'Drain Masters Pro', rating: 4.8, reviews: 52, experience: '11 years' }
+    ]
+  };
+
+  const getAvailableProfessionals = (serviceCategory) => {
+    return mockProfessionals[serviceCategory] || [];
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
