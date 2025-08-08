@@ -122,13 +122,13 @@ const FullPricing = () => {
       </header>
 
       {/* Hero Section */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section className="py-8 sm:py-12 lg:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-4 sm:mb-6">
               Simple, Transparent <span className="text-emerald-600">Pricing</span>
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto px-4">
               Choose the lead package that fits your business needs. Only pay for the leads you want to pursue.
             </p>
           </div>
@@ -136,26 +136,26 @@ const FullPricing = () => {
       </section>
 
       {/* All Packages */}
-      <section className="py-16">
+      <section className="py-8 sm:py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
             {allPackages.map((pkg, index) => (
               <div 
                 key={index}
-                className={`rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-2 cursor-pointer ${
+                className={`rounded-xl sm:rounded-2xl p-4 sm:p-6 transition-all duration-300 hover:shadow-lg cursor-pointer ${
                   pkg.popular 
-                    ? 'bg-emerald-50 border-2 border-emerald-500 transform scale-105' 
+                    ? 'bg-emerald-50 border-2 border-emerald-500 transform scale-100 sm:scale-105' 
                     : 'bg-white border-2 border-gray-200 hover:border-emerald-300'
                 }`}
               >
                 {pkg.popular && (
-                  <div className="bg-emerald-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4">
+                  <div className="bg-emerald-500 text-white text-xs font-bold px-2 sm:px-3 py-1 rounded-full inline-block mb-3 sm:mb-4">
                     MOST POPULAR
                   </div>
                 )}
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
-                <p className="text-sm text-gray-600 mb-4">{pkg.description}</p>
+                <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
+                <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">{pkg.description}</p>
                 
                 <div className="mb-6">
                   <div className="text-3xl font-bold text-gray-900 mb-2">
