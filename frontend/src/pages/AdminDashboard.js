@@ -83,12 +83,12 @@ const AdminDashboard = () => {
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <Link to="/admin/professionals" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
             <div className="ml-4">
               <p className="text-sm text-gray-600">Professionals</p>
               <p className="text-2xl font-semibold text-gray-900">{mockStats.total_professionals.toLocaleString()}</p>
             </div>
-          </div>
+          </Link>
 
           <div className="bg-white rounded-lg shadow p-6">
             <div className="ml-4">
