@@ -73,18 +73,49 @@ const FullPricing = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-4">
             <div className="flex items-center">
-              <Link to="/" className="text-2xl font-bold text-emerald-600">Niwi</Link>
+              {user ? (
+                <Link 
+                  to={user.user_type === 'admin' ? '/admin' : '/professional/dashboard'} 
+                  className="text-xl sm:text-2xl font-bold text-emerald-600"
+                >
+                  Niwi
+                </Link>
+              ) : (
+                <Link to="/" className="text-xl sm:text-2xl font-bold text-emerald-600">Niwi</Link>
+              )}
             </div>
             <nav className="flex items-center space-x-2 sm:space-x-6">
-              <Link to="/login" className="text-gray-600 hover:text-emerald-600 font-medium text-sm sm:text-base">
-                Sign In
-              </Link>
-              <Link 
-                to="/professional/signup" 
-                className="bg-emerald-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-emerald-700 transition text-xs sm:text-sm font-medium"
-              >
-                Join as Professional
-              </Link>
+              {user ? (
+                <>
+                  <span className="text-xs sm:text-sm text-gray-700">
+                    Welcome, {user.first_name}
+                  </span>
+                  <Link 
+                    to={user.user_type === 'admin' ? '/admin' : '/professional/dashboard'}
+                    className="text-gray-600 hover:text-emerald-600 font-medium text-xs sm:text-sm"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={handleSignOut}
+                    className="text-gray-600 hover:text-red-600 font-medium text-xs sm:text-sm"
+                  >
+                    Sign Out
+                  </button>
+                </>
+              ) : (
+                <>
+                  <Link to="/login" className="text-gray-600 hover:text-emerald-600 font-medium text-sm sm:text-base">
+                    Sign In
+                  </Link>
+                  <Link 
+                    to="/professional/signup" 
+                    className="bg-emerald-600 text-white px-3 py-2 sm:px-4 sm:py-2 rounded-lg hover:bg-emerald-700 transition text-xs sm:text-sm font-medium"
+                  >
+                    Join as Professional
+                  </Link>
+                </>
+              )}
             </nav>
           </div>
         </div>
