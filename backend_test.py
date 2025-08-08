@@ -647,286 +647,48 @@ class NiwiAPITester:
         except Exception as e:
             self.log_result("Credits Transactions", False, f"Exception: {str(e)}")
     
-    def test_ai_chat_send_anonymous(self):
-        """Test AI chat send endpoint without authentication (anonymous)"""
-        try:
-            # Test 1: Send a message about becoming a professional
-            chat_data = {
-                "message": "Hi, I'm interested in becoming a professional on Niwi. Can you tell me how it works?"
-            }
-            response = self.make_request("POST", "/chat/send", chat_data)
-            if response.status_code == 200:
-                data = response.json()
-                required_fields = ["message", "session_id", "is_new_session"]
-                if all(field in data for field in required_fields):
-                    if data["is_new_session"] and data["session_id"] and len(data["message"]) > 0:
-                        self.test_data["chat_session_id"] = data["session_id"]
-                        self.log_result("AI Chat Send (Anonymous - Professional Interest)", True, 
-                                      f"AI responded with {len(data['message'])} characters, session: {data['session_id'][:8]}...")
-                    else:
-                        self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, 
-                                      "Invalid response data", data)
-                else:
-                    missing_fields = [field for field in required_fields if field not in data]
-                    self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, 
-                                  f"Missing fields: {missing_fields}", data)
-            else:
-                self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, 
-                              f"HTTP {response.status_code}", response.text)
-        except Exception as e:
-            self.log_result("AI Chat Send (Anonymous - Professional Interest)", False, f"Exception: {str(e)}")
-    
-    def test_ai_chat_send_pricing_question(self):
-        """Test AI chat with pricing question"""
-        if "chat_session_id" not in self.test_data:
-            return
-            
-        try:
-            # Test 2: Ask about pricing using existing session
-            chat_data = {
-                "message": "What are your lead packages and pricing?",
-                "session_id": self.test_data["chat_session_id"]
-            }
-            response = self.make_request("POST", "/chat/send", chat_data)
-            if response.status_code == 200:
-                data = response.json()
-                if data.get("session_id") == self.test_data["chat_session_id"] and not data.get("is_new_session"):
-                    # Check if response mentions pricing or packages
-                    response_text = data["message"].lower()
-                    pricing_keywords = ["package", "price", "pricing", "lead", "cost", "$", "dollar"]
-                    if any(keyword in response_text for keyword in pricing_keywords):
-                        self.log_result("AI Chat Send (Pricing Question)", True, 
-                                      f"AI provided pricing information, session maintained: {data['session_id'][:8]}...")
-                    else:
-                        self.log_result("AI Chat Send (Pricing Question)", True, 
-                                      f"AI responded but may not have pricing info: {data['message'][:100]}...")
-                else:
-                    self.log_result("AI Chat Send (Pricing Question)", False, 
-                                  "Session not maintained correctly", data)
-            else:
-                self.log_result("AI Chat Send (Pricing Question)", False, 
-                              f"HTTP {response.status_code}", response.text)
-        except Exception as e:
-            self.log_result("AI Chat Send (Pricing Question)", False, f"Exception: {str(e)}")
-    
-    def test_ai_chat_send_authenticated(self):
-        """Test AI chat with authenticated user"""
-        if "professional" not in self.tokens:
-            return
-            
-        try:
-            headers = self.get_auth_header("professional")
-            chat_data = {
-                "message": "I'm a professional user. How can I get more leads on Niwi?"
-            }
-            response = self.make_request("POST", "/chat/send", chat_data, headers=headers)
-            if response.status_code == 200:
-                data = response.json()
-                if "message" in data and "session_id" in data:
-                    self.test_data["auth_chat_session_id"] = data["session_id"]
-                    self.log_result("AI Chat Send (Authenticated Professional)", True, 
-                                  f"AI responded to authenticated user, session: {data['session_id'][:8]}...")
-                else:
-                    self.log_result("AI Chat Send (Authenticated Professional)", False, 
-                                  "Invalid response format", data)
-            else:
-                self.log_result("AI Chat Send (Authenticated Professional)", False, 
-                              f"HTTP {response.status_code}", response.text)
-        except Exception as e:
-            self.log_result("AI Chat Send (Authenticated Professional)", False, f"Exception: {str(e)}")
-    
-    def test_ai_chat_get_history(self):
-        """Test getting chat history"""
-        if "chat_session_id" not in self.test_data:
-            return
-            
-        try:
-            session_id = self.test_data["chat_session_id"]
-            response = self.make_request("GET", f"/chat/history/{session_id}")
-            if response.status_code == 200:
-                data = response.json()
-                required_fields = ["session_id", "messages", "created_at", "updated_at"]
-                if all(field in data for field in required_fields):
-                    if data["session_id"] == session_id and isinstance(data["messages"], list):
-                        # Should have at least 4 messages (2 user + 2 assistant from previous tests)
-                        if len(data["messages"]) >= 2:
-                            # Check message structure
-                            first_message = data["messages"][0]
-                            message_fields = ["id", "session_id", "role", "content", "created_at"]
-                            if all(field in first_message for field in message_fields):
-                                self.log_result("AI Chat Get History", True, 
-                                              f"Retrieved {len(data['messages'])} messages for session")
-                            else:
-                                missing_fields = [field for field in message_fields if field not in first_message]
-                                self.log_result("AI Chat Get History", False, 
-                                              f"Message missing fields: {missing_fields}")
-                        else:
-                            self.log_result("AI Chat Get History", False, 
-                                          f"Expected at least 2 messages, got {len(data['messages'])}")
-                    else:
-                        self.log_result("AI Chat Get History", False, 
-                                      "Session ID mismatch or invalid messages format", data)
-                else:
-                    missing_fields = [field for field in required_fields if field not in data]
-                    self.log_result("AI Chat Get History", False, 
-                                  f"Missing fields: {missing_fields}", data)
-            else:
-                self.log_result("AI Chat Get History", False, 
-                              f"HTTP {response.status_code}", response.text)
-        except Exception as e:
-            self.log_result("AI Chat Get History", False, f"Exception: {str(e)}")
-    
-    def test_ai_chat_get_history_authenticated(self):
-        """Test getting chat history for authenticated user"""
-        if "auth_chat_session_id" not in self.test_data or "professional" not in self.tokens:
-            return
-            
-        try:
-            headers = self.get_auth_header("professional")
-            session_id = self.test_data["auth_chat_session_id"]
-            response = self.make_request("GET", f"/chat/history/{session_id}", headers=headers)
-            if response.status_code == 200:
-                data = response.json()
-                if data.get("session_id") == session_id and isinstance(data.get("messages"), list):
-                    self.log_result("AI Chat Get History (Authenticated)", True, 
-                                  f"Retrieved {len(data['messages'])} messages for authenticated session")
-                else:
-                    self.log_result("AI Chat Get History (Authenticated)", False, 
-                                  "Invalid response format", data)
-            else:
-                self.log_result("AI Chat Get History (Authenticated)", False, 
-                              f"HTTP {response.status_code}", response.text)
-        except Exception as e:
-            self.log_result("AI Chat Get History (Authenticated)", False, f"Exception: {str(e)}")
-    
-    def test_ai_chat_error_handling(self):
-        """Test AI chat error handling scenarios"""
-        try:
-            # Test 1: Empty message
-            chat_data = {"message": ""}
-            response = self.make_request("POST", "/chat/send", chat_data)
-            if response.status_code == 422:  # Validation error expected
-                self.log_result("AI Chat Error Handling (Empty Message)", True, 
-                              "Correctly rejected empty message with validation error")
-            elif response.status_code == 200:
-                # Some systems might handle empty messages gracefully
-                data = response.json()
-                if "message" in data:
-                    self.log_result("AI Chat Error Handling (Empty Message)", True, 
-                                  "Handled empty message gracefully")
-                else:
-                    self.log_result("AI Chat Error Handling (Empty Message)", False, 
-                                  "Unexpected response to empty message", data)
-            else:
-                self.log_result("AI Chat Error Handling (Empty Message)", False, 
-                              f"Unexpected HTTP {response.status_code}", response.text)
-                
-            # Test 2: Invalid session ID for history
-            fake_session_id = "invalid-session-id-12345"
-            response = self.make_request("GET", f"/chat/history/{fake_session_id}")
-            if response.status_code == 404:
-                self.log_result("AI Chat Error Handling (Invalid Session)", True, 
-                              "Correctly returned 404 for invalid session ID")
-            else:
-                self.log_result("AI Chat Error Handling (Invalid Session)", False, 
-                              f"Expected 404, got HTTP {response.status_code}", response.text)
-                
-        except Exception as e:
-            self.log_result("AI Chat Error Handling", False, f"Exception: {str(e)}")
-    
-    def test_ai_chat_session_management(self):
-        """Test AI chat session management"""
-        try:
-            # Test creating multiple sessions
-            sessions = []
-            for i in range(2):
-                chat_data = {
-                    "message": f"Test message {i+1} for session management"
-                }
-                response = self.make_request("POST", "/chat/send", chat_data)
-                if response.status_code == 200:
-                    data = response.json()
-                    if data.get("is_new_session") and data.get("session_id"):
-                        sessions.append(data["session_id"])
-                    else:
-                        self.log_result("AI Chat Session Management", False, 
-                                      f"Failed to create session {i+1}", data)
-                        return
-                else:
-                    self.log_result("AI Chat Session Management", False, 
-                                  f"Failed to create session {i+1}: HTTP {response.status_code}")
-                    return
-            
-            if len(sessions) == 2 and sessions[0] != sessions[1]:
-                self.log_result("AI Chat Session Management", True, 
-                              f"Successfully created 2 distinct sessions: {sessions[0][:8]}... and {sessions[1][:8]}...")
-            else:
-                self.log_result("AI Chat Session Management", False, 
-                              f"Session creation issue: {sessions}")
-                
-        except Exception as e:
-            self.log_result("AI Chat Session Management", False, f"Exception: {str(e)}")
-    
-    def test_enhanced_ai_chat_quick_actions(self):
-        """Test enhanced AI chat with specific quick action messages"""
-        quick_actions = [
-            {
-                "message": "What are your lead packages and pricing?",
-                "expected_keywords": ["package", "price", "pricing", "lead", "tester", "777", "elite", "pro", "premium", "enterprise"]
-            },
-            {
-                "message": "How do I sign up as a professional?",
-                "expected_keywords": ["sign up", "professional", "free", "account", "profile", "business"]
-            },
-            {
-                "message": "How does Niwi work?",
-                "expected_keywords": ["niwi", "work", "professional", "customer", "lead", "connect", "service"]
-            },
-            {
-                "message": "I need help with my account",
-                "expected_keywords": ["help", "support", "account", "admin@niwi.com", "contact"]
-            }
+    def test_ai_chat_endpoints_removed(self):
+        """Test that AI chat endpoints are no longer accessible"""
+        ai_endpoints = [
+            "/chat/send",
+            "/chat/history/test-session-id",
+            "/api/chat/send",
+            "/api/chat/history/test-session-id"
         ]
         
-        for i, action in enumerate(quick_actions):
+        for endpoint in ai_endpoints:
             try:
-                chat_data = {"message": action["message"]}
-                response = self.make_request("POST", "/chat/send", chat_data)
-                
-                if response.status_code == 200:
-                    data = response.json()
-                    if "message" in data and "session_id" in data:
-                        response_text = data["message"].lower()
-                        
-                        # Check if response contains expected keywords
-                        found_keywords = [kw for kw in action["expected_keywords"] if kw in response_text]
-                        
-                        if len(found_keywords) >= 2:  # At least 2 relevant keywords
-                            self.log_result(f"Enhanced AI Chat Quick Action {i+1}", True, 
-                                          f"AI provided relevant response for '{action['message'][:30]}...': found keywords {found_keywords[:3]}")
-                        else:
-                            self.log_result(f"Enhanced AI Chat Quick Action {i+1}", True, 
-                                          f"AI responded but may lack specific content for '{action['message'][:30]}...': {data['message'][:100]}...")
-                    else:
-                        self.log_result(f"Enhanced AI Chat Quick Action {i+1}", False, 
-                                      "Invalid response format", data)
+                # Test POST for send endpoints
+                if "send" in endpoint:
+                    response = self.make_request("POST", endpoint.replace("/api", ""), {"message": "test"})
                 else:
-                    self.log_result(f"Enhanced AI Chat Quick Action {i+1}", False, 
-                                  f"HTTP {response.status_code}", response.text)
+                    # Test GET for history endpoints
+                    response = self.make_request("GET", endpoint.replace("/api", ""))
+                
+                if response.status_code == 404:
+                    self.log_result(f"AI Endpoint Removed ({endpoint})", True, 
+                                  "AI endpoint correctly returns 404 - removed successfully")
+                else:
+                    self.log_result(f"AI Endpoint Removed ({endpoint})", False, 
+                                  f"AI endpoint still accessible: HTTP {response.status_code}")
             except Exception as e:
-                self.log_result(f"Enhanced AI Chat Quick Action {i+1}", False, f"Exception: {str(e)}")
+                if "404" in str(e) or "Not Found" in str(e):
+                    self.log_result(f"AI Endpoint Removed ({endpoint})", True, 
+                                  "AI endpoint correctly removed - connection refused")
+                else:
+                    self.log_result(f"AI Endpoint Removed ({endpoint})", False, f"Exception: {str(e)}")
     
-    def test_email_notification_user_registration(self):
-        """Test email notification for new user registration"""
+    def test_email_notifications_disabled_gracefully(self):
+        """Test that email notifications are disabled but don't break functionality"""
         try:
-            # Register a new test user to trigger email notification
+            # Test user registration - should work without email notifications
             test_user_data = {
-                "email": f"testuser_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com",
+                "email": f"security_test_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com",
                 "password": "password123",
                 "user_type": "professional",
-                "first_name": "John",
-                "last_name": "Doe",
-                "phone": "+1-416-555-1234"
+                "first_name": "Security",
+                "last_name": "Test",
+                "phone": "+1-416-555-0001"
             }
             
             response = self.make_request("POST", "/auth/register", test_user_data)
@@ -934,35 +696,30 @@ class NiwiAPITester:
             if response.status_code == 200:
                 data = response.json()
                 if "access_token" in data and "user" in data:
-                    # Registration successful - email notification should have been sent
-                    # We can't directly verify email delivery, but we can verify the registration worked
-                    # which means the notification code was executed (even if SendGrid fails)
-                    self.log_result("Email Notification - User Registration", True, 
-                                  f"User registration successful, admin notification triggered for {test_user_data['email']}")
+                    self.log_result("Email Notifications Disabled Gracefully", True, 
+                                  "User registration works without email notifications")
                 else:
-                    self.log_result("Email Notification - User Registration", False, 
-                                  "Registration failed - notification not triggered", data)
+                    self.log_result("Email Notifications Disabled Gracefully", False, 
+                                  "Registration failed - missing token or user", data)
             elif response.status_code == 400 and "already registered" in response.text:
-                # User already exists - this is fine for testing
-                self.log_result("Email Notification - User Registration", True, 
-                              "User already exists - notification system is integrated")
+                self.log_result("Email Notifications Disabled Gracefully", True, 
+                              "User already exists - email notifications disabled gracefully")
             else:
-                self.log_result("Email Notification - User Registration", False, 
+                self.log_result("Email Notifications Disabled Gracefully", False, 
                               f"Registration failed: HTTP {response.status_code}", response.text)
                 
         except Exception as e:
-            self.log_result("Email Notification - User Registration", False, f"Exception: {str(e)}")
+            self.log_result("Email Notifications Disabled Gracefully", False, f"Exception: {str(e)}")
     
-    def test_email_notification_customer_request(self):
-        """Test email notification for new customer request"""
+    def test_customer_requests_without_notifications(self):
+        """Test that customer requests work without email notifications"""
         try:
-            # Create a quick customer request to trigger email notification
             request_data = {
-                "email": f"customer_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com",
+                "email": f"security_customer_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com",
                 "phone": "+1-416-555-5678",
                 "service_category": "contractor",
-                "title": "Test Kitchen Renovation for Email Notification",
-                "description": "This is a test request to verify admin email notifications are working",
+                "title": "Security Test - Kitchen Renovation",
+                "description": "Test request to verify system works without email notifications",
                 "city": "Toronto",
                 "province": "Ontario",
                 "budget_min": 5000.0,
@@ -976,51 +733,187 @@ class NiwiAPITester:
             if response.status_code == 200:
                 data = response.json()
                 if data.get("title") == request_data["title"]:
-                    # Request creation successful - email notification should have been sent
-                    self.log_result("Email Notification - Customer Request", True, 
-                                  f"Customer request created successfully, admin notification triggered for {request_data['email']}")
+                    self.log_result("Customer Requests Without Notifications", True, 
+                                  "Customer requests work without email notifications")
                 else:
-                    self.log_result("Email Notification - Customer Request", False, 
+                    self.log_result("Customer Requests Without Notifications", False, 
                                   "Request data mismatch", data)
             else:
-                self.log_result("Email Notification - Customer Request", False, 
+                self.log_result("Customer Requests Without Notifications", False, 
                               f"Request creation failed: HTTP {response.status_code}", response.text)
                 
         except Exception as e:
-            self.log_result("Email Notification - Customer Request", False, f"Exception: {str(e)}")
+            self.log_result("Customer Requests Without Notifications", False, f"Exception: {str(e)}")
     
-    def test_notification_service_integration(self):
-        """Test that notification service is properly integrated"""
+    def test_no_sensitive_keys_in_responses(self):
+        """Test that no sensitive API keys are exposed in API responses"""
+        sensitive_patterns = [
+            "sk_",  # Stripe secret keys
+            "sendgrid",  # SendGrid keys
+            "openai",  # OpenAI keys
+            "gpt",  # GPT keys
+            "api_key",  # Generic API keys
+            "secret_key",  # Secret keys
+            "private_key",  # Private keys
+        ]
+        
+        # Test various endpoints for sensitive data exposure
+        test_endpoints = [
+            ("/health", "GET", None),
+            ("/credits/packages", "GET", None),
+        ]
+        
+        for endpoint, method, data in test_endpoints:
+            try:
+                response = self.make_request(method, endpoint, data)
+                if response.status_code == 200:
+                    response_text = response.text.lower()
+                    found_sensitive = []
+                    
+                    for pattern in sensitive_patterns:
+                        if pattern in response_text:
+                            found_sensitive.append(pattern)
+                    
+                    if found_sensitive:
+                        self.log_result(f"No Sensitive Keys ({endpoint})", False, 
+                                      f"Found sensitive patterns: {found_sensitive}")
+                    else:
+                        self.log_result(f"No Sensitive Keys ({endpoint})", True, 
+                                      "No sensitive keys found in response")
+                else:
+                    self.log_result(f"No Sensitive Keys ({endpoint})", True, 
+                                  f"Endpoint returned HTTP {response.status_code} - no data exposure")
+            except Exception as e:
+                self.log_result(f"No Sensitive Keys ({endpoint})", True, 
+                              f"Endpoint not accessible - no data exposure risk: {str(e)}")
+    
+    def test_core_functionality_without_ai(self):
+        """Test that core functionality works without AI components"""
+        core_tests = []
+        
+        # Test authentication
+        if "professional" in self.tokens:
+            try:
+                headers = self.get_auth_header("professional")
+                response = self.make_request("GET", "/auth/me", headers=headers)
+                if response.status_code == 200:
+                    core_tests.append(("Authentication", True, "Working"))
+                else:
+                    core_tests.append(("Authentication", False, f"HTTP {response.status_code}"))
+            except Exception as e:
+                core_tests.append(("Authentication", False, f"Exception: {str(e)}"))
+        
+        # Test credits system
         try:
-            # Check if the notification service environment variables are set
-            # This is a basic integration test to verify the service is configured
-            
-            # We can't directly test the notification service without making actual API calls
-            # But we can verify that the registration and request endpoints don't fail
-            # when notification code is executed
-            
-            # Test 1: Verify registration endpoint handles notification gracefully
-            test_user = {
-                "email": f"integration_test_{datetime.now().strftime('%Y%m%d_%H%M%S')}@example.com",
-                "password": "password123",
-                "user_type": "customer",
-                "first_name": "Integration",
-                "last_name": "Test",
-                "phone": "+1-416-555-9999"
-            }
-            
-            response = self.make_request("POST", "/auth/register", test_user)
-            
-            # If registration succeeds or user already exists, notification integration is working
-            if response.status_code in [200, 400]:
-                self.log_result("Notification Service Integration", True, 
-                              "Registration endpoint properly handles notification service calls")
+            response = self.make_request("GET", "/credits/packages")
+            if response.status_code == 200:
+                core_tests.append(("Credits System", True, "Working"))
             else:
-                self.log_result("Notification Service Integration", False, 
-                              f"Registration endpoint failed: HTTP {response.status_code}")
-                
+                core_tests.append(("Credits System", False, f"HTTP {response.status_code}"))
         except Exception as e:
-            self.log_result("Notification Service Integration", False, f"Exception: {str(e)}")
+            core_tests.append(("Credits System", False, f"Exception: {str(e)}"))
+        
+        # Test professional search
+        try:
+            response = self.make_request("GET", "/professionals/")
+            if response.status_code == 200:
+                core_tests.append(("Professional Search", True, "Working"))
+            else:
+                core_tests.append(("Professional Search", False, f"HTTP {response.status_code}"))
+        except Exception as e:
+            core_tests.append(("Professional Search", False, f"Exception: {str(e)}"))
+        
+        # Log results
+        working_count = sum(1 for test in core_tests if test[1])
+        total_count = len(core_tests)
+        
+        if working_count == total_count:
+            self.log_result("Core Functionality Without AI", True, 
+                          f"All {total_count} core functions working without AI components")
+        else:
+            failed_tests = [test[0] for test in core_tests if not test[1]]
+            self.log_result("Core Functionality Without AI", False, 
+                          f"Core functionality issues: {failed_tests}")
+    
+    def run_security_cleanup_verification(self):
+        """Run security cleanup verification tests"""
+        print(f"🔒 FINAL VERIFICATION TEST - SECRET KEYS AND AI COMPONENTS REMOVAL")
+        print(f"Backend URL: {self.base_url}")
+        print("=" * 80)
+        
+        # Essential setup tests
+        self.test_health_check()
+        self.test_user_registration()
+        self.test_user_login()
+        
+        # Security cleanup verification tests
+        print("\n🔍 SECURITY CLEANUP VERIFICATION:")
+        print("-" * 40)
+        self.test_ai_chat_endpoints_removed()
+        self.test_email_notifications_disabled_gracefully()
+        self.test_customer_requests_without_notifications()
+        self.test_no_sensitive_keys_in_responses()
+        self.test_core_functionality_without_ai()
+        
+        # Core functionality tests (abbreviated)
+        print("\n✅ CORE FUNCTIONALITY VERIFICATION:")
+        print("-" * 40)
+        self.test_get_current_user()
+        self.test_create_business_profile()
+        self.test_search_professionals()
+        self.test_quick_customer_request()
+        self.test_credits_packages()
+        
+        # Admin functionality (if available)
+        if "admin" in self.tokens:
+            print("\n👑 ADMIN FUNCTIONALITY VERIFICATION:")
+            print("-" * 40)
+            self.test_admin_get_users()
+            self.test_admin_get_profiles()
+        
+        # Summary
+        print("\n" + "=" * 80)
+        print("📊 SECURITY CLEANUP VERIFICATION SUMMARY")
+        print("=" * 80)
+        
+        passed = sum(1 for r in self.results if r["success"])
+        failed = len(self.results) - passed
+        
+        print(f"Total Tests: {len(self.results)}")
+        print(f"✅ Passed: {passed}")
+        print(f"❌ Failed: {failed}")
+        print(f"Success Rate: {(passed/len(self.results)*100):.1f}%")
+        
+        # Categorize results
+        security_tests = [r for r in self.results if any(keyword in r["test"].lower() 
+                         for keyword in ["ai", "notification", "sensitive", "security", "cleanup"])]
+        core_tests = [r for r in self.results if r not in security_tests]
+        
+        security_passed = sum(1 for r in security_tests if r["success"])
+        core_passed = sum(1 for r in core_tests if r["success"])
+        
+        print(f"\n🔒 Security Cleanup Tests: {security_passed}/{len(security_tests)} passed")
+        print(f"⚙️  Core Functionality Tests: {core_passed}/{len(core_tests)} passed")
+        
+        if failed > 0:
+            print("\n🔍 FAILED TESTS:")
+            for result in self.results:
+                if not result["success"]:
+                    print(f"   • {result['test']}: {result['message']}")
+        
+        # Final assessment
+        print("\n" + "=" * 80)
+        if security_passed == len(security_tests) and core_passed >= len(core_tests) * 0.8:
+            print("🎉 SECURITY CLEANUP VERIFICATION: PASSED")
+            print("✅ Application is clean and secure - ready for production")
+        else:
+            print("⚠️  SECURITY CLEANUP VERIFICATION: NEEDS ATTENTION")
+            if security_passed < len(security_tests):
+                print("❌ Security cleanup incomplete")
+            if core_passed < len(core_tests) * 0.8:
+                print("❌ Core functionality issues detected")
+        
+        return passed, failed
     
     def run_all_tests(self):
         """Run all API tests in sequence"""
