@@ -316,8 +316,11 @@ const AssignedLeads = () => {
                           </select>
                         </div>
 
-                        <button className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition font-medium">
-                          Add Notes
+                        <button 
+                          onClick={() => handleAddNote(lead)}
+                          className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition font-medium"
+                        >
+                          {lead.personalNotes ? 'Edit Notes' : 'Add Notes'}
                         </button>
                       </div>
                     </div>
