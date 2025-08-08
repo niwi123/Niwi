@@ -7,7 +7,6 @@ const LandingPage = () => {
   const [searchService, setSearchService] = useState('');
   const [postalCode, setPostalCode] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('home');
-  const [selectedCategory, setSelectedCategory] = useState('home');
 
   // Intersection Observer for scroll animations
   useEffect(() => {
