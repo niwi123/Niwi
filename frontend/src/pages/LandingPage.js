@@ -488,14 +488,14 @@ const LandingPage = () => {
                   <p className="text-base text-gray-700 mb-6">
                     Specialized professional services for unique requirements.
                   </p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
                     {[
                       { name: 'Legal Consultants', desc: 'Professional legal advice and consultation services', tag: 'Legal' },
                       { name: 'Financial Advisors', desc: 'Personal and business financial planning services', tag: 'Finance' }
                     ].map((service, index) => (
-                      <div key={index} className="bg-white rounded-lg p-4 border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
-                        <h4 className="text-base font-semibold text-gray-900 mb-2">{service.name}</h4>
-                        <p className="text-sm text-gray-600 mb-3">{service.desc}</p>
+                      <div key={index} className="bg-white rounded-lg p-3 sm:p-4 border border-gray-200 hover:border-emerald-300 hover:shadow-sm transition-all duration-200">
+                        <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2 leading-tight">{service.name}</h4>
+                        <p className="text-xs sm:text-sm text-gray-600 mb-3 leading-relaxed">{service.desc}</p>
                         <span className="inline-block px-2 py-1 text-xs font-medium bg-emerald-100 text-emerald-800 rounded">
                           {service.tag}
                         </span>
