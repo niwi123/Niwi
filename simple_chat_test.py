@@ -6,7 +6,7 @@ Simple AI Chat Test - Test core functionality
 import requests
 import json
 
-BACKEND_URL = "https://c03263fb-68ad-4615-a2c4-3309f5eb5b3a.preview.emergentagent.com/api"
+BACKEND_URL = "https://6be2d00e-f916-4ea9-93b7-bb62ff737612.preview.emergentagent.com/api"
 
 def test_basic_chat():
     print("🧪 Testing Basic AI Chat Functionality")
