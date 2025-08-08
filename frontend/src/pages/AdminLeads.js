@@ -334,6 +334,134 @@ const AdminLeads = () => {
         </div>
       </div>
       
+      {/* View Details Modal */}
+      {showDetailsModal && selectedLead && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity">
+              <div className="absolute inset-0 bg-gray-500 opacity-75" onClick={closeDetailsModal}></div>
+            </div>
+
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-4xl sm:w-full">
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900">Lead Details</h3>
+                  <button
+                    onClick={closeDetailsModal}
+                    className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {/* Customer Information */}
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4">Customer Information</h4>
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-sm text-gray-600">Name:</span>
+                        <p className="font-medium">{selectedLead.customer_name}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Email:</span>
+                        <p className="font-medium">{selectedLead.customer_email}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Phone:</span>
+                        <p className="font-medium">{selectedLead.customer_phone}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Location:</span>
+                        <p className="font-medium">{selectedLead.location}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Project Information */}
+                  <div className="bg-gray-50 p-6 rounded-lg">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-4">Project Information</h4>
+                    <div className="space-y-3">
+                      <div>
+                        <span className="text-sm text-gray-600">Service Category:</span>
+                        <p className="font-medium capitalize">{selectedLead.service_category}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Budget Range:</span>
+                        <p className="font-medium">{selectedLead.budget_range}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Timeline:</span>
+                        <p className="font-medium">{selectedLead.timeline}</p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Priority:</span>
+                        <p className={`font-medium ${getUrgencyColor(selectedLead.urgency)}`}>
+                          {selectedLead.urgency.toUpperCase()}
+                        </p>
+                      </div>
+                      <div>
+                        <span className="text-sm text-gray-600">Status:</span>
+                        <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ml-2 ${getStatusColor(selectedLead.status)}`}>
+                          {selectedLead.status}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Full Description */}
+                <div className="mt-6">
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">Project Description</h4>
+                  <div className="bg-gray-50 p-4 rounded-lg">
+                    <p className="text-gray-700 leading-relaxed">{selectedLead.description}</p>
+                  </div>
+                </div>
+
+                {/* Assignment Information */}
+                {selectedLead.assigned_to && (
+                  <div className="mt-6">
+                    <h4 className="text-lg font-semibold text-gray-900 mb-3">Assignment Information</h4>
+                    <div className="bg-red-50 p-4 rounded-lg border border-red-200">
+                      <p className="text-red-800">
+                        <span className="font-medium">Assigned to:</span> {selectedLead.assigned_to}
+                      </p>
+                      <p className="text-red-600 text-sm mt-1">
+                        This lead has been assigned and is highlighted in red in the main view.
+                      </p>
+                    </div>
+                  </div>
+                )}
+
+                {/* Timestamps */}
+                <div className="mt-6 pt-4 border-t">
+                  <div className="flex justify-between text-sm text-gray-500">
+                    <span>Created: {new Date(selectedLead.created_at).toLocaleDateString()}</span>
+                    <span>ID: {selectedLead.id}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button
+                  onClick={closeDetailsModal}
+                  className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                >
+                  Close
+                </button>
+                {selectedLead.status === 'pending' && !selectedLead.assigned_to && (
+                  <button
+                    className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-emerald-600 text-base font-medium text-white hover:bg-emerald-700 focus:outline-none sm:ml-3 sm:w-auto sm:text-sm"
+                  >
+                    Assign Lead
+                  </button>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* AI Chat Button */}
       <SimpleChatBot />
     </div>
