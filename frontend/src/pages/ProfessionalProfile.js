@@ -24,8 +24,15 @@ const ProfessionalProfile = () => {
 
   const serviceOptions = [
     'contractors', 'real_estate_agents', 'mortgage_brokers', 
-    'electricians', 'plumbers', 'hvac_specialists'
+    'electricians', 'plumbers', 'hvac_specialists',
+    'wedding_photography', 'social_media_marketing', 
+    'private_investigator', 'counselling'
   ];
+
+  const handleSignOut = () => {
+    logout();
+    window.location.href = '/'; // Redirect to main website page
+  };
 
   useEffect(() => {
     setIsVisible(true);
