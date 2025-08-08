@@ -200,12 +200,20 @@ const AdminUsers = () => {
                         {new Date(user.created_at).toLocaleDateString()}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <button className="text-emerald-600 hover:text-emerald-900 mr-4">
-                          Edit
-                        </button>
-                        <button className="text-red-600 hover:text-red-900">
-                          Suspend
-                        </button>
+                        <div className="relative inline-block">
+                          <select
+                            onChange={(e) => e.target.value && handleSuspendUser(user.id, e.target.value)}
+                            className="text-red-600 bg-red-50 hover:bg-red-100 text-sm font-medium px-3 py-1 rounded border border-red-200 focus:outline-none focus:border-red-400 transition"
+                            defaultValue=""
+                          >
+                            <option value="" disabled>Suspend</option>
+                            {suspensionOptions.map(option => (
+                              <option key={option.value} value={option.value}>
+                                {option.label}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
                       </td>
                     </tr>
                   ))}
