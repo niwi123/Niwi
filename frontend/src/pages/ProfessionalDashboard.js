@@ -80,19 +80,20 @@ const ProfessionalDashboard = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center py-6">
             <div className="flex items-center">
-              <Link to="/" className="text-2xl font-bold text-emerald-600">
+              <Link to="/professional/dashboard" className="text-2xl font-bold text-emerald-600">
                 Niwi
               </Link>
               <nav className="ml-10 flex space-x-8">
-                <a href="#" className="text-emerald-600 font-medium">Dashboard</a>
+                <Link to="/professional/dashboard" className="text-emerald-600 font-medium">Dashboard</Link>
                 <Link to="/professional/profile" className="text-gray-500 hover:text-gray-700">Profile</Link>
-                <Link to="/credits" className="text-gray-500 hover:text-gray-700">Credits</Link>
+                <Link to="/credits" className="text-gray-500 hover:text-gray-700">Buy Leads</Link>
+                <Link to="/professional/leads" className="text-gray-500 hover:text-gray-700">Leads</Link>
               </nav>
             </div>
             <div className="flex items-center space-x-4">
               <span className="text-gray-700">Welcome, {user?.first_name}</span>
               <button
-                onClick={logout}
+                onClick={handleSignOut}
                 className="text-gray-500 hover:text-gray-700"
               >
                 Sign Out
