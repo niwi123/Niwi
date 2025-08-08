@@ -11,6 +11,9 @@ const SimpleChatBot = () => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Debug logging
+  console.log('SimpleChatBot render, isOpen:', isOpen);
+
   const quickActions = [
     { id: 'pricing', label: 'Pricing Info', message: 'What are your lead packages and pricing?' },
     { id: 'signup', label: 'How to Sign Up', message: 'How do I sign up as a professional?' },
