@@ -243,13 +243,13 @@ const LandingPage = () => {
           {/* Customer Section - Bark Style Search */}
           <div className={`transition-all duration-500 ${activeTab === 'customers' ? 'block' : 'hidden'}`}>
             <div className="text-center mb-16 bg-gradient-to-br from-blue-50 to-indigo-50 py-20 rounded-3xl">
-              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-4">
-                Find the best <br />
-                <span className="text-blue-600">professionals in Canada</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-4 leading-tight">
+                Find the <span className="text-emerald-600">right professional</span><br />
+                for your project
               </h1>
               
-              <p className="text-xl text-gray-600 mb-8">
-                Get free quotes within minutes
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto mb-8">
+                Connect with verified professionals across Canada. Get personalized quotes in minutes.
               </p>
 
               {/* Search Form */}
