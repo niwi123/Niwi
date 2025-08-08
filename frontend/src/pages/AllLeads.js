@@ -98,21 +98,20 @@ const AllLeads = () => {
       {/* Header */}
       <div className="bg-white shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center py-4">
-            <div className="flex items-center space-x-4">
-              <Link to="/professional/dashboard" className="text-2xl font-bold text-emerald-600">Niwi</Link>
+          <div className="flex justify-between items-center py-3 sm:py-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
+              <Link to="/professional/dashboard" className="text-xl sm:text-2xl font-bold text-emerald-600">Niwi</Link>
               <span className="text-gray-300">|</span>
-              <h1 className="text-xl font-semibold text-gray-900">All Leads</h1>
+              <h1 className="text-lg sm:text-xl font-semibold text-gray-900">All Leads</h1>
             </div>
             
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4 text-xs sm:text-sm">
               <Link to="/professional/dashboard" className="text-gray-600 hover:text-emerald-600 font-medium">
                 Dashboard
               </Link>
-              <Link to="/professional/profile" className="text-gray-600 hover:text-emerald-600 font-medium">
+              <Link to="/professional/profile" className="hidden sm:inline text-gray-600 hover:text-emerald-600 font-medium">
                 Profile
               </Link>
-              <span className="text-gray-600">Credits: {creditBalance?.balance || 0}</span>
               <button onClick={handleSignOut} className="text-gray-600 hover:text-red-600">
                 Sign Out
               </button>
