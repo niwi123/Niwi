@@ -90,12 +90,12 @@ const AdminDashboard = () => {
             </div>
           </Link>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          <Link to="/admin/customers" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
             <div className="ml-4">
               <p className="text-sm text-gray-600">Customers</p>
               <p className="text-2xl font-semibold text-gray-900">{mockStats.total_customers.toLocaleString()}</p>
             </div>
-          </div>
+          </Link>
 
           <Link to="/admin/leads" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
             <div className="ml-4">
