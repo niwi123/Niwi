@@ -71,49 +71,49 @@ const AdminDashboard = () => {
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Platform Overview</h1>
+        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 mb-6 sm:mb-8">Platform Overview</h1>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Total Users</p>
-              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_users.toLocaleString()}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600">Total Users</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">{mockStats.total_users.toLocaleString()}</p>
             </div>
           </div>
 
-          <Link to="/admin/professionals" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Professionals</p>
-              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_professionals.toLocaleString()}</p>
+          <Link to="/admin/professionals" className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow cursor-pointer block">
+            <div className="text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600">Professionals</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">{mockStats.total_professionals.toLocaleString()}</p>
             </div>
           </Link>
 
-          <Link to="/admin/customers" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Customers</p>
-              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_customers.toLocaleString()}</p>
+          <Link to="/admin/customers" className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow cursor-pointer block">
+            <div className="text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600">Customers</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">{mockStats.total_customers.toLocaleString()}</p>
             </div>
           </Link>
 
-          <Link to="/admin/leads" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Total Leads</p>
-              <p className="text-2xl font-semibold text-gray-900">{mockStats.total_leads}</p>
+          <Link to="/admin/leads" className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow cursor-pointer block">
+            <div className="text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600">Total Leads</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">{mockStats.total_leads}</p>
             </div>
           </Link>
 
-          <Link to="/admin/assigned-leads" className="bg-white rounded-lg shadow p-6 hover:shadow-lg transition-shadow cursor-pointer block">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Assigned Leads</p>
-              <p className="text-2xl font-semibold text-gray-900">{mockStats.active_leads}</p>
+          <Link to="/admin/assigned-leads" className="bg-white rounded-lg shadow p-4 sm:p-6 hover:shadow-lg transition-shadow cursor-pointer block">
+            <div className="text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600">Assigned Leads</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">{mockStats.active_leads}</p>
             </div>
           </Link>
 
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="ml-4">
-              <p className="text-sm text-gray-600">Conversion Rate</p>
-              <p className="text-2xl font-semibold text-gray-900">{mockStats.conversion_rate}%</p>
+          <div className="bg-white rounded-lg shadow p-4 sm:p-6">
+            <div className="text-center sm:text-left">
+              <p className="text-xs sm:text-sm text-gray-600">Conversion Rate</p>
+              <p className="text-lg sm:text-xl lg:text-2xl font-semibold text-gray-900">{mockStats.conversion_rate}%</p>
             </div>
           </div>
         </div>
