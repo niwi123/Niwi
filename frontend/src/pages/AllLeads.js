@@ -207,58 +207,58 @@ const AllLeads = () => {
             </div>
           ) : filteredLeads.length > 0 ? (
             filteredLeads.map((lead) => (
-              <div key={lead._id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-6">
-                <div className="flex justify-between items-start">
-                  <div className="flex-1">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <span className="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-sm font-medium">
+              <div key={lead._id} className="bg-white rounded-lg shadow hover:shadow-lg transition-shadow p-4 sm:p-6">
+                <div className="flex flex-col sm:flex-row justify-between items-start gap-4">
+                  <div className="flex-1 min-w-0">
+                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                      <span className="px-2 sm:px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs sm:text-sm font-medium">
                         {formatServiceType(lead.service_type)}
                       </span>
-                      <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm">
+                      <span className="px-2 sm:px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs sm:text-sm">
                         {lead.location?.city}, {lead.location?.province}
                       </span>
-                      <span className="text-sm text-gray-500">
+                      <span className="text-xs sm:text-sm text-gray-500">
                         {new Date(lead.created_at).toLocaleDateString()}
                       </span>
                     </div>
 
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{lead.title}</h3>
-                    <p className="text-gray-600 mb-4">{lead.description}</p>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 line-clamp-1">{lead.title}</h3>
+                    <p className="text-sm sm:text-base text-gray-600 mb-4 line-clamp-2">{lead.description}</p>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-4 mb-4">
                       {lead.budget && (
-                        <div className="flex items-center text-gray-600">
+                        <div className="flex items-center text-xs sm:text-sm text-gray-600">
                           <span className="font-medium mr-2">Budget:</span>
-                          ${lead.budget.min?.toLocaleString()} - ${lead.budget.max?.toLocaleString()}
+                          <span className="truncate">${lead.budget.min?.toLocaleString()} - ${lead.budget.max?.toLocaleString()}</span>
                         </div>
                       )}
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-xs sm:text-sm text-gray-600">
                         <span className="font-medium mr-2">Timeline:</span>
-                        {lead.urgency?.replace('_', ' ') || 'Not specified'}
+                        <span className="truncate">{lead.urgency?.replace('_', ' ') || 'Not specified'}</span>
                       </div>
-                      <div className="flex items-center text-gray-600">
+                      <div className="flex items-center text-xs sm:text-sm text-gray-600">
                         <span className="font-medium mr-2">Contact:</span>
-                        {lead.contact_preference || 'Email'}
+                        <span className="truncate">{lead.contact_preference || 'Email'}</span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="ml-6 flex flex-col items-end">
-                    <div className="text-right mb-4">
-                      <div className="text-2xl font-bold text-emerald-600">1 Credit</div>
-                      <div className="text-sm text-gray-500">to unlock</div>
+                  <div className="flex sm:flex-col items-center sm:items-end gap-3 sm:gap-4">
+                    <div className="text-center">
+                      <div className="text-lg sm:text-2xl font-bold text-emerald-600">1 Lead</div>
+                      <div className="text-xs sm:text-sm text-gray-500">to unlock</div>
                     </div>
 
                     <button
                       onClick={() => handleUnlockLead(lead._id)}
                       disabled={!creditBalance || creditBalance.balance < 1}
-                      className={`px-6 py-3 rounded-lg font-medium transition ${
+                      className={`px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium transition text-xs sm:text-sm ${
                         creditBalance && creditBalance.balance >= 1
                           ? 'bg-emerald-600 text-white hover:bg-emerald-700'
                           : 'bg-gray-300 text-gray-500 cursor-not-allowed'
                       }`}
                     >
-                      {creditBalance && creditBalance.balance >= 1 ? 'Unlock Lead' : 'Insufficient Credits'}
+                      {creditBalance && creditBalance.balance >= 1 ? 'Unlock Lead' : 'Need Credits'}
                     </button>
                   </div>
                 </div>
