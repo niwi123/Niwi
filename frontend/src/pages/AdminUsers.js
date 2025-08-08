@@ -284,9 +284,6 @@ const AdminUsers = () => {
           </div>
         </div>
       </div>
-      
-      {/* AI Chat Button */}
-      <ChatButton />
     </div>
   );
 };
