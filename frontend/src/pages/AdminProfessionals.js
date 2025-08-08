@@ -271,26 +271,61 @@ const AdminProfessionals = () => {
                     </div>
                   </div>
 
-                  <div className="flex space-x-2">
-                    <button 
-                      className="text-emerald-600 hover:text-emerald-900 text-sm font-medium"
+                  <div className="flex flex-wrap gap-2">
+                    <Link 
+                      to={`/professional/profile/${professional.user_id}`}
+                      className="text-emerald-600 hover:text-emerald-900 text-sm font-medium px-3 py-1 bg-emerald-50 hover:bg-emerald-100 rounded transition"
                     >
                       View Profile
-                    </button>
-                    {!professional.is_verified && (
+                    </Link>
+                    
+                    {!professional.is_verified ? (
                       <button 
                         onClick={() => handleVerifyProfessional(professional.id)}
-                        className="text-blue-600 hover:text-blue-900 text-sm font-medium"
+                        className="text-white bg-green-600 hover:bg-green-700 text-sm font-medium px-3 py-1 rounded transition"
                       >
-                        Verify
+                        ✓ Verify
                       </button>
+                    ) : (
+                      <span className="text-green-600 text-sm font-medium px-3 py-1 bg-green-50 rounded">
+                        ✓ Verified
+                      </span>
                     )}
-                    <button className="text-orange-600 hover:text-orange-900 text-sm font-medium">
-                      Assign Lead
-                    </button>
-                    <button className="text-red-600 hover:text-red-900 text-sm font-medium">
-                      Suspend
-                    </button>
+
+                    {/* Assign Lead Dropdown */}
+                    <div className="relative inline-block">
+                      <select
+                        onChange={(e) => e.target.value && handleAssignLead(professional.id, e.target.value)}
+                        className="text-blue-600 bg-blue-50 hover:bg-blue-100 text-sm font-medium px-3 py-1 rounded border border-blue-200 focus:outline-none focus:border-blue-400 transition"
+                        defaultValue=""
+                      >
+                        <option value="" disabled>Assign Lead</option>
+                        {availableLeads
+                          .filter(lead => professional.service_categories.includes(lead.category))
+                          .map(lead => (
+                            <option key={lead.id} value={lead.id}>
+                              {lead.title}
+                            </option>
+                          ))
+                        }
+                      </select>
+                    </div>
+
+                    {/* Suspend Dropdown */}
+                    <div className="relative inline-block">
+                      <select
+                        onChange={(e) => e.target.value && handleSuspendUser(professional.id, e.target.value)}
+                        className="text-red-600 bg-red-50 hover:bg-red-100 text-sm font-medium px-3 py-1 rounded border border-red-200 focus:outline-none focus:border-red-400 transition"
+                        defaultValue=""
+                      >
+                        <option value="" disabled>Suspend</option>
+                        {suspensionOptions.map(option => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
                 </div>
               </div>
