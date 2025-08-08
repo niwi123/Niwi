@@ -233,7 +233,7 @@ class NiwiAPITester:
             headers = self.get_auth_header("professional")
             profile_data = {
                 "business_name": "Mike's Construction Services",
-                "service_categories": ["contractor", "roofing"],
+                "service_categories": ["contractor", "electrician"],
                 "description": "Professional construction and roofing services with 15 years of experience",
                 "service_areas": ["Toronto", "Mississauga", "Brampton"],
                 "years_experience": 15,
