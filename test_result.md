@@ -520,7 +520,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Landing Page Inkris.ca Styling Completion"
+    - "Security Cleanup Verification - AI Components and Secret Keys Removal"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
