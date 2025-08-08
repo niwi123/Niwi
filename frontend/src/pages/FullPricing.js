@@ -157,25 +157,25 @@ const FullPricing = () => {
                 <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-2">{pkg.name}</h3>
                 <p className="text-xs sm:text-sm text-gray-600 mb-3 sm:mb-4">{pkg.description}</p>
                 
-                <div className="mb-6">
-                  <div className="text-3xl font-bold text-gray-900 mb-2">
+                <div className="mb-4 sm:mb-6">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                     {pkg.credits}
-                    <span className="text-lg text-gray-600 font-normal"> leads</span>
+                    <span className="text-sm sm:text-lg text-gray-600 font-normal"> leads</span>
                   </div>
-                  <div className="text-2xl font-semibold text-emerald-600">
+                  <div className="text-xl sm:text-2xl font-semibold text-emerald-600">
                     ${pkg.price.toLocaleString()}
                   </div>
-                  <div className="text-sm text-gray-500">
+                  <div className="text-xs sm:text-sm text-gray-500">
                     ${(pkg.price / pkg.credits).toFixed(0)} per lead
                   </div>
                 </div>
 
                 {/* Features List */}
-                <div className="mb-6">
-                  <ul className="space-y-2">
+                <div className="mb-4 sm:mb-6">
+                  <ul className="space-y-1 sm:space-y-2">
                     {pkg.features.map((feature, i) => (
-                      <li key={i} className="flex items-center text-sm text-gray-600">
-                        <span className="text-green-500 mr-2">✓</span>
+                      <li key={i} className="flex items-center text-xs sm:text-sm text-gray-600">
+                        <span className="text-green-500 mr-2 text-sm sm:text-base">✓</span>
                         {feature}
                       </li>
                     ))}
@@ -186,7 +186,7 @@ const FullPricing = () => {
                   href={pkg.stripeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`w-full py-3 px-4 rounded-lg font-medium transition-all duration-300 text-center block transform hover:scale-105 active:scale-95 ${
+                  className={`w-full py-2 sm:py-3 px-3 sm:px-4 rounded-lg font-medium transition-all duration-300 text-center block text-xs sm:text-sm ${
                     pkg.popular
                       ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg hover:shadow-xl'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200 hover:shadow-lg'
@@ -199,25 +199,25 @@ const FullPricing = () => {
           </div>
 
           {/* FAQ Section */}
-          <div className="mt-20">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+          <div className="mt-12 sm:mt-16 lg:mt-20">
+            <div className="text-center mb-8 sm:mb-12">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
             </div>
             
-            <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">How do leads work?</h3>
-                <p className="text-gray-600">Each lead allows you to unlock one verified lead with full contact details. Leads never expire and you only pay for leads you choose to pursue.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
+              <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">How do leads work?</h3>
+                <p className="text-sm sm:text-base text-gray-600">Each lead allows you to unlock one verified lead with full contact details. Leads never expire and you only pay for leads you choose to pursue.</p>
               </div>
               
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">What if a lead isn't good quality?</h3>
-                <p className="text-gray-600">We offer a 100% replacement guarantee. If a lead doesn't meet our quality standards, we'll replace it at no additional cost.</p>
+              <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">What if a lead isn't good quality?</h3>
+                <p className="text-sm sm:text-base text-gray-600">We offer a 100% replacement guarantee. If a lead doesn't meet our quality standards, we'll replace it at no additional cost.</p>
               </div>
               
-              <div className="bg-white rounded-2xl p-6 shadow-sm">
-                <h3 className="text-lg font-bold text-gray-900 mb-3">Can I upgrade or downgrade?</h3>
-                <p className="text-gray-600">Yes! You can purchase additional leads anytime. There are no long-term contracts or commitments.</p>
+              <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-sm">
+                <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 sm:mb-3">Can I upgrade or downgrade?</h3>
+                <p className="text-sm sm:text-base text-gray-600">Yes! You can purchase additional leads anytime. There are no long-term contracts or commitments.</p>
               </div>
               
               <div className="bg-white rounded-2xl p-6 shadow-sm">
