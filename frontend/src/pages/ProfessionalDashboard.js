@@ -118,7 +118,7 @@ const ProfessionalDashboard = () => {
           <div className="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
             <h2 className="text-xl font-semibold text-gray-900">Available Leads (Preview)</h2>
             <Link
-              to="/credits"
+              to="/pricing"
               className="bg-emerald-600 text-white px-4 py-2 rounded-md text-sm hover:bg-emerald-700 transition"
             >
               Buy Credits
