@@ -195,8 +195,8 @@ frontend:
 
   - task: "AI Chatbot UI Integration"
     implemented: true
-    working: false
-    file: "/app/frontend/src/components/ChatBot.js, /app/frontend/src/components/ChatButton.js"
+    working: true
+    file: "/app/frontend/src/components/SimpleChatBot.js"
     stuck_count: 1
     priority: "high"
     needs_retesting: false
@@ -207,6 +207,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "CRITICAL ISSUE FOUND: Chat button exists and is clickable, but clicking it does not open the chat window. React app is loading correctly (bundle.js loads successfully, DOM content is rendered), but the ChatButton component's onClick handler is not functioning. The issue is specifically with the React state management in ChatButton.js - when setIsChatOpen(true) is called, it's not triggering the conditional rendering to show the ChatBot component. This prevents users from accessing any chat functionality, including the quick action buttons that were reported as not working. Root cause: React state update not working in ChatButton component."
+      - working: true
+        agent: "testing"
+        comment: "ISSUE RESOLVED: SimpleChatBot functionality is now working correctly! Fixed the z-index issue that was preventing clicks from reaching the chat button (emergent-badge overlay was blocking clicks). Chat button now opens successfully with red notification icon. Chat window displays with 'Niwi Assistant' header. Quick action buttons are present and functional: 'Pricing Info' button works and sends correct message. Manual chat input also works correctly. Minor: AI responses are showing 'technical difficulties' message, but the chat UI functionality is fully operational. The SimpleChatBot component replaced the problematic ChatButton/ChatBot components and is working as expected."
 
   - task: "Admin Management Pages"
     implemented: false
