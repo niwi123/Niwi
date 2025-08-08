@@ -76,6 +76,11 @@ const AllLeads = () => {
 
   const serviceTypes = [...new Set(leads.map(lead => lead.service_type))];
 
+  const handleSignOut = () => {
+    logout();
+    window.location.href = '/'; // Redirect to main website page
+  };
+
   if (!user || user.user_type !== 'professional') {
     return (
       <div className="min-h-screen flex items-center justify-center">
