@@ -237,68 +237,68 @@ const AssignedLeads = () => {
             <p className="text-gray-600">Loading your assigned leads...</p>
           </div>
         ) : (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {filteredLeads.map((lead) => (
               <div key={lead.id} className="bg-white shadow-lg rounded-lg overflow-hidden border-l-4 border-emerald-500">
-                <div className="p-6">
+                <div className="p-4 sm:p-6">
                   <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
-                      <div className="flex items-center space-x-3 mb-3">
-                        <h3 className="text-xl font-bold text-gray-900">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-3">
+                        <h3 className="text-base sm:text-lg lg:text-xl font-bold text-gray-900 truncate">
                           {lead.title}
                         </h3>
                         <span className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${getStatusColor(lead.status)}`}>
                           {lead.status.replace('_', ' ').toUpperCase()}
                         </span>
-                        <span className={`text-sm font-medium ${getPriorityColor(lead.priority)}`}>
-                          {lead.priority.toUpperCase()} PRIORITY
+                        <span className={`text-xs sm:text-sm font-medium ${getPriorityColor(lead.priority)}`}>
+                          {lead.priority.toUpperCase()}
                         </span>
                         <span className="bg-purple-100 text-purple-800 px-2 py-1 text-xs rounded-full font-medium">
-                          ASSIGNED LEAD
+                          ASSIGNED
                         </span>
                       </div>
 
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-4">
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6 mb-4">
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-2">Customer Information</h4>
-                          <p className="font-medium text-gray-900">{lead.customer_name}</p>
-                          <p className="text-gray-600">{lead.customer_email}</p>
-                          <p className="text-gray-600">{lead.customer_phone}</p>
-                          <p className="text-gray-600 mt-1">{lead.location}</p>
+                          <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Customer Information</h4>
+                          <p className="text-sm sm:text-base font-medium text-gray-900">{lead.customer_name}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 truncate">{lead.customer_email}</p>
+                          <p className="text-xs sm:text-sm text-gray-600">{lead.customer_phone}</p>
+                          <p className="text-xs sm:text-sm text-gray-600 mt-1">{lead.location}</p>
                         </div>
 
                         <div>
-                          <h4 className="font-semibold text-gray-900 mb-2">Project Details</h4>
-                          <p className="text-gray-600"><span className="font-medium">Budget:</span> {lead.budget_range}</p>
-                          <p className="text-gray-600"><span className="font-medium">Timeline:</span> {lead.timeline}</p>
-                          <p className="text-gray-600"><span className="font-medium">Assigned by:</span> {lead.assigned_by}</p>
-                          <p className="text-gray-600"><span className="font-medium">Date Assigned:</span> {new Date(lead.assigned_date).toLocaleDateString()}</p>
+                          <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Project Details</h4>
+                          <p className="text-xs sm:text-sm text-gray-600"><span className="font-medium">Budget:</span> {lead.budget_range}</p>
+                          <p className="text-xs sm:text-sm text-gray-600"><span className="font-medium">Timeline:</span> {lead.timeline}</p>
+                          <p className="text-xs sm:text-sm text-gray-600"><span className="font-medium">Assigned by:</span> {lead.assigned_by}</p>
+                          <p className="text-xs sm:text-sm text-gray-600"><span className="font-medium">Date:</span> {new Date(lead.assigned_date).toLocaleDateString()}</p>
                         </div>
                       </div>
 
                       <div className="mb-4">
-                        <h4 className="font-semibold text-gray-900 mb-2">Project Description</h4>
-                        <p className="text-gray-700">{lead.description}</p>
+                        <h4 className="text-sm sm:text-base font-semibold text-gray-900 mb-2">Project Description</h4>
+                        <p className="text-xs sm:text-sm lg:text-base text-gray-700 line-clamp-3">{lead.description}</p>
                       </div>
 
                       {lead.notes && (
-                        <div className="mb-4 p-4 bg-blue-50 rounded-lg">
-                          <h4 className="font-semibold text-blue-900 mb-2">Admin Notes</h4>
-                          <p className="text-blue-800">{lead.notes}</p>
+                        <div className="mb-4 p-3 sm:p-4 bg-blue-50 rounded-lg">
+                          <h4 className="text-sm font-semibold text-blue-900 mb-2">Admin Notes</h4>
+                          <p className="text-xs sm:text-sm text-blue-800">{lead.notes}</p>
                         </div>
                       )}
 
-                      <div className="flex flex-wrap gap-3">
+                      <div className="flex flex-wrap gap-2 sm:gap-3">
                         <a
                           href={`mailto:${lead.customer_email}`}
-                          className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition font-medium"
+                          className="bg-emerald-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-emerald-700 transition font-medium text-xs sm:text-sm"
                         >
                           Contact Customer
                         </a>
                         
                         <a
                           href={`tel:${lead.customer_phone}`}
-                          className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium"
+                          className="bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-blue-700 transition font-medium text-xs sm:text-sm"
                         >
                           Call Now
                         </a>
@@ -307,7 +307,7 @@ const AssignedLeads = () => {
                           <select
                             value={lead.status}
                             onChange={(e) => handleStatusUpdate(lead.id, e.target.value)}
-                            className="bg-gray-100 text-gray-700 px-4 py-2 rounded-lg border focus:outline-none focus:border-emerald-500 font-medium"
+                            className="bg-gray-100 text-gray-700 px-3 sm:px-4 py-2 rounded-lg border focus:outline-none focus:border-emerald-500 font-medium text-xs sm:text-sm"
                           >
                             <option value="pending_contact">Pending Contact</option>
                             <option value="contacted">Contacted</option>
@@ -318,7 +318,7 @@ const AssignedLeads = () => {
 
                         <button 
                           onClick={() => handleAddNote(lead)}
-                          className="bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 transition font-medium"
+                          className="bg-orange-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-orange-700 transition font-medium text-xs sm:text-sm"
                         >
                           {lead.personalNotes ? 'Edit Notes' : 'Add Notes'}
                         </button>
