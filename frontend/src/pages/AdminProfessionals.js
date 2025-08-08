@@ -307,12 +307,12 @@ const AdminProfessionals = () => {
                   </div>
 
                   <div className="flex flex-wrap gap-2">
-                    <Link 
-                      to={`/professional/profile/${professional.user_id}`}
+                    <button 
+                      onClick={() => handleViewProfile(professional)}
                       className="text-emerald-600 hover:text-emerald-900 text-sm font-medium px-3 py-1 bg-emerald-50 hover:bg-emerald-100 rounded transition"
                     >
                       View Profile
-                    </Link>
+                    </button>
                     
                     {!professional.is_verified ? (
                       <button 
