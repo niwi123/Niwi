@@ -15,6 +15,8 @@ const AdminLeads = () => {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedLead, setSelectedLead] = useState(null); // For view details modal
   const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showAssignModal, setShowAssignModal] = useState(false);
+  const [leadForAssignment, setLeadForAssignment] = useState(null);
 
   const handleSignOut = () => {
     logout();
