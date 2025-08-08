@@ -169,11 +169,11 @@ const LandingPage = () => {
       <section className="py-12 sm:py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Tab Navigation */}
-          <div className="flex justify-center mb-8">
-            <div className="bg-gray-100 rounded-xl p-1 flex">
+          <div className="flex justify-center mb-6 sm:mb-8 px-4">
+            <div className="bg-gray-100 rounded-xl p-1 flex w-full max-w-md sm:max-w-lg">
               <button
                 onClick={() => setActiveTab('professionals')}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                className={`flex-1 px-4 sm:px-6 py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
                   activeTab === 'professionals'
                     ? 'bg-emerald-600 text-white shadow-lg'
                     : 'text-gray-600 hover:text-gray-900'
@@ -183,7 +183,7 @@ const LandingPage = () => {
               </button>
               <button
                 onClick={() => setActiveTab('customers')}
-                className={`px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
+                className={`flex-1 px-4 sm:px-6 py-3 rounded-lg font-medium transition-all duration-300 text-sm sm:text-base ${
                   activeTab === 'customers'
                     ? 'bg-emerald-600 text-white shadow-lg'
                     : 'text-gray-600 hover:text-gray-900'
