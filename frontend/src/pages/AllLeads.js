@@ -141,19 +141,40 @@ const AllLeads = () => {
 
           {/* Filters */}
           <div className="bg-white rounded-lg shadow p-6">
-            <h3 className="text-lg font-semibold text-gray-900 mb-4">Filter by Service Type</h3>
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-lg font-semibold text-gray-900">Filter by Service Type</h3>
+              <div className="flex space-x-2">
+                <Link
+                  to="/professional/assigned-leads"
+                  className="bg-blue-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-blue-700 transition"
+                >
+                  Assigned Leads
+                </Link>
+              </div>
+            </div>
             <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setFilter('all')}
-                className={`px-4 py-2 rounded-lg font-medium transition ${
-                  filter === 'all'
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                All ({leads.length})
-              </button>
-              {serviceTypes.map(serviceType => (
+              {/* Enhanced All button with dropdown */}
+              <div className="relative inline-block">
+                <select
+                  value={filter}
+                  onChange={(e) => setFilter(e.target.value)}
+                  className={`px-4 py-2 rounded-lg font-medium transition border focus:outline-none focus:border-emerald-500 ${
+                    filter === 'all'
+                      ? 'bg-emerald-600 text-white border-emerald-600'
+                      : 'bg-gray-100 text-gray-700 border-gray-300'
+                  }`}
+                >
+                  <option value="all">All ({leads.length})</option>
+                  {serviceTypes.map(serviceType => (
+                    <option key={serviceType} value={serviceType}>
+                      {formatServiceType(serviceType)} ({leads.filter(l => l.service_type === serviceType).length})
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Individual service type buttons for quick access */}
+              {serviceTypes.slice(0, 5).map(serviceType => (
                 <button
                   key={serviceType}
                   onClick={() => setFilter(serviceType)}
@@ -166,6 +187,12 @@ const AllLeads = () => {
                   {formatServiceType(serviceType)} ({leads.filter(l => l.service_type === serviceType).length})
                 </button>
               ))}
+              
+              {serviceTypes.length > 5 && (
+                <button className="px-4 py-2 rounded-lg font-medium bg-gray-100 text-gray-700 hover:bg-gray-200 transition">
+                  More... ({serviceTypes.length - 5})
+                </button>
+              )}
             </div>
           </div>
         </div>
