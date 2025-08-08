@@ -127,6 +127,24 @@ const AdminLeads = () => {
     ));
   };
 
+  const handleViewDetails = (lead) => {
+    setSelectedLead(lead);
+    setShowDetailsModal(true);
+  };
+
+  const handleCancelLead = (leadId) => {
+    if (window.confirm('Are you sure you want to cancel this lead? This action cannot be undone.')) {
+      setLeads(prev => prev.map(lead => 
+        lead.id === leadId ? { ...lead, status: 'cancelled', assigned_to: null } : lead
+      ));
+    }
+  };
+
+  const closeDetailsModal = () => {
+    setShowDetailsModal(false);
+    setSelectedLead(null);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
