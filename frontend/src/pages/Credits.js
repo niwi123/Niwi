@@ -15,6 +15,11 @@ const Credits = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
 
+  const handleSignOut = () => {
+    logout();
+    window.location.href = '/'; // Redirect to main website page
+  };
+
   useEffect(() => {
     if (user && user.user_type === 'professional') {
       fetchCreditData();
