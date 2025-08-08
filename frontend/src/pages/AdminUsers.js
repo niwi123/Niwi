@@ -77,6 +77,20 @@ const AdminUsers = () => {
     }
   };
 
+  const handleSuspendUser = (userId, duration) => {
+    // Placeholder for suspension logic
+    console.log(`Suspending user ${userId} for ${duration}`);
+    // In real implementation, this would call an API
+  };
+
+  const suspensionOptions = [
+    { value: '1h', label: '1 Hour' },
+    { value: '5h', label: '5 Hours' },
+    { value: '24h', label: '24 Hours' },
+    { value: '1d', label: '1 Day' },
+    { value: '3d', label: '3 Days' }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
