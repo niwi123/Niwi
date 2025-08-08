@@ -494,7 +494,6 @@ metadata:
 test_plan:
   current_focus:
     - "Landing Page Inkris.ca Styling Completion"
-    - "Email Notifications Update - Admin Email Change"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
