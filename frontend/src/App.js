@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Credits from "./pages/Credits";
 import FullPricing from "./pages/FullPricing";
 import AllLeads from "./pages/AllLeads";
+import AssignedLeads from "./pages/AssignedLeads";
 import CreditSuccess from "./pages/CreditSuccess";
 import { AuthProvider } from "./contexts/AuthContext";
 
