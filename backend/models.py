@@ -11,17 +11,17 @@ class UserType(str, Enum):
 
 class ServiceCategory(str, Enum):
     CONTRACTOR = "contractor"
-    REAL_ESTATE = "real_estate"
-    MORTGAGE_BROKER = "mortgage_broker"
-    PLUMBER = "plumber"
     ELECTRICIAN = "electrician"
+    PLUMBER = "plumber"
     HVAC = "hvac"
-    ROOFING = "roofing"
+    REAL_ESTATE = "real_estate"
+    MORTGAGE = "mortgage"
     LANDSCAPING = "landscaping"
     CLEANING = "cleaning"
-    HANDYMAN = "handyman"
-    PAINTER = "painter"
-    FLOORING = "flooring"
+    WEDDING_PHOTOGRAPHY = "wedding_photography"
+    SOCIAL_MEDIA_MARKETING = "social_media_marketing"
+    PRIVATE_INVESTIGATOR = "private_investigator"
+    COUNSELLING = "counselling"
 
 class LeadStatus(str, Enum):
     PENDING = "pending"
