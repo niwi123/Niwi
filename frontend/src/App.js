@@ -11,6 +11,7 @@ import ProfessionalProfile from "./pages/ProfessionalProfile";
 import AdminDashboard from "./pages/AdminDashboard";
 import AdminUsers from "./pages/AdminUsers";
 import AdminProfessionals from "./pages/AdminProfessionals";
+import AdminLeads from "./pages/AdminLeads";
 import Login from "./pages/Login";
 import Credits from "./pages/Credits";
 import FullPricing from "./pages/FullPricing";
