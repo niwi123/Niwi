@@ -572,11 +572,13 @@ const LandingPage = () => {
 
       {/* Pricing - Condensed */}
       {activeTab === 'professionals' && (
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
-              <p className="text-xl text-gray-600">Only pay for the leads you want to pursue</p>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Lead Packages</h2>
+              <p className="text-base text-gray-600 max-w-2xl mx-auto">
+                Choose the perfect lead package for your business needs. Only pay for leads you want to pursue.
+              </p>
             </div>
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
