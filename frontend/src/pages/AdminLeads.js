@@ -530,6 +530,92 @@ const AdminLeads = () => {
         </div>
       )}
       
+      {/* Professional Assignment Modal */}
+      {showAssignModal && leadForAssignment && (
+        <div className="fixed inset-0 z-50 overflow-y-auto">
+          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+            <div className="fixed inset-0 transition-opacity">
+              <div className="absolute inset-0 bg-gray-500 opacity-75" onClick={closeAssignModal}></div>
+            </div>
+
+            <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full">
+              <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div className="flex justify-between items-center mb-6">
+                  <h3 className="text-2xl font-bold text-gray-900">
+                    {leadForAssignment.assigned_to ? 'Re-assign' : 'Assign'} Lead to Professional
+                  </h3>
+                  <button
+                    onClick={closeAssignModal}
+                    className="text-gray-400 hover:text-gray-600 text-2xl font-bold"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                  <h4 className="font-semibold text-gray-900 mb-2">Lead Details</h4>
+                  <p className="text-lg font-medium">{leadForAssignment.title}</p>
+                  <p className="text-sm text-gray-600">Service: {leadForAssignment.service_category}</p>
+                  <p className="text-sm text-gray-600">Budget: {leadForAssignment.budget_range}</p>
+                  {leadForAssignment.assigned_to && (
+                    <p className="text-sm text-red-600 font-medium mt-2">
+                      Currently assigned to: {leadForAssignment.assigned_to}
+                    </p>
+                  )}
+                </div>
+
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-4">
+                    Available {leadForAssignment.service_category.charAt(0).toUpperCase() + leadForAssignment.service_category.slice(1)}s
+                  </h4>
+                  
+                  <div className="space-y-4 max-h-96 overflow-y-auto">
+                    {getAvailableProfessionals(leadForAssignment.service_category).map(professional => (
+                      <div key={professional.id} className="bg-white border border-gray-200 rounded-lg p-4 hover:border-emerald-300 transition">
+                        <div className="flex justify-between items-start">
+                          <div className="flex-1">
+                            <h5 className="font-semibold text-gray-900">{professional.name}</h5>
+                            <div className="flex items-center mt-1">
+                              <span className="text-yellow-400">★</span>
+                              <span className="text-sm text-gray-600 ml-1">
+                                {professional.rating} ({professional.reviews} reviews)
+                              </span>
+                              <span className="text-gray-400 mx-2">•</span>
+                              <span className="text-sm text-gray-600">{professional.experience}</span>
+                            </div>
+                          </div>
+                          <button
+                            onClick={() => handleConfirmAssignment(professional.name)}
+                            className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition font-medium"
+                          >
+                            {leadForAssignment.assigned_to ? 'Re-assign' : 'Assign'}
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {getAvailableProfessionals(leadForAssignment.service_category).length === 0 && (
+                    <div className="text-center py-8 text-gray-500">
+                      No professionals available for this service category.
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button
+                  onClick={closeAssignModal}
+                  className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none sm:mt-0 sm:w-auto sm:text-sm"
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+      
       {/* AI Chat Button */}
       <SimpleChatBot />
     </div>
