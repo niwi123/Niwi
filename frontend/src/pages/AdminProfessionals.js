@@ -119,6 +119,32 @@ const AdminProfessionals = () => {
     ));
   };
 
+  const handleAssignLead = (professionalId, leadId) => {
+    // Placeholder for lead assignment logic
+    console.log(`Assigning lead ${leadId} to professional ${professionalId}`);
+  };
+
+  const handleSuspendUser = (professionalId, duration) => {
+    // Placeholder for suspension logic
+    console.log(`Suspending professional ${professionalId} for ${duration}`);
+    // In real implementation, this would call an API
+  };
+
+  const suspensionOptions = [
+    { value: '1h', label: '1 Hour' },
+    { value: '5h', label: '5 Hours' },
+    { value: '24h', label: '24 Hours' },
+    { value: '1d', label: '1 Day' },
+    { value: '3d', label: '3 Days' }
+  ];
+
+  // Mock leads for assignment dropdown
+  const availableLeads = [
+    { id: 'lead1', title: 'Kitchen Renovation - Toronto', category: 'contractor' },
+    { id: 'lead2', title: 'Electrical Work - Vancouver', category: 'electrician' },
+    { id: 'lead3', title: 'Plumbing Repair - Calgary', category: 'plumber' }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
