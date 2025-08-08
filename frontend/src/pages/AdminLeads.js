@@ -349,6 +349,15 @@ const AdminLeads = () => {
                       </div>
                     )}
                     
+                        {lead.assigned_to && (
+                          <button 
+                            onClick={() => handleReassignLead(lead)}
+                            className="text-orange-600 hover:text-orange-900 text-sm font-medium px-3 py-1 bg-orange-50 hover:bg-orange-100 rounded transition"
+                          >
+                            Re-assign
+                          </button>
+                        )}
+                    
                     <button 
                       onClick={() => handleCancelLead(lead.id)}
                       className="text-red-600 hover:text-red-900 text-sm font-medium px-3 py-1 bg-red-50 hover:bg-red-100 rounded transition"
