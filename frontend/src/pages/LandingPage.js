@@ -324,27 +324,29 @@ const LandingPage = () => {
               </p>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
               {keyFeatures.map((feature, index) => (
                 <div 
                   key={index}
-                  className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg border border-gray-100 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                  className="bg-white rounded-xl p-4 sm:p-5 shadow-md border border-gray-100 hover:shadow-lg transition-all duration-300"
                 >
-                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-16 h-16 rounded-2xl flex items-center justify-center mb-6 shadow-lg border border-gray-200">
-                    {feature.icon}
+                  <div className="bg-gradient-to-br from-gray-50 to-gray-100 w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-4 shadow-md border border-gray-200">
+                    <div className="w-6 h-6 sm:w-7 sm:h-7 text-emerald-600">
+                      {feature.icon}
+                    </div>
                   </div>
                   
-                  <h3 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-3">
                     {feature.title}
                   </h3>
                   
-                  <p className="text-gray-600 mb-6 leading-relaxed text-sm sm:text-base">
+                  <p className="text-gray-600 mb-4 leading-relaxed text-xs sm:text-sm">
                     {feature.description}
                   </p>
 
-                  <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl p-4 border border-emerald-200">
-                    <div className="text-2xl font-bold text-emerald-600">{feature.stat}</div>
-                    <div className="text-sm text-emerald-700">{feature.statLabel}</div>
+                  <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-lg p-3 border border-emerald-200">
+                    <div className="text-lg sm:text-xl font-bold text-emerald-600">{feature.stat}</div>
+                    <div className="text-xs sm:text-sm text-emerald-700">{feature.statLabel}</div>
                   </div>
                 </div>
               ))}
