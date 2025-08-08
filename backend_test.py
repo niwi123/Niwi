@@ -916,83 +916,8 @@ class NiwiAPITester:
         return passed, failed
     
     def run_all_tests(self):
-        """Run all API tests in sequence"""
-        print(f"🚀 Starting Niwi Platform API Tests")
-        print(f"Backend URL: {self.base_url}")
-        print("=" * 60)
-        
-        # Health check
-        self.test_health_check()
-        
-        # Authentication tests
-        self.test_user_registration()
-        self.test_user_login()
-        self.test_get_current_user()
-        self.test_update_user_profile()
-        
-        # Professional tests
-        self.test_create_business_profile()
-        self.test_get_business_profile()
-        self.test_search_professionals()
-        
-        # Customer tests
-        self.test_create_customer_request()
-        self.test_quick_customer_request()
-        self.test_get_customer_requests()
-        
-        # Admin tests
-        self.test_admin_get_users()
-        self.test_admin_get_profiles()
-        self.test_admin_get_customer_requests()
-        self.test_admin_assign_lead()
-        self.test_admin_get_stats()
-        
-        # Professional lead management
-        self.test_professional_get_leads()
-        self.test_professional_update_lead_status()
-        
-        # Credits system tests
-        self.test_credits_packages()
-        self.test_credits_balance()
-        self.test_credits_transactions()
-        
-        # AI Chat system tests
-        self.test_ai_chat_send_anonymous()
-        self.test_ai_chat_send_pricing_question()
-        self.test_ai_chat_send_authenticated()
-        self.test_ai_chat_get_history()
-        self.test_ai_chat_get_history_authenticated()
-        self.test_ai_chat_error_handling()
-        self.test_ai_chat_session_management()
-        
-        # Enhanced AI Chat tests
-        self.test_enhanced_ai_chat_quick_actions()
-        
-        # Email Notification tests
-        self.test_email_notification_user_registration()
-        self.test_email_notification_customer_request()
-        self.test_notification_service_integration()
-        
-        # Summary
-        print("\n" + "=" * 60)
-        print("📊 TEST SUMMARY")
-        print("=" * 60)
-        
-        passed = sum(1 for r in self.results if r["success"])
-        failed = len(self.results) - passed
-        
-        print(f"Total Tests: {len(self.results)}")
-        print(f"✅ Passed: {passed}")
-        print(f"❌ Failed: {failed}")
-        print(f"Success Rate: {(passed/len(self.results)*100):.1f}%")
-        
-        if failed > 0:
-            print("\n🔍 FAILED TESTS:")
-            for result in self.results:
-                if not result["success"]:
-                    print(f"   • {result['test']}: {result['message']}")
-        
-        return passed, failed
+        """Run all API tests in sequence - DEPRECATED: Use run_security_cleanup_verification instead"""
+        return self.run_security_cleanup_verification()
 
 if __name__ == "__main__":
     tester = NiwiAPITester()
